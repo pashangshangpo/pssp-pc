@@ -663,3 +663,5 @@ class Treen {
 }
 
 export default Treen;
+
+console.log('test')
