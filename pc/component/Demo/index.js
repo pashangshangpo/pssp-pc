@@ -15,6 +15,10 @@ import {
 import './index.less'
 
 export default class extends Component {
+  state = {
+    tags: ['A', 'B', 'C']
+  }
+
   render() {
     return el(
       'div',
@@ -30,17 +34,31 @@ export default class extends Component {
         },
         '---- Tag组件 ----'
       ),
-      el(
-        Tag,
-        {},
-        'Tag组件'
-      ),
+      this.state.tags.map(tag => {
+        return el(
+          Tag,
+          {
+            isRemove: true,
+            onClick: e => {
+              console.log('click', e.currentTarget)
+            },
+            onRemove: e => {
+              console.log('remove', e.currentTarget)
+              return true
+            }
+          },
+          tag
+        )
+      }),
       el(
         Tag,
         {
           isAdd: true,
           onAdd: content => {
-            console.log(content)
+            if (content) {
+              this.state.tags.push(content)
+              this.setState(this.state)
+            }
           }
         },
         '添加'

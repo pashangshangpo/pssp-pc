@@ -13,10 +13,12 @@ export default class extends Component {
    *  props
    *    className: String
    *    icon: Object require过的Svg对象
+   *    onClick: e => {}
    */
   static defaultProps = {
     className: '',
-    icon: {}
+    icon: {},
+    onClick: e => {}
   }
 
   render() {
@@ -32,7 +34,8 @@ export default class extends Component {
           default: this.props.className,
           prefix: 'svg'
         }),
-        viewBox: icon.viewBox
+        viewBox: icon.viewBox,
+        onClick: this.props.onClick
       },
       el(
         'defs',

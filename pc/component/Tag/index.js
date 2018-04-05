@@ -4,10 +4,9 @@
  */
 
 import React, { Component } from 'react'
-import {
-  el,
-  c
-} from '../../../common'
+import { el, c } from '../../../common'
+import Input from '../Input'
+import Svg from '../Svg'
 import './index.less'
 
 export default class extends Component {
@@ -17,18 +16,122 @@ export default class extends Component {
    *    className: String
    *    color: String 颜色
    *    isRemove: Boolean 是否可以删除
-   *    remove: item => {} 删除时的回调函数
+   *    isAdd: Boolean 是否是新增标签
+   *    onRemove: e => {} 删除时的回调
+   *    onClick: e => {} 点击标签时的回调
+   *    onAdd: content => {} 添加内容时的回调
    *  children: [String, ReactElement] tag内容
    */
   static defaultProps = {
     className: '',
     color: '',
     isRemove: false,
-    remove: item => { }
+    isAdd: false,
+    onRemove: e => { },
+    onClick: e => { },
+    onAdd: content => { }
   }
 
-  render() {
-    const { className, color } = this.props
+  state = {
+    showInput: false,
+    remove: false
+  }
+
+  handleClick = e => {
+    this.props.onClick(e)
+  }
+
+  handleInputBlur = e => {
+    const value = e.target.value
+    if (value) {
+      this.addTag(value)
+    }
+  }
+
+  handleInputKeyDown = e => {
+    if (e.keyCode === 13) {
+      this.addTag(e.target.value)
+    }
+  }
+
+  handleRemove = e => {
+    e.stopPropagation()
+    if (this.props.onRemove(e) !== false) {
+      this.state.remove = true
+      this.setState(this.state)
+    }
+  }
+
+  showInput = () => {
+    this.state.showInput = true
+    this.setState(this.state)
+  }
+
+  addTag = value => {
+    this.props.onAdd(value)
+
+    this.state.showInput = false
+    this.setState(this.state)
+  }
+
+  renderAdd = () => {
+    return el(
+      'div',
+      {
+        className: c('tag-add'),
+        onClick: this.showInput
+      },
+      this.props.children
+    )
+  }
+
+  renderInput = () => {
+    return el(
+      Input,
+      {
+        type: 'text',
+        autoFocus: true,
+        className: c('tag-input'),
+        onBlur: this.handleInputBlur,
+        onKeyDown: this.handleInputKeyDown
+      }
+    )
+  }
+
+  renderRemove = () => {
+    if (!this.props.isRemove) {
+      return null
+    }
+
+    return el(
+      Svg,
+      {
+        className: 'icon-remove',
+        icon: require('../../image/icon-delete.svg'),
+        onClick: this.handleRemove
+      }
+    )
+  }
+
+  renderMain = () => {
+    const {
+      className,
+      color,
+      children,
+      isAdd
+    } = this.props
+
+    if (this.state.remove) {
+      return null
+    }
+
+    if (this.state.showInput) {
+      return this.renderInput()
+    }
+
+    if (isAdd) {
+      return this.renderAdd()
+    }
 
     return el(
       'div',
@@ -39,15 +142,20 @@ export default class extends Component {
             color: !!color
           },
           prefix: {
-            tag: true,
-            tagColor: true
+            tag: true
           }
         }),
         style: {
           backgroundColor: color
-        }
+        },
+        onClick: this.handleClick
       },
-      '哈哈哈'
+      children,
+      this.renderRemove()
     )
+  }
+
+  render() {
+    return this.renderMain()
   }
 }
