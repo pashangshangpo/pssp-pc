@@ -17,7 +17,7 @@ export default class extends Component {
    *    color: String 颜色
    *    isRemove: Boolean 是否可以删除
    *    isAdd: Boolean 是否是新增标签
-   *    onRemove: e => {} 删除时的回调
+   *    onRemove: e => {} 删除时的回调, 返回false时不删除
    *    onClick: e => {} 点击标签时的回调
    *    onAdd: content => {} 添加内容时的回调
    *  children: [String, ReactElement] tag内容
