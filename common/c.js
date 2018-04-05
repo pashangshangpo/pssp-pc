@@ -21,6 +21,8 @@
  *  }
  * 
  *  会把值为空的和false的过滤掉
+ * 
+ *  注意对象中的大写会被转换成横杠
  */
 export default (...className) => {
   const classNameTool = className => {
@@ -31,6 +33,16 @@ export default (...className) => {
   
       return ''
     }).join(' ')
+  }
+
+  const strToRung = str => {
+    return str.replace(/[A-Z]?/g, str => {
+      if (str) {
+        return `-${str}`.toLocaleLowerCase()
+      }
+  
+      return ''
+    })
   }
 
   const nameObject = className[0]
@@ -55,8 +67,8 @@ export default (...className) => {
       className += ' ' + classNameTool([nameObject.prefix])
     }
 
-    return className.trim()
+    return strToRung(className.trim())
   }
 
-  return classNameTool(className).trim()
+  return strToRung(classNameTool(className).trim())
 }

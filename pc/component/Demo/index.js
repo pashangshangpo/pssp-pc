@@ -21,10 +21,19 @@ export default class extends Component {
         className: c('demo')
       },
       el(
-        Tag
-      ),
-      el(
-        Tag
+        'div',
+        {},
+        el(
+          'div',
+          {},
+          '---- Tag组件 ----'
+        ),
+        el(
+          Tag,
+          {
+            color: 'rgb(45, 183, 245)'
+          }
+        )
       )
     )
   }

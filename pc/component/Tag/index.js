@@ -3,11 +3,12 @@
  * @author pashangshangpo
  */
 
+import React, { Component } from 'react'
 import {
   el,
   c
 } from '../../../common'
-import React, {Component} from 'react'
+import './index.less'
 
 export default class extends Component {
   /**
@@ -23,17 +24,28 @@ export default class extends Component {
     className: '',
     color: '',
     isRemove: false,
-    remove: item => {}
+    remove: item => { }
   }
 
   render() {
+    const { className, color } = this.props
+
     return el(
       'div',
       {
         className: c({
-          default: this.props.className,
-          prefix: 'tag'
-        })
+          default: {
+            [className]: true,
+            color: !!color
+          },
+          prefix: {
+            tag: true,
+            tagColor: true
+          }
+        }),
+        style: {
+          backgroundColor: color
+        }
       },
       '哈哈哈'
     )
