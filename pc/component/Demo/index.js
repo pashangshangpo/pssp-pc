@@ -9,7 +9,8 @@ import {
   c
 } from '../../../common'
 import {
-  Tag
+  Tag,
+  Input
 } from '../../index'
 import './index.less'
 
@@ -20,20 +21,48 @@ export default class extends Component {
       {
         className: c('demo')
       },
+
+      // ---- Tag组件 ----
       el(
         'div',
+        {
+          className: 'section'
+        },
+        '---- Tag组件 ----'
+      ),
+      el(
+        Tag,
         {},
-        el(
-          'div',
-          {},
-          '---- Tag组件 ----'
-        ),
-        el(
-          Tag,
-          {
-            color: 'rgb(45, 183, 245)'
+        'Tag组件'
+      ),
+      el(
+        Tag,
+        {
+          isAdd: true,
+          onAdd: content => {
+            console.log(content)
           }
-        )
+        },
+        '添加'
+      ),
+
+      // ---- Input组件 ----
+      el(
+        'div',
+        {
+          className: 'section'
+        },
+        '---- Input组件 ----'
+      ),
+      el(
+        Input,
+        {
+          type: 'text',
+          placeholder: 'Input组件',
+          style: {
+            height: '20px'
+          }
+        }
       )
     )
   }
