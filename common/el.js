@@ -4,6 +4,7 @@
  */
 
 import React from 'react'
+import c from './c'
 
 /**
  * 快捷创建元素
