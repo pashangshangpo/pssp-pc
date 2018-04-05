@@ -17,6 +17,7 @@ export default class extends Component {
    *    color: String 颜色
    *    isRemove: Boolean 是否可以删除
    *    isAdd: Boolean 是否是新增标签
+   *    placeholder: String 作为添加内容时,input输入框的placeholder
    *    onRemove: e => {} 删除时的回调, 返回false时不删除
    *    onClick: e => {} 点击标签时的回调
    *    onAdd: content => {} 添加内容时的回调
@@ -27,6 +28,7 @@ export default class extends Component {
     color: '',
     isRemove: false,
     isAdd: false,
+    placeholder: '',
     onRemove: e => { },
     onClick: e => { },
     onAdd: content => { }
@@ -91,6 +93,7 @@ export default class extends Component {
       {
         type: 'text',
         autoFocus: true,
+        placeholder: this.props.placeholder,
         className: c('tag-input'),
         onBlur: this.handleInputBlur,
         onKeyDown: this.handleInputKeyDown
