@@ -52,11 +52,11 @@ export default (...className) => {
       )
     }
     else {
-      className += ' ' + (nameObject.prefix || '')
+      className += ' ' + classNameTool([nameObject.prefix])
     }
 
-    return className
+    return className.trim()
   }
 
-  return classNameTool(className)
+  return classNameTool(className).trim()
 }

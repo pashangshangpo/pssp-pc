@@ -4,13 +4,22 @@
  */
 
 import React, {Component} from 'react'
-import {el} from '../../../common'
+import {
+  el,
+  c
+} from '../../../common'
 import {
   Tag
 } from '../../index'
+import './index.less'
 
 export default class extends Component {
   render() {
-    return el(Tag)
+    return el(
+      Tag,
+      {
+        className: c('demo')
+      }
+    )
   }
 }
