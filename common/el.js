@@ -9,11 +9,15 @@ import c from './c'
 /**
  * 快捷创建元素
  * 
- * @def: el: element, prop, children => Element
- *  element: [String, ReactElement]
+ * @def: el: tag, prop, children => Element
+ *  tag: [String, ReactElement]
  *  prop: Object
  *  children: [String, ReactElement]
  */
-export default (element, prop, ...children) => {
-  return React.createElement(element, prop, children)
+export default (tag, prop, ...children) => {
+  if (['input', 'textarea'].indexOf(tag) > -1) {
+    return React.createElement(tag, prop)
+  }
+
+  return React.createElement(tag, prop, children)
 }
