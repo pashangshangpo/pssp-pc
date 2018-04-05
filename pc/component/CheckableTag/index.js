@@ -9,6 +9,14 @@ import Tag from '../Tag'
 import './index.less'
 
 export default class extends Component {
+  /**
+   * @def-start: CheckableTag: props => CheckableTag
+   *  props: Object
+   *    className: String
+   *    data: Array => Tag
+   *      Tag => {checked: Boolean, content: [String, ReactElement]}
+   *    onChange: tag => * 当更改选中状态时触发, 返回false则不更改状态
+   */
   static defaultProps = {
     className: '',
     data: [],

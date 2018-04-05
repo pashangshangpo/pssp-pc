@@ -12,7 +12,8 @@ import {
   Tag,
   Input,
   MultipleTag,
-  RadioTag
+  RadioTag,
+  CheckableTag
 } from '../../index'
 import './index.less'
 
@@ -46,13 +47,13 @@ export default class extends Component {
         className: c('demo')
       },
 
-      // ---- Tag组件 ----
+      // ---- Tag ----
       el(
         'div',
         {
           className: 'section'
         },
-        '---- Tag组件 ----'
+        '---- Tag ----'
       ),
       this.renderTags(),
       el(
@@ -69,7 +70,7 @@ export default class extends Component {
         '添加'
       ),
 
-      // ---- MultipleTag组件 ----
+      // ---- MultipleTag ----
       el(
         'div',
         {
@@ -92,13 +93,13 @@ export default class extends Component {
         }
       ),
 
-      // ---- RadioTag组件 ----
+      // ---- RadioTag ----
       el(
         'div',
         {
           className: 'section'
         },
-        '---- RadioTag组件 ----'
+        '---- RadioTag ----'
       ),
       el(
         RadioTag,
@@ -111,19 +112,50 @@ export default class extends Component {
         }
       ),
 
-      // ---- Input组件 ----
+      // ---- CheckableTag ----
       el(
         'div',
         {
           className: 'section'
         },
-        '---- Input组件 ----'
+        '---- CheckableTag ----'
+      ),
+      el(
+        CheckableTag,
+        {
+          data: [
+            {
+              checked: true,
+              content: 'Tag1'
+            },
+            {
+              checked: false,
+              content: 'Tag2'
+            },
+            {
+              checked: true,
+              content: 'Tag3'
+            }
+          ],
+          onChange: tag => {
+            console.log('CheckableTag', tag)
+          }
+        }
+      ),
+
+      // ---- Input ----
+      el(
+        'div',
+        {
+          className: 'section'
+        },
+        '---- Input ----'
       ),
       el(
         Input,
         {
           type: 'text',
-          placeholder: 'Input组件',
+          placeholder: 'Input',
           style: {
             height: '20px'
           }
