@@ -4,10 +4,10 @@
  */
 
 import React, {Component} from 'react'
-import el from '../common/el'
+import {el} from '../../../common'
 import {
   Tag
-} from './index'
+} from '../../index'
 
 export default class extends Component {
   render() {
