@@ -16,10 +16,16 @@ import './index.less'
 export default class extends Component {
   render() {
     return el(
-      Tag,
+      'div',
       {
         className: c('demo')
-      }
+      },
+      el(
+        Tag
+      ),
+      el(
+        Tag
+      )
     )
   }
 }

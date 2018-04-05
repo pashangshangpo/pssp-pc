@@ -14,6 +14,6 @@ import c from './c'
  *  prop: Object
  *  children: [String, ReactElement]
  */
-export default (element, prop, children) => {
+export default (element, prop, ...children) => {
   return React.createElement(element, prop, children)
 }
