@@ -9,7 +9,7 @@ import './index.less'
 
 export default class extends Component {
   /**
-   * @def: Svg: props => Svg
+   * @def-start: Svg: props => Svg
    *  props
    *    className: String
    *    icon: Object require过的Svg对象

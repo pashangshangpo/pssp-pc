@@ -10,7 +10,7 @@ import './index.less'
 
 export default class extends Component {
   /**
-   * @def: RadioTag: props => RadioTag
+   * @def-start: RadioTag: props => RadioTag
    *  props: Object
    *    className: String
    *    checked: * 选中项

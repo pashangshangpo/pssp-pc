@@ -10,13 +10,33 @@ import {
 } from '../../../common'
 import {
   Tag,
-  Input
+  Input,
+  MultipleTag,
+  RadioTag
 } from '../../index'
 import './index.less'
 
 export default class extends Component {
   state = {
     tags: ['A', 'B', 'C']
+  }
+
+  renderTags = () => {
+    return this.state.tags.map(tag => {
+      return el(
+        Tag,
+        {
+          isRemove: true,
+          onClick: e => {
+            console.log('click', e.currentTarget)
+          },
+          onRemove: e => {
+            console.log('remove', e.currentTarget)
+          }
+        },
+        tag
+      )
+    })
   }
 
   render() {
@@ -34,22 +54,7 @@ export default class extends Component {
         },
         '---- Tag组件 ----'
       ),
-      this.state.tags.map(tag => {
-        return el(
-          Tag,
-          {
-            isRemove: true,
-            onClick: e => {
-              console.log('click', e.currentTarget)
-            },
-            onRemove: e => {
-              console.log('remove', e.currentTarget)
-              return true
-            }
-          },
-          tag
-        )
-      }),
+      this.renderTags(),
       el(
         Tag,
         {
@@ -62,6 +67,48 @@ export default class extends Component {
           }
         },
         '添加'
+      ),
+
+      // ---- MultipleTag组件 ----
+      el(
+        'div',
+        {
+          className: 'section'
+        },
+        '---- MultipleTag ----'
+      ),
+      el(
+        MultipleTag,
+        {
+          data: ['AAA', 'BBB', 'CCC'],
+          isRemove: true,
+          add: {
+            text: '添加',
+            placeholder: '输入内容',
+            onAdd: content => {
+              console.log('add', content)
+            }
+          }
+        }
+      ),
+
+      // ---- RadioTag组件 ----
+      el(
+        'div',
+        {
+          className: 'section'
+        },
+        '---- RadioTag组件 ----'
+      ),
+      el(
+        RadioTag,
+        {
+          checked: 'Tag2',
+          data: ['Tag1', 'Tag2'],
+          onChange: tag => {
+            console.log(tag)
+          }
+        }
       ),
 
       // ---- Input组件 ----

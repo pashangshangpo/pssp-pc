@@ -8,6 +8,10 @@ import {el, c} from '../../../common'
 import './index.less'
 
 export default class extends Component {
+  /**
+   * @def-start: Input: props => Input
+   *  props: Object
+   */
   static defaultProps = {
     className: ''
   }
