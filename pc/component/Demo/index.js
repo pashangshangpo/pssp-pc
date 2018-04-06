@@ -14,7 +14,8 @@ import {
   MultipleTag,
   RadioTag,
   CheckableTag,
-  Button
+  Button,
+  ButtonGroup
 } from '../../index'
 import './index.less'
 
@@ -220,6 +221,48 @@ export default class extends Component {
           }
         },
         'loading'
+      ),
+
+      // ---- ButtonGroup ----
+      el(
+        'div',
+        {
+          className: 'section'
+        },
+        '---- ButtonGroup ----'
+      ),
+      el(
+        ButtonGroup,
+        {},
+        el(
+          Button,
+          {
+            type: 'default',
+            onClick: e => {
+              console.log('default', e)
+            }
+          },
+          'default'
+        ),
+        el(
+          Button,
+          {
+            onClick: e => {
+              console.log('default', e)
+            }
+          },
+          'default'
+        ),
+        el(
+          Button,
+          {
+            type: 'default',
+            onClick: e => {
+              console.log('default', e)
+            }
+          },
+          'default'
+        )
       ),
     )
   }
