@@ -17,7 +17,8 @@ import {
   Button,
   ButtonGroup,
   RadioButton,
-  Affix
+  Affix,
+  Textarea
 } from '../../index'
 import './index.less'
 
@@ -159,10 +160,7 @@ export default class extends Component {
         Input,
         {
           type: 'text',
-          placeholder: 'Input',
-          style: {
-            height: '20px'
-          }
+          placeholder: 'Input'
         }
       ),
 
@@ -315,6 +313,26 @@ export default class extends Component {
           ],
           onChange: button => {
             console.log('RadioButton', button)
+          }
+        }
+      ),
+
+      // ---- Textarea ----
+      el(
+        'div',
+        {
+          className: 'section'
+        },
+        '---- Textarea ----'
+      ),
+      el(
+        Textarea,
+        {
+          autoFocus: false,
+          placeholder: 'Textarea',
+          value: '',
+          onInput: e => {
+            console.log('Textarea', e.target.value)
           }
         }
       ),
