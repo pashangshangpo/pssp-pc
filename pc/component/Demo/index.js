@@ -16,7 +16,8 @@ import {
   CheckableTag,
   Button,
   ButtonGroup,
-  RadioButton
+  RadioButton,
+  Affix
 } from '../../index'
 import './index.less'
 
@@ -263,6 +264,29 @@ export default class extends Component {
             }
           },
           'default'
+        )
+      ),
+
+      // ---- Affix ----
+      el(
+        'div',
+        {
+          className: 'section'
+        },
+        '---- Affix ----'
+      ),
+      el(
+        Affix,
+        {
+          offsetTop: 30,
+          onChange: isFixed => {
+            console.log('isFixed', isFixed)
+          }
+        },
+        el(
+          'div',
+          {},
+          '固定'
         )
       ),
 
