@@ -15,7 +15,8 @@ import {
   RadioTag,
   CheckableTag,
   Button,
-  ButtonGroup
+  ButtonGroup,
+  RadioButton
 } from '../../index'
 import './index.less'
 
@@ -263,6 +264,35 @@ export default class extends Component {
           },
           'default'
         )
+      ),
+
+      // ---- RadioButton ----
+      el(
+        'div',
+        {
+          className: 'section'
+        },
+        '---- RadioButton ----'
+      ),
+      el(
+        RadioButton,
+        {
+          checked: 'CCC',
+          data: [
+            {
+              value: 'AAA'
+            },
+            {
+              value: 'BBB'
+            },
+            {
+              value: 'CCC'
+            }
+          ],
+          onChange: button => {
+            console.log('RadioButton', button)
+          }
+        }
       ),
     )
   }

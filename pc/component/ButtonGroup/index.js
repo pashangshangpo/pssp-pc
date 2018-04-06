@@ -12,6 +12,7 @@ export default class extends Component {
    * @def-start: ButtonGroup: props => ButtonGroup
    *  props: Object
    *    className: String
+   *  children: Button
    */
   static defaultProps = {
     className: ''

@@ -1,0 +1,45 @@
+.pssp-radio-button {
+  .button {
+    position: relative;
+    display: inline-block;
+    height: 28px;
+    padding: 0 15px;
+
+    font-size: 14px;
+    line-height: 28px;
+    color: rgba(0,0,0,.65);
+    transition: all .3s ease;
+    cursor: pointer;
+    border: 1px solid #d9d9d9;
+    border-top-width: 1.02px;
+    background: #fff;
+    border-radius: 4px;
+    user-select: none;
+
+    &:first-child {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+      z-index: 1;
+    }
+
+    &:last-child {
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+    }
+
+    &:not(:first-child) {
+      margin-left: -1px;
+    }
+
+    &:not(:last-child):not(:first-child) {
+      border-radius: 0;
+    }
+  }
+
+  .checked {
+    background: #fff;
+    border-color: #1890ff;
+    color: #1890ff;
+    z-index: 1;
+  }
+}
