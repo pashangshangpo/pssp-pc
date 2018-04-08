@@ -49,11 +49,11 @@ export default class extends Component {
     this.textarea.style.minHeight = this.props.minLine * this.props.lineHeight + 'px'
     this.textarea.style.maxHeight = this.props.maxLine * this.props.lineHeight + 'px'
 
-    document.addEventListener('mousewheel', handleMousewheel)
+    document.addEventListener('mousewheel', this.handleMousewheel)
   }
 
   componentWillUnmount() {
-    document.removeEventListener('mousewheel', handleMousewheel)
+    document.removeEventListener('mousewheel', this.handleMousewheel)
   }
 
   handleChange = e => {
