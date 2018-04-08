@@ -13,6 +13,9 @@ export default class extends Component {
    *  props: Object
    *    className: String
    *    value: String
+   *    lineHeight: Number 一行的高度
+   *    minLine: Number 最小行数
+   *    maxLine: Number 最大行数
    *    autoFocus: Boolean
    *    placeholder: String
    *    onInput: e => *
@@ -23,7 +26,8 @@ export default class extends Component {
   static defaultProps = {
     className: '',
     value: '',
-    minLine: 1,
+    lineHeight: 22,
+    minLine: 2,
     maxLine: Infinity,
     autoFocus: false,
     placeholder: '',
@@ -41,13 +45,15 @@ export default class extends Component {
     if (this.props.value) {
       this.resizeHeight(this.textarea)
     }
+
+    this.textarea.style.minHeight = this.props.minLine * this.props.lineHeight + 'px'
+    this.textarea.style.maxHeight = this.props.maxLine * this.props.lineHeight + 'px'
   }
 
   onChange = e => {
     const target = e.currentTarget
 
     this.resizeHeight(target)
-    this.props.onInput(e)
 
     this.state.value = target.value
     this.setState(this.state)
@@ -74,7 +80,8 @@ export default class extends Component {
         autoFocus: this.props.autoFocus,
         value: this.state.value,
         className: 'textarea',
-        onChange: this.onChange
+        onChange: this.onChange,
+        onInput: this.props.onInput
       }
     )
   }
