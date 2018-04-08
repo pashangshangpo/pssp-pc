@@ -37,12 +37,13 @@ export default class extends Component {
 
   componentDidMount() {
     // 初始化时需要重设一下, 否则有内容的话高度会有问题
+    
     if (this.props.value) {
       this.resizeHeight(this.textarea)
     }
   }
 
-  handleTextareaInput = e => {
+  onChange = e => {
     const target = e.currentTarget
 
     this.resizeHeight(target)
@@ -50,13 +51,13 @@ export default class extends Component {
 
     this.state.value = target.value
     this.setState(this.state)
+
+    this.props.onChange(e)
   }
 
   resizeHeight = el => {
     // 防止无法收回去
     el.style.height = 'auto'
-    // 防止抖动
-    el.scrollTop = 0
 
     if (el.scrollHeight >= el.offsetHeight) {
       el.style.height = el.scrollHeight + 'px'
@@ -68,12 +69,12 @@ export default class extends Component {
       'textarea',
       {
         ref: ref => this.textarea = ref,
+        rows: 1,
         placeholder: this.props.placeholder,
         autoFocus: this.props.autoFocus,
         value: this.state.value,
         className: 'textarea',
-        onInput: this.handleTextareaInput,
-        onChange: this.props.onChange
+        onChange: this.onChange
       }
     )
   }
