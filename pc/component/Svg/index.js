@@ -30,6 +30,7 @@ export default class extends Component {
     return el(
       'svg',
       {
+        'aria-hidden': true,
         className: c({
           default: this.props.className,
           prefix: 'svg'
