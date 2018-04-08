@@ -27,7 +27,7 @@ export default class extends Component {
     className: '',
     value: '',
     lineHeight: 22,
-    minLine: 2,
+    minLine: 1,
     maxLine: Infinity,
     autoFocus: false,
     placeholder: '',
@@ -48,9 +48,15 @@ export default class extends Component {
 
     this.textarea.style.minHeight = this.props.minLine * this.props.lineHeight + 'px'
     this.textarea.style.maxHeight = this.props.maxLine * this.props.lineHeight + 'px'
+
+    document.addEventListener('mousewheel', handleMousewheel)
   }
 
-  onChange = e => {
+  componentWillUnmount() {
+    document.removeEventListener('mousewheel', handleMousewheel)
+  }
+
+  handleChange = e => {
     const target = e.currentTarget
 
     this.resizeHeight(target)
@@ -59,6 +65,21 @@ export default class extends Component {
     this.setState(this.state)
 
     this.props.onChange(e)
+  }
+
+  handleMousewheel = e => {
+    const target = e.target
+    if (document.activeElement === this.textarea && 
+      target === this.textarea &&
+      target.offsetHeight < target.scrollHeight
+    ) {
+      if (
+        (target.scrollTop === 0 && e.wheelDeltaY >= 0) ||
+        (e.wheelDeltaY < 0 && (target.scrollTop + target.offsetHeight) > target.scrollHeight)
+      ) {
+        e.preventDefault()
+      }
+    }
   }
 
   resizeHeight = el => {
@@ -80,7 +101,7 @@ export default class extends Component {
         autoFocus: this.props.autoFocus,
         value: this.state.value,
         className: 'textarea',
-        onChange: this.onChange,
+        onChange: this.handleChange,
         onInput: this.props.onInput
       }
     )
