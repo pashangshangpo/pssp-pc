@@ -5,7 +5,7 @@
 
 import './index.less'
 
-export {default as Demo} from './component/Demo' 
+export {default as Demo} from './demo' 
 export {default as Tag} from './component/Tag'
 export {default as MultipleTag} from './component/MultipleTag'
 export {default as RadioTag} from './component/RadioTag'
