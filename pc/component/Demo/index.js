@@ -3,7 +3,7 @@
  * @author pashangshangpo
  */
 
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import {
   el,
   c
@@ -18,7 +18,8 @@ import {
   ButtonGroup,
   RadioButton,
   Affix,
-  Textarea
+  Textarea,
+  Form
 } from '../../index'
 import './index.less'
 
@@ -334,6 +335,46 @@ export default class extends Component {
           onInput: e => {
             console.log('Textarea', e.target.value)
           }
+        }
+      ),
+
+      // ---- Form ----
+      el(
+        'div',
+        {
+          className: 'section'
+        },
+        '---- Form ----'
+      ),
+      el(
+        Form,
+        {
+          ref: ref => this.form = ref,
+          data: [
+            {
+              name: '名称',
+              content: el(
+                Input,
+                {
+                  type: 'text',
+                  placeholder: '请输入名称',
+                  onChange: () => {
+                    console.log(this.form.validate())
+                  }
+                }
+              ),
+              type: 'inputText',
+              rule: {
+                require: true,
+                len: 3,
+                min: 3,
+                max: 5,
+                pattern: /a/,
+                requireMessage: '请输入内容',
+                errorMessage: '输入错误'
+              }
+            }
+          ]
         }
       ),
     )
