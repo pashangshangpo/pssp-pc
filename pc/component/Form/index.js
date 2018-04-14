@@ -25,9 +25,6 @@ export default class extends Component {
     validateList: this.props.data
   }
 
-  componentWillMount() {
-  }
-
   // 外部校验接口
   validate = () => {
     return this.state.validateList.every(item => item.validateState !== 2 || item.validateState == undefined)
@@ -143,7 +140,8 @@ export default class extends Component {
           prefix: 'form'
         })
       },
-      this.renderMain()
+      this.renderMain(),
+      this.props.children
     )
   }
 }
