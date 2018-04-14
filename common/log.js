@@ -14,7 +14,7 @@ let preLogName = ''
 *  color: String 颜色
 */
 const Log = function (name, color) {
-  if (this.constructor === Log) {
+  if (this && this.constructor === Log) {
     this.name = name
     this.color = color
   }
