@@ -27,34 +27,29 @@ export default class extends Component {
 
   // 外部校验接口
   validate = () => {
-    return this.state.validateList.every(item => item.validateState !== 2 || item.validateState == undefined)
+    return this.state.validateList.every(item => {
+      const type = this.types[item.type]
+      if (item.rule) {
+        type && type.vaildate(item, item.value)
+      }
+
+      return item.validateState !== 2 || item.validateState == undefined
+    })
   }
 
   types = {
-    inputText: (item, props) => {
-      const rule = item.rule
-      const onKeyDown = props.onKeyDown || (() => {})
-      const onChange = props.onChange || (() => {})
-
-      props.onKeyDown = e => {
+    inputText: {
+      vaildate: (item, value) => {
+        const rule = item.rule
         const len = rule.len
-        if (len != undefined) {
-          const value = e.currentTarget.value
-          if (value.length > len - 1 && e.keyCode !== 8 && !e.metaKey) {
-            e.preventDefault()
-          }
-        }
 
-        onKeyDown(e)
-      }
-
-      props.onChange = e => {
-        const len = rule.len
         if (len != undefined) {
-          const value = e.currentTarget.value
           const current = this.state.validateList.find(validateItem => validateItem === item)
 
-          if (value.length > len) {
+          if (!value) {
+            current.validateState = 0
+          }
+          else if (value.length > len) {
             current.validateState = 1
           }
           else {
@@ -63,7 +58,33 @@ export default class extends Component {
 
           this.setState(this.state.validateList)
         }
-        onChange(e)
+      },
+      handle: (item, props) => {
+        const rule = item.rule
+        const onKeyDown = props.onKeyDown || (() => {})
+        const onChange = props.onChange || (() => {})
+
+        props.onKeyDown = e => {
+          const len = rule.len
+          if (len != undefined) {
+            const value = e.currentTarget.value
+            if (value.length > len - 1 && e.keyCode !== 8 && !e.metaKey) {
+              e.preventDefault()
+            }
+          }
+  
+          onKeyDown(e)
+        }
+  
+        props.onChange = e => {
+          const value = e.currentTarget.value
+          const current = this.state.validateList.find(validateItem => validateItem === item)
+
+          current.value = value
+          this.types.inputText.vaildate(item, value)
+
+          onChange(e)
+        }
       }
     }
   }
@@ -95,7 +116,7 @@ export default class extends Component {
   renderMain = () => {
     return this.state.validateList.map(item => {
       const type = this.types[item.type]
-      type && type(item, item.content.props)
+      type && type.handle(item, item.content.props)
 
       return el(
         'div',

@@ -19,6 +19,7 @@ export default () => {
     Form,
     {
       ref: ref => form = ref,
+      messageDirection: 'bottom',
       data: [
         {
           name: '姓名',
@@ -55,11 +56,10 @@ export default () => {
           type: 'inputNumber',
           rule: {
             require: true,
-            min: 3,
-            max: 5,
-            pattern: /a/,
+            min: 1,
+            max: 130,
             requireMessage: '请输入年龄',
-            errorMessage: '输入错误'
+            errorMessage: '年龄区间范围1-130'
           }
         },
         {
@@ -127,6 +127,16 @@ export default () => {
           }
         }
       ]
-    }
+    },
+    el(
+      'input',
+      {
+        type: 'button',
+        value: '校验数据',
+        onClick: () => {
+          form.validate()
+        }
+      }
+    )
   )
 }
