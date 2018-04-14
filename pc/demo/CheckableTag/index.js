@@ -3,8 +3,10 @@
  * @author pashangshangpo
  */
 
-import el from '../../../common/el'
 import CheckableTag from '../../component/CheckableTag'
+import {el, Log} from '../../../common'
+
+const log = new Log('CheckableTag')
 
 export default () => {
   return el(
@@ -25,7 +27,7 @@ export default () => {
         }
       ],
       onChange: tag => {
-        console.log('CheckableTag', tag)
+        log.message(tag)
       }
     }
   )

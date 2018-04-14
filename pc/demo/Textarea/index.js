@@ -3,8 +3,10 @@
  * @author pashangshangpo
  */
 
-import el from '../../../common/el'
 import Textarea from '../../component/Textarea'
+import {el, Log} from '../../../common'
+
+const log = new Log('Tag')
 
 export default () => {
   return el(
@@ -17,7 +19,7 @@ export default () => {
         placeholder: '自适应高度',
         value: '',
         onInput: e => {
-          console.log('Textarea', e.target.value)
+          log.message('自适应高度', e.target.value)
         }
       }
     ),
@@ -30,7 +32,7 @@ export default () => {
         maxLine: 5,
         value: '限定最小和最大高度限定最小和最大高度限定最小和最大高度限定最小和最大高度限定最小和最大高度限定最小和最大高度',
         onInput: e => {
-          console.log('Textarea', e.target.value)
+          log.message('限定最小和最大高度', e.target.value)
         }
       }
     )

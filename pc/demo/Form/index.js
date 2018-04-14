@@ -3,12 +3,14 @@
  * @author pashangshangpo
  */
 
-import el from '../../../common/el'
 import Form from '../../component/Form'
 import Input from '../../component/Input'
 import CheckableTag from '../../component/CheckableTag'
 import RadioTag from '../../component/RadioTag'
 import Textarea from '../../component/Textarea'
+import {el, Log} from '../../../common'
+
+const log = new Log('Form')
 
 export default () => {
   let form = null
@@ -26,7 +28,7 @@ export default () => {
               type: 'text',
               placeholder: '请输入姓名',
               onChange: () => {
-                console.log(form.validate())
+                log.message(form.validate())
               }
             }
           ),
@@ -46,7 +48,7 @@ export default () => {
               type: 'number',
               placeholder: '请输入年龄',
               onChange: () => {
-                console.log(form.validate())
+                log.message(form.validate())
               }
             }
           ),
@@ -68,7 +70,7 @@ export default () => {
               checked: '男',
               data: ['男', '女'],
               onChange: tag => {
-                console.log(tag)
+                log.message('性别', tag)
               }
             }
           )
@@ -93,7 +95,7 @@ export default () => {
                 }
               ],
               onChange: tag => {
-                console.log('CheckableTag', tag)
+                log.message('兴趣爱好', tag)
               }
             }
           ),
@@ -113,7 +115,7 @@ export default () => {
               placeholder: '这个人很懒, 什么都没有写',
               minLine: 3,
               onInput: e => {
-                console.log('Textarea', e.target.value)
+                log.message('个性签名', e.target.value)
               }
             }
           ),

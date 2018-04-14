@@ -3,8 +3,10 @@
  * @author pashangshangpo
  */
 
-import el from '../../../common/el'
 import Tag from '../../component/Tag'
+import {el, Log} from '../../../common'
+
+const log = new Log('Tag')
 
 export default () => {
   return el(
@@ -15,10 +17,10 @@ export default () => {
       {
         isRemove: true,
         onClick: e => {
-          console.log('click', e.currentTarget)
+          log.message('click', e.currentTarget)
         },
         onRemove: e => {
-          console.log('remove', e.currentTarget)
+          log.message('remove', e.currentTarget)
         }
       },
       'AAA'
@@ -28,7 +30,7 @@ export default () => {
       {
         isAdd: true,
         onAdd: content => {
-          console.log('addTag', content)
+          log.message('addTag', content)
         }
       },
       '添加'

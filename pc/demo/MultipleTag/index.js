@@ -3,8 +3,10 @@
  * @author pashangshangpo
  */
 
-import el from '../../../common/el'
 import MultipleTag from '../../component/MultipleTag'
+import {el, Log} from '../../../common'
+
+const log = new Log('MultipleTag')
 
 export default () => {
   return el(
@@ -16,7 +18,7 @@ export default () => {
         text: '添加',
         placeholder: '输入内容',
         onAdd: content => {
-          console.log('add', content)
+          log.message('add', content)
         }
       }
     }

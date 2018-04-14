@@ -3,9 +3,11 @@
  * @author pashangshangpo
  */
 
-import el from '../../../common/el'
+import {el, Log} from '../../../common'
 import ButtonGroup from '../../component/ButtonGroup'
 import Button from '../../component/Button'
+
+const log = new Log('ButtonGroup')
 
 export default () => {
   return el(
@@ -16,29 +18,29 @@ export default () => {
       {
         type: 'default',
         onClick: e => {
-          console.log('default', e)
+          log.message('AAA', e)
         }
       },
-      'default'
+      'AAA'
     ),
     el(
       Button,
       {
         onClick: e => {
-          console.log('default', e)
+          log.message('BBB', e)
         }
       },
-      'default'
+      'BBB'
     ),
     el(
       Button,
       {
         type: 'default',
         onClick: e => {
-          console.log('default', e)
+          log.message('CCC', e)
         }
       },
-      'default'
+      'CCC'
     )
   )
 }

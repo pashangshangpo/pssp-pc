@@ -3,8 +3,10 @@
  * @author pashangshangpo
  */
 
-import el from '../../../common/el'
 import Affix from '../../component/Affix'
+import {el, Log} from '../../../common'
+
+const log = new Log('Affix')
 
 export default () => {
   return el(
@@ -14,7 +16,7 @@ export default () => {
       target: window,
       offsetTop: 10,
       onChange: isFixed => {
-        console.log('Affix', isFixed)
+        log.message(isFixed)
       }
     },
     el(

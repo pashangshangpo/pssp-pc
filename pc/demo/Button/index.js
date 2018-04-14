@@ -3,8 +3,10 @@
  * @author pashangshangpo
  */
 
-import el from '../../../common/el'
 import Button from '../../component/Button'
+import {el, Log} from '../../../common'
+
+const log = new Log('Button')
 
 export default () => {
   return el(
@@ -15,7 +17,7 @@ export default () => {
       {
         type: 'primary',
         onClick: e => {
-          console.log('primary', e)
+          log.message('primary', e)
         }
       },
       'primary'
@@ -24,7 +26,7 @@ export default () => {
       Button,
       {
         onClick: e => {
-          console.log('default', e)
+          log.message('default', e)
         }
       },
       'default'
@@ -34,7 +36,7 @@ export default () => {
       {
         type: 'dashed',
         onClick: e => {
-          console.log('dashed', e)
+          log.message('dashed', e)
         }
       },
       'dashed'
@@ -44,7 +46,7 @@ export default () => {
       {
         disabled: true,
         onClick: e => {
-          console.log('disabled', e)
+          log.message('disabled', e)
         }
       },
       'disabled'
@@ -55,7 +57,7 @@ export default () => {
         type: 'primary',
         loading: true,
         onClick: e => {
-          console.log('loading', e)
+          log.message('loading', e)
         }
       },
       'loading'
