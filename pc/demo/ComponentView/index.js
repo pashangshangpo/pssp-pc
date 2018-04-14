@@ -1,6 +1,6 @@
 /**
  * @file 组件展示
- * @author xiaozhihua
+ * @author pashangshangpo
  */
 
 import React, {Component} from 'react'
@@ -41,17 +41,7 @@ export default class extends Component {
     }
 
     showCode = () => {
-        const components = this.props.children._owner._currentElement.props.components
-        const comp = components.find(comp => comp.name === this.props.name).comp
-        let componentString = new comp()
-        if (componentString.render) {
-            componentString = componentString.render
-        }
-        else {
-            componentString = comp
-        }
-
-        this.componentString = componentString.toString()
+        this.componentString = this.props.children[0].type.toString()
         this.showComp('code')
     }
 
