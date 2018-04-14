@@ -131,7 +131,7 @@ export default class extends Component {
         const rule = item.rule
         const current = this.state.validateList.find(validateItem => validateItem === item)
 
-        if (rule.require && (!value || value.length < 1)) {
+        if (rule.require && value && value.length < 1) {
           current.validateState = 0
         }
         else {
