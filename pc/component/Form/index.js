@@ -125,6 +125,36 @@ export default class extends Component {
           }
         }
       }
+    },
+    checkableTag: {
+      vaildate: (item, value) => {
+        const rule = item.rule
+        const current = this.state.validateList.find(validateItem => validateItem === item)
+
+        if (rule.require && (!value || value.length < 1)) {
+          current.validateState = 0
+        }
+        else {
+          current.validateState = 2
+        }
+
+        this.setState(this.state.validateList)
+      },
+      handle: (item, props) => {
+        const rule = item.rule
+        if (rule) {
+          const onChange = props.onChange || (() => {})
+  
+          props.onChange = (...arg) => {
+            const current = this.state.validateList.find(validateItem => validateItem === item)
+  
+            current.value = arg[0]
+            this.types.checkableTag.vaildate(item, arg[0])
+  
+            onChange(...arg)
+          }
+        }
+      }
     }
   }
 
