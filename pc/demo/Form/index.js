@@ -27,17 +27,17 @@ export default () => {
             {
               type: 'text',
               placeholder: '请输入姓名',
-              onChange: () => {
-                log.message(form.validate())
+              onChange: e => {
+                log.message('姓名', e.target.value)
               }
             }
           ),
           type: 'inputText',
           rule: {
             require: true,
-            len: 3,
+            len: 4,
             requireMessage: '请输入姓名',
-            errorMessage: '输入错误'
+            errorMessage: '姓名最大4位数'
           }
         },
         {
