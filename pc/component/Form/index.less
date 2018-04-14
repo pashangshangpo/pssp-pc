@@ -1,0 +1,22 @@
+.pssp-form {
+  .item {
+    display: flex;
+
+    align-items: center;
+
+    &:not(:last-child) {
+      margin-bottom: 18px;
+    }
+
+    label {
+      min-width: 80px;
+      margin-right: 12px;
+
+      text-align: right;
+    }
+
+    label + * {
+      flex: 1;
+    }
+  }
+}

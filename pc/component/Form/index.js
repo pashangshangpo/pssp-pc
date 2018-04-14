@@ -69,9 +69,11 @@ export default class extends Component {
 
       return el(
         'div',
-        {},
+        {
+          className: 'item'
+        },
         el(
-          'div',
+          'label',
           {},
           item.name
         ),
