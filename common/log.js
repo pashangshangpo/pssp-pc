@@ -37,22 +37,28 @@ const Log = function (name, color) {
 }
 
 /**
- * @def: .message: message, color
- *  message: String log信息
- *  color: String 颜色
+ * @def: .message: ...messages
+ *  message: * log信息
  *  输出信息
  */
-Log.prototype.message = function (message, color) {
+Log.prototype.message = function (...messages) {  
   if (this.__isOutMessage()) {
     if (preLogName !== this.name) {
       console.log('---- ' + this.name + ' ----')
     }
     
-    if (typeof message === 'string') {
-      console.log('%c' + message, 'color:' + (color || this.color))
+    if (messages.length > 1) {
+      console.log.apply(null, messages)
     }
     else {
-      console.log(message)
+      const message = messages[0]
+
+      if (typeof message === 'string') {
+        console.log('%c' + message, 'color:' + this.color)
+      }
+      else {
+        console.log(message)
+      }
     }
 
     preLogName = this.name
