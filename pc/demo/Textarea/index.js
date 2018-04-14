@@ -11,7 +11,7 @@ export default () => {
     Textarea,
     {
       autoFocus: false,
-      placeholder: 'Textarea',
+      placeholder: '自适应高度',
       value: '',
       onInput: e => {
         console.log('Textarea', e.target.value)

@@ -11,7 +11,7 @@ export default () => {
     Input,
     {
       type: 'text',
-      placeholder: 'Input',
+      placeholder: '你想说什么',
       onChange: e => {
         console.log(e)
       }
