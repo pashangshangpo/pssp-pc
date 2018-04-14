@@ -102,8 +102,7 @@ export default () => {
           type: 'checkableTag',
           rule: {
             require: true,
-            requireMessage: '请输入年龄',
-            errorMessage: '输入错误'
+            requireMessage: '至少选择一项'
           }
         },
         {
@@ -123,7 +122,7 @@ export default () => {
           rule: {
             require: true,
             requireMessage: '请输入个性签名',
-            errorMessage: '输入错误'
+            errorMessage: '最多只能输入100字'
           }
         }
       ]
