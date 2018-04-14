@@ -42,14 +42,13 @@ export default class extends Component {
       vaildate: (item, value) => {
         const rule = item.rule
         const len = rule.len
+        const current = this.state.validateList.find(validateItem => validateItem === item)
 
-        if (len != undefined) {
-          const current = this.state.validateList.find(validateItem => validateItem === item)
-
-          if (!value) {
-            current.validateState = 0
-          }
-          else if (value.length > len) {
+        if (rule.require && !value) {
+          current.validateState = 0
+        }
+        else if (len != undefined) {
+          if (value.length > len) {
             current.validateState = 1
           }
           else {
@@ -61,29 +60,69 @@ export default class extends Component {
       },
       handle: (item, props) => {
         const rule = item.rule
-        const onKeyDown = props.onKeyDown || (() => {})
-        const onChange = props.onChange || (() => {})
-
-        props.onKeyDown = e => {
-          const len = rule.len
-          if (len != undefined) {
-            const value = e.currentTarget.value
-            if (value.length > len - 1 && e.keyCode !== 8 && !e.metaKey) {
-              e.preventDefault()
+        if (rule) {
+          const onKeyDown = props.onKeyDown || (() => {})
+          const onChange = props.onChange || (() => {})
+  
+          props.onKeyDown = e => {
+            const len = rule.len
+            if (len != undefined) {
+              const value = e.currentTarget.value
+              if (value.length > len - 1 && e.keyCode !== 8 && !e.metaKey) {
+                e.preventDefault()
+              }
             }
+    
+            onKeyDown(e)
           }
+    
+          props.onChange = e => {
+            const value = e.currentTarget.value
+            const current = this.state.validateList.find(validateItem => validateItem === item)
   
-          onKeyDown(e)
+            current.value = value
+            this.types.inputText.vaildate(item, value)
+  
+            onChange(e)
+          }
         }
+      }
+    },
+    inputNumber: {
+      vaildate: (item, value) => {
+        const rule = item.rule
+        const len = rule.len
+        const current = this.state.validateList.find(validateItem => validateItem === item)
+
+        if (rule.require && !value) {
+          current.validateState = 0
+        }
+        else if (value < rule.min || value > rule.max) {
+          current.validateState = 1
+        }
+        else {
+          current.validateState = 2
+        }
+
+        this.setState(this.state.validateList)
+      },
+      handle: (item, props) => {
+        const rule = item.rule
+        if (rule) {
+          const onChange = props.onChange || (() => {})
+
+          props.max = rule.max
+          props.min = rule.min
   
-        props.onChange = e => {
-          const value = e.currentTarget.value
-          const current = this.state.validateList.find(validateItem => validateItem === item)
-
-          current.value = value
-          this.types.inputText.vaildate(item, value)
-
-          onChange(e)
+          props.onChange = e => {
+            const value = parseFloat(e.currentTarget.value)
+            const current = this.state.validateList.find(validateItem => validateItem === item)
+  
+            current.value = value
+            this.types.inputNumber.vaildate(item, value)
+  
+            onChange(e)
+          }
         }
       }
     }

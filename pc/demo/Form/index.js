@@ -48,8 +48,8 @@ export default () => {
             {
               type: 'number',
               placeholder: '请输入年龄',
-              onChange: () => {
-                log.message(form.validate())
+              onChange: e => {
+                log.message('年龄', e.target.value)
               }
             }
           ),
