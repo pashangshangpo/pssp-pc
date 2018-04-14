@@ -3,6 +3,6 @@
  * @author pashangshangpo
  */
 
-export c from './c'
-export el from './el'
-export treen from './treen'
+export {default as c} from './c'
+export {default as el} from './el'
+export {default as treen} from './treen'
