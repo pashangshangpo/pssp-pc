@@ -26,8 +26,8 @@ export default () => {
           content: 'Tag3'
         }
       ],
-      onChange: tag => {
-        log.message(tag)
+      onChange: (tags, tag) => {
+        log.message(tags, tag)
       }
     }
   )

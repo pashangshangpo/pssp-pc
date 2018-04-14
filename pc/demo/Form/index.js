@@ -94,8 +94,8 @@ export default () => {
                   content: '骑行'
                 }
               ],
-              onChange: tag => {
-                log.message('兴趣爱好', tag)
+              onChange: (tags, tag) => {
+                log.message('兴趣爱好', tags, tag)
               }
             }
           ),

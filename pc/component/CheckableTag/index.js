@@ -28,9 +28,13 @@ export default class extends Component {
   }
 
   handleChange = tag => {
-    if (this.props.onChange(tag) !== false) {
-      tag.checked = !tag.checked
+    tag.checked = !tag.checked
+    
+    if (this.props.onChange(this.state.data.filter(item => item.checked), tag) !== false) {
       this.setState(this.state)
+    }
+    else {
+      tag.checked = !tag.checked
     }
   }
 
