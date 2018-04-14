@@ -2,7 +2,6 @@
   display: inline-block;
   height: 22px;
   padding: 0 7px;
-  margin: 0 8px 8px 0;
 
   font-size: 12px;
   line-height: 22px;
@@ -11,10 +10,15 @@
   background: #fafafa;
   color: rgba(0,0,0,.65);
   cursor: pointer;
+  user-select: none;
 
   &:hover {
     opacity: .85;
   }
+}
+
+.pssp-tag + * {
+  margin-left: 8px;
 }
 
 .pssp-tag .icon-remove {
