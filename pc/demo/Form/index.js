@@ -113,6 +113,7 @@ export default () => {
               autoFocus: false,
               placeholder: '这个人很懒, 什么都没有写',
               minLine: 3,
+              maxWord: 5,
               onInput: e => {
                 log.message('个性签名', e.target.value)
               }

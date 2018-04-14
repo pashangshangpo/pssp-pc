@@ -9,13 +9,14 @@ import './index.less'
 
 export default class extends Component {
   /**
-   * @def-start: Textarea: props => ReactElement
+   * @start-def: Textarea: props => ReactElement
    *  props: Object
    *    className: String
    *    value: String
    *    lineHeight: Number 一行的高度
    *    minLine: Number 最小行数
    *    maxLine: Number 最大行数
+   *    maxWord: Number 最大字数
    *    autoFocus: Boolean
    *    placeholder: String
    *    onInput: e => *
@@ -29,6 +30,7 @@ export default class extends Component {
     lineHeight: 22,
     minLine: 1,
     maxLine: Infinity,
+    maxWord: Infinity,
     autoFocus: false,
     placeholder: '',
     onInput: e => {},
@@ -36,7 +38,8 @@ export default class extends Component {
   }
 
   state = {
-    value: this.props.value
+    value: this.props.value,
+    word: 0
   }
 
   componentDidMount() {
@@ -62,6 +65,7 @@ export default class extends Component {
     this.resizeHeight(target)
 
     this.state.value = target.value
+    this.state.word = target.value.length
     this.setState(this.state)
 
     this.props.onChange(e)
@@ -107,6 +111,39 @@ export default class extends Component {
     )
   }
 
+  renderWordMessage = () => {
+    if (this.props.maxWord === Infinity) {
+      return null
+    }
+
+    const currentWord = this.props.maxWord - this.state.word
+
+    return el(
+      'div',
+      {
+        className: 'word'
+      },
+      el(
+        'span',
+        {},
+        '还可以输入'
+      ),
+      el(
+        'span',
+        {
+          className: c({
+            default: {
+              number: true,
+              error: currentWord < 0
+            }
+          })
+        },
+        currentWord
+      ),
+      '字'
+    )
+  }
+
   render() {
     return el(
       'div',
@@ -116,7 +153,8 @@ export default class extends Component {
           prefix: 'textarea'
         })
       },
-      this.renderMain()
+      this.renderMain(),
+      this.renderWordMessage()
     )
   }
 }
