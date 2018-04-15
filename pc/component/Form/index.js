@@ -27,14 +27,20 @@ export default class extends Component {
 
   // 外部校验接口
   validate = () => {
-    return this.state.validateList.every(item => {
+    let result = true
+
+    for (let item of this.state.validateList) {
       const type = this.types[item.type]
       if (item.rule) {
         type && type.vaildate(item, item.value)
       }
 
-      return item.validateState !== 2 || item.validateState == undefined
-    })
+      if (item.validateState !== 2 && item.validateState != undefined) {
+        result = false
+      }
+    }
+
+    return result
   }
 
   types = {
@@ -54,9 +60,12 @@ export default class extends Component {
           else {
             current.validateState = 2
           }
-
-          this.setState(this.state.validateList)
         }
+        else {
+          current.validateState = 2
+        }
+
+        this.setState(this.state.validateList)
       },
       handle: (item, props) => {
         const rule = item.rule
@@ -91,7 +100,6 @@ export default class extends Component {
     inputNumber: {
       vaildate: (item, value) => {
         const rule = item.rule
-        const len = rule.len
         const current = this.state.validateList.find(validateItem => validateItem === item)
 
         if (rule.require && !value) {
@@ -120,6 +128,46 @@ export default class extends Component {
   
             current.value = value
             this.types.inputNumber.vaildate(item, value)
+  
+            onChange(e)
+          }
+        }
+      }
+    },
+    textarea: {
+      vaildate: (item, value) => {
+        const rule = item.rule
+        const len = rule.len
+        const current = this.state.validateList.find(validateItem => validateItem === item)
+
+        if (rule.require && !value) {
+          current.validateState = 0
+        }
+        else if (len != undefined) {
+          if (value && value.length > len) {
+            current.validateState = 1
+          }
+          else {
+            current.validateState = 2
+          }
+        }
+        else {
+          current.validateState = 2
+        }
+
+        this.setState(this.state.validateList)
+      },
+      handle: (item, props) => {
+        const rule = item.rule
+        if (rule) {
+          const onChange = props.onChange || (() => {})
+
+          props.onChange = e => {
+            const value = e.currentTarget.value
+            const current = this.state.validateList.find(validateItem => validateItem === item)
+  
+            current.value = value
+            this.types.textarea.vaildate(item, value)
   
             onChange(e)
           }
@@ -155,7 +203,7 @@ export default class extends Component {
           }
         }
       }
-    }
+    },
   }
 
   renderMessage = (direction, item) => {

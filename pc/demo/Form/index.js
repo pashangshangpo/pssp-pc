@@ -113,7 +113,6 @@ export default () => {
               autoFocus: false,
               placeholder: '这个人很懒, 什么都没有写',
               minLine: 3,
-              maxWord: 5,
               onInput: e => {
                 log.message('个性签名', e.target.value)
               }
@@ -122,8 +121,9 @@ export default () => {
           type: 'textarea',
           rule: {
             require: true,
+            len: 5,
             requireMessage: '请输入个性签名',
-            errorMessage: '最多只能输入100字'
+            errorMessage: '最多只能输入5字'
           }
         }
       ]
@@ -134,7 +134,7 @@ export default () => {
         type: 'button',
         value: '校验数据',
         onClick: () => {
-          form.validate()
+          log.message('校验结果', form.validate())
         }
       }
     )
