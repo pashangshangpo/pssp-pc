@@ -70,20 +70,7 @@ export default class extends Component {
       handle: (item, props) => {
         const rule = item.rule
         if (rule) {
-          const onKeyDown = props.onKeyDown || (() => {})
           const onChange = props.onChange || (() => {})
-  
-          props.onKeyDown = e => {
-            const len = rule.len
-            if (len != undefined) {
-              const value = e.currentTarget.value
-              if (value.length > len - 1 && e.keyCode !== 8 && !e.metaKey) {
-                e.preventDefault()
-              }
-            }
-    
-            onKeyDown(e)
-          }
     
           props.onChange = e => {
             const value = e.currentTarget.value
