@@ -1,0 +1,14 @@
+{
+  "name": "pssp-common",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://gitee.com/pashangshangpo/pssp-common.git",
+  "author": "爬上上坡 <pashangshangpo@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^22.4.3"
+  }
+}
