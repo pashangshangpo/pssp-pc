@@ -9,6 +9,9 @@
     "test": "jest"
   },
   "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/pc/__tests__/*.js"
+    ],
     "moduleFileExtensions": [
       "js",
       "jsx"
