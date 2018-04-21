@@ -35,6 +35,11 @@ export default class extends Component {
     }
   }
 
+  changeChecked = checked => {
+    this.state.checked = checked
+    this.setState(this.state)
+  }
+
   renderMain = () => {
     return this.props.data.map(tag => {
       return el(
