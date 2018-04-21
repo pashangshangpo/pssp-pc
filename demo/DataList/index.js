@@ -14,6 +14,7 @@ export default () => {
     {
       className: '',
       activeIndex: 1,
+      showLineNumber: true,
       data: [
         {
           title: '姓名',

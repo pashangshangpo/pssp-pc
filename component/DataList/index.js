@@ -15,6 +15,7 @@ export default class extends Component {
    */
   defaultProps = {
     className: '',
+    showLineNumber: false,
     data: [],
     activeIndex: -1,
     onHover: () => {},
@@ -22,7 +23,8 @@ export default class extends Component {
   }
 
   state = {
-    hoverIndex: -1
+    hoverIndex: -1,
+    data: []
   }
 
   changeState = state => {
@@ -31,6 +33,20 @@ export default class extends Component {
     }
 
     this.setState(this.state)
+  }
+
+  componentWillMount() {
+    let data = this.props.data
+    if (this.props.showLineNumber) {
+      data = [
+        {
+          title: '#',
+          data: data[0].data.map((item, index) => index + 1)
+        }
+      ].concat(data)
+    }
+
+    this.changeState({data})
   }
 
   handleClick = e => {
@@ -92,11 +108,16 @@ export default class extends Component {
   }
 
   renderData = () => {
-    return this.props.data.map((item, index) => {
+    return this.state.data.map((item, index) => {
       return el(
         'div',
         {
-          className: 'section'
+          className: c({
+            default: {
+              section: true,
+              lineNumber: this.props.showLineNumber && index === 0
+            }
+          })
         },
         this.renderTitle(item.title),
         this.renderList(item.data)
