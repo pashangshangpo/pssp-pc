@@ -55,6 +55,7 @@ export default class extends Component {
     return el(
       Svg,
       {
+        key: 'loading',
         className: 'loading',
         icon: require('../../image/icon-loading.svg')
       }
