@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react'
-import { el, c } from '../../../common'
+import { el, c } from '../../common'
 import Button from '../Button'
 import './index.less'
 

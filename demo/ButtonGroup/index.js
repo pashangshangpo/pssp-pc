@@ -3,7 +3,7 @@
  * @author pashangshangpo
  */
 
-import {el, Log} from '../../../common'
+import {el, Log} from '../../common'
 import ButtonGroup from '../../component/ButtonGroup'
 import Button from '../../component/Button'
 

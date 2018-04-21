@@ -8,7 +8,7 @@ import Input from '../../component/Input'
 import CheckableTag from '../../component/CheckableTag'
 import RadioTag from '../../component/RadioTag'
 import Textarea from '../../component/Textarea'
-import {el, Log} from '../../../common'
+import {el, Log} from '../../common'
 
 const log = new Log('Form')
 

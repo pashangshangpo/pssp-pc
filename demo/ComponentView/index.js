@@ -4,7 +4,7 @@
  */
 
 import React, {Component} from 'react'
-import el from '../../../common/el'
+import {el} from '../../common'
 import './index.less'
 
 export default class extends Component {

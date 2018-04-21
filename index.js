@@ -3,7 +3,7 @@
  * @author pashangshangpo
  */
 
-import '../style/reset.less'
+import './style/reset.less'
 
 export {default as Demo} from './demo' 
 export {default as Tag} from './component/Tag'

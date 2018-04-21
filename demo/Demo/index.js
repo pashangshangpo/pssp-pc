@@ -5,8 +5,7 @@
 
 import React, {Component} from 'react'
 import ComponentView from '../ComponentView'
-import el from '../../../common/el'
-import c from '../../../common/c'
+import {el, c} from '../../common'
 import './index.less'
 
 export default class extends Component {

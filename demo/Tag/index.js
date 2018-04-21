@@ -4,7 +4,7 @@
  */
 
 import Tag from '../../component/Tag'
-import {el, Log} from '../../../common'
+import {el, Log} from '../../common'
 
 const log = new Log('Tag')
 

@@ -4,7 +4,7 @@
  */
 
 import Textarea from '../../component/Textarea'
-import {el, Log} from '../../../common'
+import {el, Log} from '../../common'
 
 const log = new Log('Tag')
 

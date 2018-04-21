@@ -4,7 +4,7 @@
  */
 
 import Affix from '../../component/Affix'
-import {el, Log} from '../../../common'
+import {el, Log} from '../../common'
 
 const log = new Log('Affix')
 

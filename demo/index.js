@@ -4,7 +4,7 @@
  */
 
 import Demo from './Demo'
-import el from '../../common/el'
+import el from '../common/el'
 
 export default () => {
   return el(
