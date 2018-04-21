@@ -15,9 +15,10 @@ export default class extends Component {
    */
   defaultProps = {
     className: '',
-    showLineNumber: false,
     data: [],
     activeIndex: -1,
+    hoverTitle: false,
+    showLineNumber: false,
     onHover: () => {},
     onClick: () => {}
   }
@@ -88,18 +89,24 @@ export default class extends Component {
         onMouseLeave: this.handleMouseLeave
       },
       data.map((content, index) => {
+        let title = ''
+        if (this.props.hoverTitle) {
+          title = content
+        }
+
         return el(
           'li',
           {
-            'data-index': index,
+            title,
             key: index,
             className: c({
               default: {
                 hover: index === this.state.hoverIndex || index === this.props.activeIndex
               }
             }),
+            'data-index': index,
             onMouseEnter: this.handleMouseEnter,
-            onClick: this.handleClick
+            onClick: this.handleClick,
           },
           content
         )

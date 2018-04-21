@@ -14,6 +14,7 @@ export default () => {
     {
       className: '',
       activeIndex: 1,
+      hoverTitle: true,
       showLineNumber: true,
       data: [
         {
