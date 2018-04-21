@@ -4,7 +4,9 @@
  */
 
 import DataList from '../../component/DataList'
+import RadioTag from '../../component/RadioTag'
 import { el, Log } from '../../common'
+import './index.less'
 
 const log = new Log('DataList')
 
@@ -24,6 +26,23 @@ export default () => {
         {
           title: '年龄',
           data: [19, 25]
+        },
+        {
+          title: '提醒时间',
+          data: [
+            el(
+              RadioTag,
+              {
+                data: [10, 25, 35, 45, 60]
+              }
+            ),
+            el(
+              RadioTag,
+              {
+                data: [10, 25, 35, 45, 60]
+              }
+            )
+          ]
         }
       ],
       onHover: (index, data, e) => {
