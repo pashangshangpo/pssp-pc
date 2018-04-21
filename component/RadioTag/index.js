@@ -47,7 +47,7 @@ export default class extends Component {
         {
           className: c({
             prefix: {
-              tagChexked: tag === this.state.checked,
+              tagChecked: tag === this.state.checked,
               tagUncheck: tag !== this.state.checked
             }
           }),
