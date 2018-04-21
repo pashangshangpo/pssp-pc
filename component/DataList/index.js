@@ -90,7 +90,7 @@ export default class extends Component {
       },
       data.map((content, index) => {
         let title = ''
-        if (this.props.hoverTitle) {
+        if (this.props.hoverTitle && typeof content === 'string') {
           title = content
         }
 
