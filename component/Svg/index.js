@@ -23,7 +23,7 @@ export default class extends Component {
 
   render() {
     let icon = this.props.icon
-    if (!icon.viewBox) {
+    if (!icon.viewBox && icon.default) {
       icon = icon.default
     }
 
@@ -40,17 +40,22 @@ export default class extends Component {
       },
       el(
         'defs',
-        {},
+        {
+          key: 'defs'
+        },
         el(
           'style',
-          {},
+          {
+            key: 'style'
+          },
           'path{fill:currentColor}'
         )
       ),
       el(
         'use',
         {
-          xlinkHref: `#${icon.id}`
+          xlinkHref: `#${icon.id}`,
+          key: 'use'
         }
       )
     )
