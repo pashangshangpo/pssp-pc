@@ -12,6 +12,22 @@ export default class extends Component {
    * @def-start: DataList: props => DataList
    *  props: Object
    *    className: String
+   *    data: Array [Item]
+   *      Item: Object
+   *        title: String 标题
+   *        data: Array [Item] 数据列表
+   *          Item: * 会被当做内容显示
+   *    activeIndex: Number 默认选中项
+   *    hoverTitle: Boolean 是否hover上去显示完整标题
+   *    showLineNumber: Boolean 是否显示行号
+   *    onHover: (index, data, e) => * hover事件
+   *      index: Number 行号 从0开始
+   *      data: Array 传递的data数据
+   *      e: Object event对象
+   *    onClick: (index, data, e) => * click事件
+   *      index: Number 行号 从0开始
+   *      data: Array 传递的data数据
+   *      e: Object event对象
    */
   defaultProps = {
     className: '',
