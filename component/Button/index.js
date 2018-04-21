@@ -62,7 +62,7 @@ export default class extends Component {
     )
   }
 
-  render() {
+  renderMain = () => {
     return el(
       'div',
       {
@@ -81,5 +81,13 @@ export default class extends Component {
       // this.renderIcon(),
       this.props.children
     )
+  }
+
+  render() {
+    if (['default', 'primary', 'dashed'].indexOf(this.props.type) < 0) {
+      return null
+    }
+
+    return this.renderMain()
   }
 }
