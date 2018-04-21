@@ -12,6 +12,10 @@ export default () => {
     {
       components: [
         {
+          name: 'DataList',
+          comp: require('./DataList').default
+        },
+        {
           name: 'Form',
           comp: require('./Form').default
         },

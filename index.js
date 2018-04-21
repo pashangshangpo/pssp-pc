@@ -4,6 +4,7 @@
  */
 
 import './style/reset.less'
+import './style/common.less'
 
 export {default as Demo} from './demo' 
 export {default as Tag} from './component/Tag'
@@ -17,3 +18,4 @@ export {default as RadioButton} from './component/RadioButton'
 export {default as Affix} from './component/Affix'
 export {default as Textarea} from './component/Textarea'
 export {default as Form} from './component/Form'
+export {default as DataList} from './component/DataList'

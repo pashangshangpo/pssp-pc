@@ -1,0 +1,37 @@
+.pssp-data-list {
+  display: flex;
+
+  font-size: 14px;
+  
+  .section {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .title {
+    height: 35px;
+    padding: 0 12px;
+
+    font-weight: 500;
+    line-height: 35px;
+    color: rgba(0,0,0,.85);
+    background-color: #fafafa;
+  }
+
+  .list {
+    li {
+      height: 40px;
+      padding: 0 12px;
+
+      line-height: 40px;
+      border-bottom: 1px solid #f1f1f1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      &.hover {
+        background-color: #e6f7ff;
+      }
+    }
+  }
+}
