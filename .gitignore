@@ -3,3 +3,5 @@
 .history
 .vscode
 node_modules
+/dev
+/temp
