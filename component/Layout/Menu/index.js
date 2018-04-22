@@ -18,6 +18,7 @@ export default class extends Component {
    *      Item: Object
    *        name: String 名称
    *        icon: String 图标 暂不支持
+   *        unfoldChildNode: Boolean 是否展开子节点
    *        children: Array [Item] 子节点 可选
    *          Item: ReactElement
    *    checked: * 选中的名称, 如果没有填写默认选中第一个
@@ -30,6 +31,7 @@ export default class extends Component {
   }
 
   state = {
+    data: [],
     checked: this.props.checked
   }
 
@@ -55,10 +57,30 @@ export default class extends Component {
       }
     }
 
-    this.changeState({checked})
+    this.changeState({
+      checked,
+      data: this.props.data
+    })
   }
 
-  renderToggleIcon = isRender => {
+  handleMenuNameClick = e => {
+    const li = e.currentTarget.parentNode
+    const index = Array.from(li.parentNode.children).findIndex(item => item === li)
+    
+    this.toogleChildNode(this.state.data[index])
+  }
+
+  toogleChildNode = currentMenu => {
+    if (currentMenu.children && currentMenu.children.length > 0) {
+      currentMenu.unfoldChildNode = !currentMenu.unfoldChildNode
+
+      this.changeState({
+        data: this.state.data
+      })
+    }
+  }
+
+  renderToggleIcon = (isRender, unfoldChildNode) => {
     if (!isRender) {
       return null
     }
@@ -66,13 +88,21 @@ export default class extends Component {
     return el(
       Svg,
       {
-        className: 'down-arrow',
+        className: c({
+          default: {
+            arrow: true,
+            upArrow: unfoldChildNode
+          }
+        }),
         icon: require('../../../image/icon-down-arrow.svg')
       }
     )
   }
 
-  renderName = (name, haveChildNode) => {
+  renderName = section => {
+    const name = section.name
+    const haveChildNode = section.children && section.children.length > 0
+
     return el(
       'div',
       {
@@ -83,21 +113,27 @@ export default class extends Component {
             haveChildNode,
             checked: this.state.checked === name
           }
-        })
+        }),
+        onClick: this.handleMenuNameClick
       },
       name,
-      this.renderToggleIcon(haveChildNode)
+      this.renderToggleIcon(haveChildNode, section.unfoldChildNode)
     )
   }
 
-  renderChildren = children => {
+  renderChildren = (children, unfoldChildNode) => {
     if (!children || children.length < 1) {
       return null
     }
 
     return el(
       'ul',
-      {},
+      {
+        style: {
+          height: unfoldChildNode ? 'auto' : '0',
+          opacity: unfoldChildNode ? '1' : '0'
+        }
+      },
       children.map((item, index) => {
         return el(
           'li',
@@ -117,14 +153,14 @@ export default class extends Component {
   }
 
   renderMenu = () => {
-    return this.props.data.map((section, index) => {
+    return this.state.data.map((section, index) => {
       return el(
         'li',
         {
           key: index
         },
-        this.renderName(section.name, section.children && section.children.length > 0),
-        this.renderChildren(section.children)
+        this.renderName(section),
+        this.renderChildren(section.children, section.unfoldChildNode)
       )
     })
   }
