@@ -5,6 +5,7 @@
 
 import React, { Component } from 'react'
 import { el, c } from '../../../common'
+import Svg from '../../Svg'
 import './index.less'
 
 export default class extends Component {
@@ -57,6 +58,20 @@ export default class extends Component {
     this.changeState({checked})
   }
 
+  renderToggleIcon = isRender => {
+    if (!isRender) {
+      return null
+    }
+
+    return el(
+      Svg,
+      {
+        className: 'down-arrow',
+        icon: require('../../../image/icon-down-arrow.svg')
+      }
+    )
+  }
+
   renderName = (name, haveChildNode) => {
     return el(
       'div',
@@ -70,7 +85,8 @@ export default class extends Component {
           }
         })
       },
-      name
+      name,
+      this.renderToggleIcon(haveChildNode)
     )
   }
 
