@@ -8,7 +8,6 @@ import Button from '../component/Button'
 import { shallow } from 'enzyme'
 import sinon from 'sinon'
 import el from '../common/el'
-import '../enzyme.adapter'
 
 describe('Button测试用例', () => {
   const onClick = sinon.spy()

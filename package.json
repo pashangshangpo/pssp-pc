@@ -13,8 +13,9 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "<rootDir>/pc/__tests__/*.js"
+      "<rootDir>/__tests__/*.js"
     ],
+    "setupTestFrameworkScriptFile": "<rootDir>/setupTests.js",
     "moduleFileExtensions": [
       "js",
       "jsx"
