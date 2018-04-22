@@ -23,7 +23,23 @@ export default () => {
           backgroundColor: '#fff'
         }
       },
-      '哈哈哈'
+      el(
+        Menu,
+        {
+          data: [
+            {
+              name: 'nav 1',
+              children: ['child 1', 'child 2']
+            },
+            {
+              name: 'nav 2',
+            },
+            {
+              name: 'nav 3',
+            }
+          ]
+        }
+      )
     ),
     el(
       Content,
