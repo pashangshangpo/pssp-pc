@@ -18,11 +18,7 @@ export default () => {
     },
     el(
       Sider,
-      {
-        style: {
-          backgroundColor: '#fff'
-        }
-      },
+      {},
       el(
         Menu,
         {
