@@ -43,7 +43,11 @@ export default () => {
     ),
     el(
       Content,
-      {},
+      {
+        style: {
+          padding: '12px'
+        }
+      },
       '我是内容内容'
     )
   )
