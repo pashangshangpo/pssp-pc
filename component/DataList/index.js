@@ -99,6 +99,7 @@ export default class extends Component {
     return el(
       'h3',
       {
+        key: 'title',
         className: 'title'
       },
       title
@@ -109,6 +110,7 @@ export default class extends Component {
     return el(
       'div',
       {
+        key: title,
         className: 'header'
       },
       title
@@ -141,10 +143,11 @@ export default class extends Component {
     })
   }
 
-  renderList = data => {
+  renderList = (data, index) => {
     return el(
       'ul',
       {
+        key: index,
         className: 'list',
         onMouseLeave: this.handleMouseLeave
       },
@@ -157,6 +160,7 @@ export default class extends Component {
       return el(
         'div',
         {
+          key: index,
           className: c({
             default: {
               section: true,
@@ -165,7 +169,7 @@ export default class extends Component {
           })
         },
         this.renderHeader(item.title),
-        this.renderList(item.data)
+        this.renderList(item.data, index)
       )
     })
   }
@@ -183,6 +187,7 @@ export default class extends Component {
       el(
         'div',
         {
+          key: 'main',
           className: 'main'
         },
         this.renderData()
