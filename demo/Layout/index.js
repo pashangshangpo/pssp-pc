@@ -14,7 +14,11 @@ export default () => {
     {},
     el(
       Sider,
-      {},
+      {
+        style: {
+          backgroundColor: '#fff'
+        }
+      },
       '哈哈哈'
     ),
     el(

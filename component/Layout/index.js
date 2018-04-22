@@ -16,10 +16,12 @@ export default class extends Component {
    * @def-start: Layout: props => Layout
    *  props: Object
    *    className: String
+   *    style: Object
    *  children: ReactElement
    */
   static defaultProps = {
-    className: ''
+    className: '',
+    style: {}
   }
 
   render() {
@@ -29,7 +31,8 @@ export default class extends Component {
         className: c({
           default: this.props.className,
           prefix: 'layout'
-        })
+        }),
+        style: this.props.style
       },
       this.props.children
     )
