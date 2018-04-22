@@ -11,7 +11,11 @@ const log = new Log('Layout')
 export default () => {
   return el(
     Layout,
-    {},
+    {
+      style: {
+        backgroundColor: '#fff'
+      }
+    },
     el(
       Sider,
       {
