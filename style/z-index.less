@@ -1,22 +1,28 @@
 /*
 * z-index层级管理
+*
 * background: 当元素被作为背景时使用
+* background-top: 背景上面
 * default: 默认
 * hover: 鼠标移动上去改变
 * fixed: 固定元素时使用
-* layer: 弹窗时使用
-* layer-inside: 弹窗,需要影响里面的, 需要比layer更高级别时
-* layer-outside: 弹窗, 需要影响外面的
+* alert: 弹窗
+* layer: 模态框
+* layer-inside: 模态框,需要影响里面的, 需要比layer更高级别时
+* layer-outside: 模态框, 需要影响外面的
 */
 
 @z-background: 50;
+@z-background-top: 100;
 
-@z-default: 100;
+@z-default: 150;
 
-@z-hover: 150;
+@z-hover: 200;
 
-@z-fixed: 200;
+@z-fixed: 250;
 
-@z-layer: 250;
-@z-layer-inside: 300;
-@z-layer-outside: 350;
+@z-alert: 300;
+
+@z-layer: 350;
+@z-layer-inside: 400;
+@z-layer-outside: 450;
