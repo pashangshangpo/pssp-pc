@@ -12,6 +12,7 @@ export default class extends Component {
    * @def-start: DataList: props => DataList
    *  props: Object
    *    className: String
+   *    title: String 标题
    *    data: Array [Item]
    *      Item: Object
    *        title: String 标题
@@ -31,6 +32,7 @@ export default class extends Component {
    */
   defaultProps = {
     className: '',
+    title: '',
     data: [],
     activeIndex: -1,
     hoverTitle: false,
@@ -87,11 +89,27 @@ export default class extends Component {
     })
   }
 
-  renderTitle = title => {
+  renderTitle = () => {
+    const title = this.props.title
+
+    if (!title) {
+      return null
+    }
+
+    return el(
+      'h3',
+      {
+        className: 'title'
+      },
+      title
+    )
+  }
+
+  renderHeader = title => {
     return el(
       'div',
       {
-        className: 'title'
+        className: 'header'
       },
       title
     )
@@ -130,7 +148,7 @@ export default class extends Component {
         className: 'list',
         onMouseLeave: this.handleMouseLeave
       },
-      this.renderList(data)
+      this.renderLi(data)
     )
   }
 
@@ -146,7 +164,7 @@ export default class extends Component {
             }
           })
         },
-        this.renderTitle(item.title),
+        this.renderHeader(item.title),
         this.renderList(item.data)
       )
     })
@@ -161,7 +179,14 @@ export default class extends Component {
           prefix: 'data-list'
         })
       },
-      this.renderData()
+      this.renderTitle(),
+      el(
+        'div',
+        {
+          className: 'main'
+        },
+        this.renderData()
+      )
     )
   }
 }

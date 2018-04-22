@@ -30,6 +30,7 @@ export default class extends Component {
       DataList,
       {
         className: '',
+        title: '今日时间花费情况',
         activeIndex: this.state.activeIndex,
         hoverTitle: true,
         showLineNumber: true,
