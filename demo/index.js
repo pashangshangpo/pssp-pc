@@ -12,6 +12,11 @@ export default () => {
     {
       components: [
         {
+          name: 'Layout',
+          comp: require('./Layout').default,
+          newPageOpen: true
+        },
+        {
           name: 'DataList',
           comp: require('./DataList').default
         },
