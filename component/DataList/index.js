@@ -97,6 +97,32 @@ export default class extends Component {
     )
   }
 
+  renderLi = data => {
+    return data.map((content, index) => {
+      let title = ''
+      if (this.props.hoverTitle && typeof content === 'string') {
+        title = content
+      }
+
+      return el(
+        'li',
+        {
+          title,
+          key: index,
+          className: c({
+            default: {
+              hover: index === this.state.hoverIndex || index === this.props.activeIndex
+            }
+          }),
+          'data-index': index,
+          onMouseEnter: this.handleMouseEnter,
+          onClick: this.handleClick,
+        },
+        content
+      )
+    })
+  }
+
   renderList = data => {
     return el(
       'ul',
@@ -104,29 +130,7 @@ export default class extends Component {
         className: 'list',
         onMouseLeave: this.handleMouseLeave
       },
-      data.map((content, index) => {
-        let title = ''
-        if (this.props.hoverTitle && typeof content === 'string') {
-          title = content
-        }
-
-        return el(
-          'li',
-          {
-            title,
-            key: index,
-            className: c({
-              default: {
-                hover: index === this.state.hoverIndex || index === this.props.activeIndex
-              }
-            }),
-            'data-index': index,
-            onMouseEnter: this.handleMouseEnter,
-            onClick: this.handleClick,
-          },
-          content
-        )
-      })
+      this.renderList(data)
     )
   }
 
