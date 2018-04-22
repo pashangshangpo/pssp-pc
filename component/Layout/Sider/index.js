@@ -12,13 +12,10 @@ export default class extends Component {
    * @def-start: Sider: props => Sider
    *  props: Object
    *    className: String
+   *  children: ReactElement
    */
   static defaultProps = {
-    className: '',
-  }
-
-  renderMain = () => {
-
+    className: ''
   }
 
   render() {
@@ -30,7 +27,13 @@ export default class extends Component {
           prefix: 'sider'
         })
       },
-      this.renderMain()
+      el(
+        'div',
+        {
+          className: 'sider-children'
+        },
+        this.props.children
+      )
     )
   }
 }
