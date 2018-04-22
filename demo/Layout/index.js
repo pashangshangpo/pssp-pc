@@ -22,6 +22,7 @@ export default () => {
       el(
         Menu,
         {
+          mode: 'vertical',
           checked: 'nav 1',
           data: [
             {

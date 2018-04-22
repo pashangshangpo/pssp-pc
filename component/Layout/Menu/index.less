@@ -7,58 +7,104 @@
   font-size: 14px;
   user-select: none;
 
-  &::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 1px;
-    height: 100%;
-    
-    background-color: #e8e8e8;
-    transform: scaleX(0.5);
-    z-index: @z-background;
-  }
-
   ul {
     position: relative;
+    display: flex;
+    height: 100%;
     margin-right: -0.2px;
 
+    flex-direction: column;
     overflow: hidden;
     transition: all .2s;
     z-index: @z-background-top;
   }
 
-  .menu-name,
-  .menu-item {
-    height: 40px;
-    padding-left: 48px;
+  .vertical {
+    &::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 1px;
+      height: 100%;
+      
+      background-color: #e8e8e8;
+      transform: scaleX(0.5);
+      z-index: @z-background;
+    }
+    
+    .menu-name,
+    .menu-item {
+      height: 40px;
+      padding-left: 48px;
 
-    line-height: 40px;
-    cursor: pointer;
+      line-height: 40px;
 
-    &:hover {
-      color: #1890ff;
+      &:hover {
+        color: #1890ff;
+      }
+    }
+
+    .menu-name:not(.have-child-node),
+    .menu-item {
+      &.checked {
+        color: #1890ff;
+        border-right: 3px solid currentColor;
+        background-color: #e6f7ff;
+      }
+    }
+
+    .arrow {
+      margin-left: 50px;
     }
   }
 
-  .arrow {
-    margin-left: 50px;
+  .horizontal {
+    flex-direction: row;
 
+    .menu-name,
+    .menu-item {
+      height: 40px;
+      padding: 0 12px;
+
+      line-height: 40px;
+      background-color: #fff;
+
+      &:hover {
+        color: #1890ff;
+      }
+    }
+
+    .menu-name:not(.have-child-node),
+    .menu-item {
+      &.checked {
+        color: #fff;
+        background-color: #1890ff;
+      }
+    }
+
+    .arrow {
+      margin-left: 8px;
+    }
+
+    ul {
+      .menu-item {
+        margin-right: 12px;
+      }
+    }
+  }
+
+  .menu-name,
+  .menu-item {
+    cursor: pointer;
+  }
+
+  .arrow {
     font-size: 16px;
     transition: all 0.1s;
   }
 
   .up-arrow {
     transform: rotate(180deg);
-  }
-
-  .menu-name:not(.have-child-node),
-  .menu-item {
-    &.checked {
-      color: #1890ff;
-      border-right: 3px solid currentColor;
-      background-color: #e6f7ff;
-    }
   }
 }

@@ -22,7 +22,7 @@ export default class extends Component {
    *        children: Array [Item] 子节点 可选
    *          Item: ReactElement
    *    checked: * 选中的名称, 如果没有填写默认选中第一个
-   *    mode: String 菜单类型 ['vertical', 'horizontal']
+   *    mode: String 菜单类型 ['vertical', 'horizontal'] 默认vertical
    *    onClick: Function 点击子项时触发
    *    onOpenChange: Function 菜单展开关闭时触发
    */
@@ -31,7 +31,7 @@ export default class extends Component {
     style: {},
     data: [],
     checked: '',
-    mode: '',
+    mode: 'vertical',
     onClick: () => {},
     onOpenChange: () => {}
   }
@@ -179,13 +179,18 @@ export default class extends Component {
     return el(
       'ul',
       {
-        key: 'layout-menu-main'
+        key: 'layout-menu-main',
+        className: this.props.mode
       },
       this.renderMenu()
     )
   }
 
   render() {
+    if (['vertical', 'horizontal'].indexOf(this.props.mode) === -1) {
+      return null
+    }
+    
     return el(
       'div',
       {
