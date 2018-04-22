@@ -26,13 +26,14 @@ export default () => {
       el(
         Menu,
         {
+          checked: 'nav 1',
           data: [
             {
               name: 'nav 1',
-              children: ['child 1', 'child 2']
             },
             {
               name: 'nav 2',
+              children: ['nav2 1', 'nav2 2']
             },
             {
               name: 'nav 3',

@@ -44,21 +44,7 @@ export default class extends Component {
   }
 
   componentWillMount() {
-    let checked = this.props.checked
-
-    if (!checked) {
-      const first = this.props.data[0]
-
-      if (first.children && first.children.length > 0) {
-        checked = first.children[0]
-      }
-      else {
-        checked = first.name
-      }
-    }
-
     this.changeState({
-      checked,
       data: this.props.data
     })
   }
@@ -70,12 +56,23 @@ export default class extends Component {
     this.toogleChildNode(this.state.data[index])
   }
 
+  handleMenuItemClick = (item, index) => {
+    this.changeState({
+      checked: item
+    })
+  }
+
   toogleChildNode = currentMenu => {
     if (currentMenu.children && currentMenu.children.length > 0) {
       currentMenu.unfoldChildNode = !currentMenu.unfoldChildNode
 
       this.changeState({
         data: this.state.data
+      })
+    }
+    else {
+      this.changeState({
+        checked: currentMenu.name
       })
     }
   }
@@ -144,7 +141,8 @@ export default class extends Component {
                 menuItem: true,
                 checked: this.state.checked === item
               }
-            })
+            }),
+            onClick: this.handleMenuItemClick.bind(this, item)
           },
           item
         )
