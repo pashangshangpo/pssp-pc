@@ -38,7 +38,13 @@ export default () => {
               name: 'nav 3',
               children: ['nav3 1', 'nav3 2']
             }
-          ]
+          ],
+          onClick: (item, section, data) => {
+            log.message('menu-click', item, section)
+          },
+          onOpenChange: (item, data) => {
+            log.message('menu-change', item)
+          }
         }
       )
     ),

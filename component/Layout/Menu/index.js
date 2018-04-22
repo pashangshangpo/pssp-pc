@@ -22,12 +22,18 @@ export default class extends Component {
    *        children: Array [Item] 子节点 可选
    *          Item: ReactElement
    *    checked: * 选中的名称, 如果没有填写默认选中第一个
+   *    mode: String 菜单类型 ['vertical', 'horizontal']
+   *    onClick: Function 点击子项时触发
+   *    onOpenChange: Function 菜单展开关闭时触发
    */
   static defaultProps = {
     className: '',
     style: {},
     data: [],
-    checked: ''
+    checked: '',
+    mode: '',
+    onClick: () => {},
+    onOpenChange: () => {}
   }
 
   state = {
@@ -56,10 +62,12 @@ export default class extends Component {
     this.toogleChildNode(this.state.data[index])
   }
 
-  handleMenuItemClick = (item, index) => {
+  handleMenuItemClick = (item, section) => {
     this.changeState({
       checked: item
     })
+
+    this.props.onClick(item, section, this.state.data)
   }
 
   toogleChildNode = currentMenu => {
@@ -75,6 +83,8 @@ export default class extends Component {
         checked: currentMenu.name
       })
     }
+
+    this.props.onOpenChange(currentMenu, this.state.data)
   }
 
   renderToggleIcon = (isRender, unfoldChildNode) => {
@@ -118,7 +128,9 @@ export default class extends Component {
     )
   }
 
-  renderChildren = (children, unfoldChildNode) => {
+  renderChildren = section => {
+    const {children, unfoldChildNode} = section
+
     if (!children || children.length < 1) {
       return null
     }
@@ -142,7 +154,7 @@ export default class extends Component {
                 checked: this.state.checked === item
               }
             }),
-            onClick: this.handleMenuItemClick.bind(this, item)
+            onClick: this.handleMenuItemClick.bind(this, item, section)
           },
           item
         )
@@ -158,7 +170,7 @@ export default class extends Component {
           key: index
         },
         this.renderName(section),
-        this.renderChildren(section.children, section.unfoldChildNode)
+        this.renderChildren(section)
       )
     })
   }
