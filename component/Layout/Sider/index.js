@@ -24,7 +24,7 @@ export default class extends Component {
       {
         className: c({
           default: this.props.className,
-          prefix: 'sider'
+          prefix: 'layout-sider'
         })
       },
       el(
