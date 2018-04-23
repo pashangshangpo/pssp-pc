@@ -12,6 +12,11 @@ export default () => {
     {
       components: [
         {
+          name: 'Modal',
+          comp: require('./Modal').default,
+          // newPageOpen: true
+        },
+        {
           name: 'Layout',
           comp: require('./Layout').default,
           newPageOpen: true
