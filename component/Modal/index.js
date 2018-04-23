@@ -24,13 +24,17 @@ export default class Modal extends Component {
     visible: false,
     closable: true,
     maskClosable: false,
-    onClose: () => {}
+    confirmLoading: false,
+    onClose: () => {},
+    onOk: () => {},
+    onCancel: () => {}
   }
 
   static footer = ''
 
   state = {
-    visible: this.props.visible
+    visible: this.props.visible,
+    confirmLoading: this.props.confirmLoading
   }
 
   changeState = state => {
@@ -41,12 +45,24 @@ export default class Modal extends Component {
     this.setState(this.state)
   }
 
-  componentWillMount() {
-    this.initFooter()
-  }
-
   componentDidMount() {
     this.forbiddenScroll()
+  }
+
+  shouldComponentUpdate(next, pre) {
+    if (next.confirmLoading !== pre.confirmLoading) {
+      setTimeout(() => {
+        this.changeState({
+          confirmLoading: this.props.confirmLoading
+        })
+  
+        if (!this.state.confirmLoading) {
+          this.close()
+        }
+      })
+    }
+
+    return true
   }
 
   handleClose = () => {
@@ -54,31 +70,7 @@ export default class Modal extends Component {
   }
 
   handleOk = () => {
-    this.close()
-  }
-
-  initFooter = () => {
-    Modal.footer = this.props.footer || el(
-      'div',
-      {
-        className: 'btns'
-      },
-      el(
-        Button,
-        {
-          onClick: this.handleClose
-        },
-        'Cancel'
-      ),
-      el(
-        Button,
-        {
-          type: 'primary',
-          onClick: this.handleOk
-        },
-        'OK'
-      )
-    )
+    this.props.onOk()
   }
 
   close = () => {
@@ -119,6 +111,31 @@ export default class Modal extends Component {
     )
   }
 
+  renderFooter = () => {
+    return this.props.footer || el(
+      'div',
+      {
+        className: 'btns'
+      },
+      el(
+        Button,
+        {
+          onClick: this.handleClose
+        },
+        'Cancel'
+      ),
+      el(
+        Button,
+        {
+          type: 'primary',
+          loading: this.state.confirmLoading,
+          onClick: this.handleOk
+        },
+        'OK'
+      )
+    )
+  }
+
   renderModal = () => {
     return el(
       'div',
@@ -143,7 +160,7 @@ export default class Modal extends Component {
         {
           className: 'footer'
         },
-        Modal.footer
+        this.renderFooter()
       )
     )
   }
