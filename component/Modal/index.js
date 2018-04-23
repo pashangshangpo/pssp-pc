@@ -30,19 +30,41 @@ export default class extends Component {
     visible: this.props.visible
   }
 
+  changeState = state => {
+    for (let key of Object.keys(state)) {
+      this.state[key] = state[key]
+    }
+
+    this.setState(this.state)
+  }
+
+  componentDidMount() {
+    this.forbiddenScroll()
+  }
+
   handleClose = () => {
-    console.log('close')
+    this.close()
+  }
+
+  close = () => {
+    this.changeState({
+      visible: false
+    })
+
+    this.forbiddenScroll()
   }
 
   // 禁止滚动
   forbiddenScroll = () => {
-    const init = document.body.style.overflow || 'initial'
+    if (!this.__bodyOverflow) {
+      this.__bodyOverflow = document.body.style.overflow || 'initial'
+    }
 
     if (this.state.visible) {
       document.body.style.overflow = 'hidden'
     }
     else {
-      document.body.style.overflow = init
+      document.body.style.overflow = this.__bodyOverflow
     }
   }
 
@@ -83,8 +105,6 @@ export default class extends Component {
   }
 
   renderMain = () => {
-    this.forbiddenScroll()
-
     return el(
       'div',
       {
