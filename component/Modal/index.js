@@ -5,10 +5,11 @@
 
 import React, { Component } from 'react'
 import Svg from '../Svg'
+import Button from '../Button'
 import { el, c } from '../../common'
 import './index.less'
 
-export default class extends Component {
+export default class Modal extends Component {
   /**
    * @def-start: Modal: props => Modal
    *  props: Object
@@ -19,12 +20,14 @@ export default class extends Component {
     style: {},
     header: 'title',
     main: 'main',
-    footer: 'footer',
+    footer: '',
     visible: false,
     closable: true,
     maskClosable: false,
     onClose: () => {}
   }
+
+  static footer = ''
 
   state = {
     visible: this.props.visible
@@ -38,12 +41,44 @@ export default class extends Component {
     this.setState(this.state)
   }
 
+  componentWillMount() {
+    this.initFooter()
+  }
+
   componentDidMount() {
     this.forbiddenScroll()
   }
 
   handleClose = () => {
     this.close()
+  }
+
+  handleOk = () => {
+    this.close()
+  }
+
+  initFooter = () => {
+    Modal.footer = this.props.footer || el(
+      'div',
+      {
+        className: 'btns'
+      },
+      el(
+        Button,
+        {
+          onClick: this.handleClose
+        },
+        'Cancel'
+      ),
+      el(
+        Button,
+        {
+          type: 'primary',
+          onClick: this.handleOk
+        },
+        'OK'
+      )
+    )
   }
 
   close = () => {
@@ -99,7 +134,7 @@ export default class extends Component {
         {
           className: 'footer'
         },
-        this.props.footer
+        Modal.footer
       )
     )
   }
