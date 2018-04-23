@@ -4,6 +4,7 @@
  */
 
 import React, { Component } from 'react'
+import Svg from '../Svg'
 import { el, c } from '../../common'
 import './index.less'
 
@@ -16,9 +17,9 @@ export default class extends Component {
   static defaultProps = {
     className: '',
     style: {},
-    header: '',
-    main: '',
-    footer: '',
+    header: 'title',
+    main: 'main',
+    footer: 'footer',
     visible: false,
     closable: true,
     maskClosable: false,
@@ -27,6 +28,10 @@ export default class extends Component {
 
   state = {
     visible: this.props.visible
+  }
+
+  handleClose = () => {
+    console.log('close')
   }
 
   // 禁止滚动
@@ -39,6 +44,42 @@ export default class extends Component {
     else {
       document.body.style.overflow = init
     }
+  }
+
+  renderModal = () => {
+    return el(
+      'div',
+      {},
+      el(
+        'div',
+        {
+          className: 'header'
+        },
+        el(
+          Svg,
+          {
+            icon: require('../../image/icon-delete.svg'),
+            className: 'close',
+            onClick: this.handleClose
+          }
+        ),
+        this.props.header
+      ),
+      el(
+        'div',
+        {
+          className: 'main'
+        },
+        this.props.main
+      ),
+      el(
+        'div',
+        {
+          className: 'footer'
+        },
+        this.props.footer
+      )
+    )
   }
 
   renderMain = () => {
@@ -57,7 +98,8 @@ export default class extends Component {
         'div',
         {
           className: 'box'
-        }
+        },
+        this.renderModal()
       )
     )
   }
