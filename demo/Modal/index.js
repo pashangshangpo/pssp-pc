@@ -12,7 +12,8 @@ export default () => {
   return el(
     Modal,
     {
-      visible: true
+      visible: true,
+      // closable: false
     }
   )
 }

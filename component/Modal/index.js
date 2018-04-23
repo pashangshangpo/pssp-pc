@@ -87,6 +87,7 @@ export default class Modal extends Component {
     })
 
     this.forbiddenScroll()
+    this.props.onClose()
   }
 
   // 禁止滚动
@@ -103,6 +104,21 @@ export default class Modal extends Component {
     }
   }
 
+  renderClose = () => {
+    if (!this.props.closable) {
+      return null
+    }
+
+    return el(
+      Svg,
+      {
+        icon: require('../../image/icon-delete.svg'),
+        className: 'close',
+        onClick: this.handleClose
+      }
+    )
+  }
+
   renderModal = () => {
     return el(
       'div',
@@ -112,14 +128,7 @@ export default class Modal extends Component {
         {
           className: 'header'
         },
-        el(
-          Svg,
-          {
-            icon: require('../../image/icon-delete.svg'),
-            className: 'close',
-            onClick: this.handleClose
-          }
-        ),
+        this.renderClose(),
         this.props.header
       ),
       el(
