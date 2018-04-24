@@ -266,10 +266,6 @@ class ModalBase extends Component {
 }
 
 export default class Modal extends Component {
-  appendToBody = () => {
-    ReactDOM.unstable_renderSubtreeIntoContainer(this, el(ModalBase, this.props), this.container)
-  }
-
   componentDidMount() {
     this.container = document.createElement('div')
     document.body.appendChild(this.container)
@@ -283,6 +279,14 @@ export default class Modal extends Component {
 
   componentWillUnmount() {
     document.body.removeChild(this.container)
+  }
+
+  appendToBody = () => {
+    ReactDOM.unstable_renderSubtreeIntoContainer(
+      this, 
+      el(ModalBase, this.props, this.props.children),
+      this.container
+    )
   }
 
   render() {
