@@ -27,6 +27,8 @@ export default class Modal extends Component {
     confirmLoading: false,
     cancelText: 'Cancel',
     okText: 'OK',
+    cancelType: 'default',
+    okType: 'primary',
     onClose: () => {},
     onOk: () => {},
     onCancel: () => {}
@@ -165,6 +167,7 @@ export default class Modal extends Component {
         el(
           Button,
           {
+            type: this.props.cancelType,
             onClick: this.handleCancel
           },
           this.props.cancelText
@@ -172,7 +175,7 @@ export default class Modal extends Component {
         el(
           Button,
           {
-            type: 'primary',
+            type: this.props.okType,
             loading: this.state.confirmLoading,
             onClick: this.handleOk
           },
