@@ -30,8 +30,6 @@ export default class Modal extends Component {
     onCancel: () => {}
   }
 
-  static footer = ''
-
   state = {
     visible: this.props.visible,
     confirmLoading: this.props.confirmLoading
@@ -71,6 +69,11 @@ export default class Modal extends Component {
 
   handleOk = () => {
     this.props.onOk()
+  }
+
+  handleCancel = () => {
+    this.props.onCancel()
+    this.close()
   }
 
   close = () => {
@@ -120,7 +123,7 @@ export default class Modal extends Component {
       el(
         Button,
         {
-          onClick: this.handleClose
+          onClick: this.handleCancel
         },
         'Cancel'
       ),

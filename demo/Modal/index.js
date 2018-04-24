@@ -23,6 +23,8 @@ export default class extends Component {
   }
 
   handleOk = () => {
+    log.message('ok')
+    
     this.changeState({
       confirmLoading: true
     })
@@ -41,7 +43,13 @@ export default class extends Component {
         visible: true,
         // closable: false,
         confirmLoading: this.state.confirmLoading,
-        onOk: this.handleOk
+        onOk: this.handleOk,
+        onClose: () => {
+          log.message('close')
+        },
+        onCancel: () => {
+          log.message('cancel')
+        }
       }
     )
   }
