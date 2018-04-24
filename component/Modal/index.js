@@ -58,14 +58,6 @@ export default class Modal extends Component {
     confirmLoading: this.props.confirmLoading
   }
 
-  changeState = state => {
-    for (let key of Object.keys(state)) {
-      this.state[key] = state[key]
-    }
-
-    this.setState(this.state)
-  }
-
   componentDidMount() {
     this.forbiddenScroll()
   }
@@ -103,6 +95,14 @@ export default class Modal extends Component {
   handleCancel = () => {
     this.props.onCancel()
     this.close()
+  }
+
+  changeState = state => {
+    for (let key of Object.keys(state)) {
+      this.state[key] = state[key]
+    }
+
+    this.setState(this.state)
   }
 
   close = () => {
