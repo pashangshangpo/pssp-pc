@@ -6,44 +6,18 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Base from './Base'
-import { el, c } from '../../common'
+import Confirm from './Confirm'
+import { el, c, render } from '../../common'
 
 export default class Modal extends Component {
-  static createContainer = () => {
-    const div = document.createElement('div')
-    document.body.appendChild(div)
-
-    return div
-  }
-
-  static confirm = config => {
-    // const { title, content, onOk, onCancel } = config
-    let element = null
-
-    ReactDOM.render(
-      el(
-        'div',
-        {
-          ref: ref => element = ref.parentNode
-        },
-        '123123123'
-      ),
-      Modal.createContainer()
+  static confirm = config => render({
+    component: el(
+      Confirm,
+      config
     )
-
-    return {
-      destroy: () => {
-        if (element) {
-          ReactDOM.unmountComponentAtNode(element)
-          document.body.removeChild(element)
-          element = null
-        }
-      }
-    }
-  }
+  })
 
   componentDidMount() {
-    this.container = Modal.createContainer()
     this.appendToBody()
   }
 
@@ -52,19 +26,24 @@ export default class Modal extends Component {
   }
 
   componentWillUnmount() {
-    ReactDOM.unmountComponentAtNode(this.container)
-    document.body.removeChild(this.container)
+    this.container.destroy()
   }
 
   appendToBody = () => {
-    ReactDOM.unstable_renderSubtreeIntoContainer(
-      this, 
-      el(Base, this.props, this.props.children),
-      this.container
-    )
+    this.container = render({
+      context: this,
+      component: el(
+        Base, 
+        this.props,
+        this.props.children
+      ),
+      container: this.container && this.container.getEl()
+    })
   }
 
   render() {
     return null
   }
 }
+
+window.Modal = Modal
