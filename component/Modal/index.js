@@ -14,6 +14,23 @@ export default class Modal extends Component {
    * @def-start: Modal: props => Modal
    *  props: Object
    *    className: String
+   *    style: Object
+   *    header: ReactElement, String 如果为null则不显示
+   *    main: ReactElement, String
+   *    footer: ReactElement, String 如果为null则不显示
+   *    visible: Boolean 是否可见
+   *    closable: Boolean 是否在右上角显示关闭按钮
+   *    maskClosable: Boolean 点击遮罩层是否可关闭
+   *    confirmLoading: Boolean 确认按钮是否loading中
+   *    cancelText: String 取消按钮文案
+   *    okText: String 确认按钮文案
+   *    cancelType: String ['primary', 'default', 'dashed'] 取消按钮类型
+   *    okType: String ['primary', 'default', 'dashed'] 确认按钮类型
+   *    showCancel: Boolean 是否显示取消按钮
+   *    showOk: Boolean 是否显示确认按钮
+   *    onClose: Function 关闭模态框时触发
+   *    onOk: Function 点击确认按钮时触发
+   *    onCancel: Function 点击取消按钮时触发
    */
   static defaultProps = {
     className: '',
