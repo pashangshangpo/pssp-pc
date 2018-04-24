@@ -120,27 +120,62 @@ export default class Modal extends Component {
     )
   }
 
-  renderFooter = () => {
-    return this.props.footer || el(
+  renderModalHeader = () => {
+    if (this.props.header === null) {
+      return null
+    }
+
+    return el(
       'div',
       {
-        className: 'btns'
+        className: 'header'
       },
-      el(
-        Button,
+      this.renderClose(),
+      this.props.header
+    )
+  }
+
+  renderModalMain = () => {
+    return el(
+      'div',
+      {
+        className: 'main'
+      },
+      this.props.main
+    )
+  }
+
+  renderModalFooter = () => {
+    if (this.props.footer === null) {
+      return null
+    }
+
+    return el(
+      'div',
+      {
+        className: 'footer'
+      },
+      this.props.footer || el(
+        'div',
         {
-          onClick: this.handleCancel
+          className: 'btns'
         },
-        'Cancel'
-      ),
-      el(
-        Button,
-        {
-          type: 'primary',
-          loading: this.state.confirmLoading,
-          onClick: this.handleOk
-        },
-        'OK'
+        el(
+          Button,
+          {
+            onClick: this.handleCancel
+          },
+          'Cancel'
+        ),
+        el(
+          Button,
+          {
+            type: 'primary',
+            loading: this.state.confirmLoading,
+            onClick: this.handleOk
+          },
+          'OK'
+        )
       )
     )
   }
@@ -149,28 +184,9 @@ export default class Modal extends Component {
     return el(
       'div',
       {},
-      el(
-        'div',
-        {
-          className: 'header'
-        },
-        this.renderClose(),
-        this.props.header
-      ),
-      el(
-        'div',
-        {
-          className: 'main'
-        },
-        this.props.main
-      ),
-      el(
-        'div',
-        {
-          className: 'footer'
-        },
-        this.renderFooter()
-      )
+      this.renderModalHeader(),
+      this.renderModalMain(),
+      this.renderModalFooter()
     )
   }
 

@@ -44,6 +44,8 @@ export default class extends Component {
         maskClosable: true,
         // closable: false,
         confirmLoading: this.state.confirmLoading,
+        // header: null,
+        // footer: null,
         onOk: this.handleOk,
         onClose: () => {
           log.message('close')
