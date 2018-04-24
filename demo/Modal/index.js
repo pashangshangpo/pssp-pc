@@ -46,6 +46,8 @@ export default class extends Component {
         confirmLoading: this.state.confirmLoading,
         // header: null,
         // footer: null,
+        // showCancel: false,
+        // showOk: false,
         onOk: this.handleOk,
         onClose: () => {
           log.message('close')

@@ -29,6 +29,8 @@ export default class Modal extends Component {
     okText: 'OK',
     cancelType: 'default',
     okType: 'primary',
+    showCancel: true,
+    showOk: true,
     onClose: () => {},
     onOk: () => {},
     onCancel: () => {}
@@ -149,6 +151,37 @@ export default class Modal extends Component {
     )
   }
 
+  renderCancal = () => {
+    if (!this.props.showCancel) {
+      return null
+    }
+
+    return el(
+      Button,
+      {
+        type: this.props.cancelType,
+        onClick: this.handleCancel
+      },
+      this.props.cancelText
+    )
+  }
+
+  renderOk = () => {
+    if (!this.props.showOk) {
+      return null
+    }
+
+    return el(
+      Button,
+      {
+        type: this.props.okType,
+        loading: this.state.confirmLoading,
+        onClick: this.handleOk
+      },
+      this.props.okText
+    )
+  }
+
   renderModalFooter = () => {
     if (this.props.footer === null) {
       return null
@@ -164,23 +197,8 @@ export default class Modal extends Component {
         {
           className: 'btns'
         },
-        el(
-          Button,
-          {
-            type: this.props.cancelType,
-            onClick: this.handleCancel
-          },
-          this.props.cancelText
-        ),
-        el(
-          Button,
-          {
-            type: this.props.okType,
-            loading: this.state.confirmLoading,
-            onClick: this.handleOk
-          },
-          this.props.okText
-        )
+        this.renderCancal(),
+        this.renderOk()
       )
     )
   }
