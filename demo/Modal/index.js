@@ -24,7 +24,7 @@ export default class extends Component {
 
   handleOk = () => {
     log.message('ok')
-    
+
     this.changeState({
       confirmLoading: true
     })
@@ -41,6 +41,7 @@ export default class extends Component {
       Modal,
       {
         visible: true,
+        maskClosable: true,
         // closable: false,
         confirmLoading: this.state.confirmLoading,
         onOk: this.handleOk,

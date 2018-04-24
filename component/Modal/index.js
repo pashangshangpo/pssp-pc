@@ -63,6 +63,12 @@ export default class Modal extends Component {
     return true
   }
 
+  handleModalClick = e => {
+    if (e.target === e.currentTarget && this.props.maskClosable) {
+      this.close()
+    }
+  }
+
   handleClose = () => {
     this.close()
   }
@@ -176,7 +182,8 @@ export default class Modal extends Component {
           default: this.props.className,
           prefix: 'modal'
         }),
-        style: this.props.style
+        style: this.props.style,
+        onClick: this.handleModalClick
       },
       el(
         'div',
