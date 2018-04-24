@@ -4,12 +4,13 @@
  */
 
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import Svg from '../Svg'
 import Button from '../Button'
 import { el, c } from '../../common'
 import './index.less'
 
-export default class Modal extends Component {
+class ModalBase extends Component {
   /**
    * @def-start: Modal: props => Modal
    *  props: Object
@@ -48,9 +49,9 @@ export default class Modal extends Component {
     okType: 'primary',
     showCancel: true,
     showOk: true,
-    onClose: () => {},
-    onOk: () => {},
-    onCancel: () => {}
+    onClose: () => { },
+    onOk: () => { },
+    onCancel: () => { }
   }
 
   state = {
@@ -68,7 +69,7 @@ export default class Modal extends Component {
         this.changeState({
           confirmLoading: this.props.confirmLoading
         })
-  
+
         if (!this.state.confirmLoading) {
           this.close()
         }
@@ -261,5 +262,30 @@ export default class Modal extends Component {
       },
       this.renderMain()
     )
+  }
+}
+
+export default class Modal extends Component {
+  appendToBody = () => {
+    ReactDOM.unstable_renderSubtreeIntoContainer(this, el(ModalBase, this.props), this.container)
+  }
+
+  componentDidMount() {
+    this.container = document.createElement('div')
+    document.body.appendChild(this.container)
+
+    this.appendToBody()
+  }
+
+  componentDidUpdate() {
+    this.appendToBody()
+  }
+
+  componentWillUnmount() {
+    document.body.removeChild(this.container)
+  }
+
+  render() {
+    return null
   }
 }
