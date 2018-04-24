@@ -25,6 +25,8 @@ export default class Modal extends Component {
     closable: true,
     maskClosable: false,
     confirmLoading: false,
+    cancelText: 'Cancel',
+    okText: 'OK',
     onClose: () => {},
     onOk: () => {},
     onCancel: () => {}
@@ -165,7 +167,7 @@ export default class Modal extends Component {
           {
             onClick: this.handleCancel
           },
-          'Cancel'
+          this.props.cancelText
         ),
         el(
           Button,
@@ -174,7 +176,7 @@ export default class Modal extends Component {
             loading: this.state.confirmLoading,
             onClick: this.handleOk
           },
-          'OK'
+          this.props.okText
         )
       )
     )
