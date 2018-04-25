@@ -11,6 +11,7 @@ const log = new Log('Modal')
 
 export default class extends Component {
   state = {
+    visible: false,
     confirmLoading: false
   }
 
@@ -38,25 +39,51 @@ export default class extends Component {
 
   render() {
     return el(
-      Modal,
-      {
-        visible: true,
-        maskClosable: true,
-        // closable: false,
-        confirmLoading: this.state.confirmLoading,
-        // header: null,
-        // footer: null,
-        // showCancel: false,
-        // showOk: false,
-        onOk: this.handleOk,
-        onClose: () => {
-          log.message('close')
-          this.props.getDemoRef().closeComp()
-        },
-        onCancel: () => {
-          log.message('cancel')
+      'div',
+      {},
+      el(
+        'input',
+        {
+          type: 'button',
+          value: 'show modal',
+          onClick: () => {
+            this.changeState({
+              visible: true
+            })
+          }
         }
-      }
+      ),
+      el(
+        'input',
+        {
+          type: 'button',
+          value: 'show confirm'
+        }
+      ),
+      el(
+        Modal,
+        {
+          visible: this.state.visible,
+          maskClosable: true,
+          // closable: false,
+          confirmLoading: this.state.confirmLoading,
+          // header: null,
+          // footer: null,
+          // showCancel: false,
+          // showOk: false,
+          onOk: this.handleOk,
+          onClose: () => {
+            log.message('close')
+            // 如果不更改,里面的状态将不会被改变,下次无法被调用
+            this.changeState({
+              visible: false
+            })
+          },
+          onCancel: () => {
+            log.message('cancel')
+          }
+        }
+      )
     )
   }
 }
