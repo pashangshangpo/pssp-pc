@@ -83,6 +83,14 @@ export default class extends Component {
     }
   }
 
+  componentWillUnmount() {
+    this.changeState({
+      visible: false
+    })
+    
+    this.forbiddenScroll()
+  }
+
   handleModalClick = e => {
     if (e.target === e.currentTarget && this.props.maskClosable) {
       this.close()
