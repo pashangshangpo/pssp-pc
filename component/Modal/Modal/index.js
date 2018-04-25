@@ -59,6 +59,11 @@ export default class extends Component {
     confirmLoading: this.props.confirmLoading
   }
 
+  componentWillMount() {
+    this.container = document.createElement('div')
+    document.body.appendChild(this.container)
+  }
+
   componentDidMount() {
     this.forbiddenScroll()
   }
@@ -253,14 +258,17 @@ export default class extends Component {
   }
 
   render() {
-    return el(
-      'div',
-      {
-        style: {
-          display: this.state.visible ? 'block' : 'none'
-        }
-      },
-      this.renderMain()
+    return ReactDOM.createPortal(
+      el(
+        'div',
+        {
+          style: {
+            display: this.state.visible ? 'block' : 'none'
+          }
+        },
+        this.renderMain()
+      ),
+      this.container
     )
   }
 }

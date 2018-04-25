@@ -5,45 +5,30 @@
 
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import Base from './Base'
+import Modal from './Modal'
 import Confirm from './Confirm'
-import { el, c, render } from '../../common'
+import { el, c } from '../../common'
 
-export default class Modal extends Component {
-  static confirm = config => render({
-    component: el(
-      Confirm,
-      config
-    )
-  })
+// export default class Modal extends Component {
+//   static confirm = config => render({
+//     component: el(
+//       Confirm,
+//       config
+//     )
+//   })
 
-  componentDidMount() {
-    this.appendToBody()
-  }
+//   render() {
+//     return ReactDOM.createPortal(
+//       el(
+//         Base, 
+//         this.props,
+//         this.props.children
+//       ),
+//       this.container
+//     )
+//   }
+// }
 
-  componentDidUpdate() {
-    this.appendToBody()
-  }
-
-  componentWillUnmount() {
-    this.container.destroy()
-  }
-
-  appendToBody = () => {
-    this.container = render({
-      context: this,
-      component: el(
-        Base, 
-        this.props,
-        this.props.children
-      ),
-      container: this.container && this.container.getEl()
-    })
-  }
-
-  render() {
-    return null
-  }
-}
+export default Modal
 
 window.Modal = Modal

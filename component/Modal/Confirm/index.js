@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react'
-import Base from '../Base'
+import Modal from '../Modal'
 import { el, c } from '../../../common'
 // import './index.less'
 
@@ -32,7 +32,7 @@ export default class extends Component {
 
   render() {
     return el(
-      Base,
+      Modal,
       {
         className: c({
           prefix: 'confirm'
