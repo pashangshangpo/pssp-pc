@@ -1,5 +1,5 @@
 /**
- * @file Base
+ * @file Modal
  * @author pashangshangpo
  */
 
@@ -87,7 +87,7 @@ export default class extends Component {
     this.changeState({
       visible: false
     })
-    
+
     this.forbiddenScroll()
   }
 
