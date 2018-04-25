@@ -7,28 +7,31 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Modal from './Modal'
 import Confirm from './Confirm'
-import { el, c } from '../../common'
+import { el, c, render } from '../../common'
 
-// export default class Modal extends Component {
-//   static confirm = config => render({
-//     component: el(
-//       Confirm,
-//       config
-//     )
-//   })
+export default class Base extends Component {
+  static confirm = config => render({
+    component: el(
+      Confirm,
+      config
+    )
+  })
 
-//   render() {
-//     return ReactDOM.createPortal(
-//       el(
-//         Base, 
-//         this.props,
-//         this.props.children
-//       ),
-//       this.container
-//     )
-//   }
-// }
+  componentWillMount() {
+    this.container = document.createElement('div')
+    document.body.appendChild(this.container)
+  }
 
-export default Modal
+  render() {
+    return ReactDOM.createPortal(
+      el(
+        Modal,
+        this.props,
+        this.props.children
+      ),
+      this.container
+    )
+  }
+}
 
-window.Modal = Modal
+window.Modal = Base
