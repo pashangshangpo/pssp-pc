@@ -1,5 +1,5 @@
 /**
- * @file Modal
+ * @file Modal组件入口
  * @author pashangshangpo
  */
 
@@ -10,6 +10,7 @@ import Confirm from './Confirm'
 import Info from './Info'
 import Success from './Success'
 import Error from './Error'
+import Warning from './Warning'
 import { el, c, render } from '../../common'
 
 export default class extends Component {
@@ -37,6 +38,13 @@ export default class extends Component {
   static error = config => render({
     component: el(
       Error,
+      config
+    )
+  })
+
+  static warning = config => render({
+    component: el(
+      Warning,
       config
     )
   })

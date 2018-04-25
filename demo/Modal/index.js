@@ -126,6 +126,22 @@ export default class extends Component {
         }
       ),
       el(
+        'input',
+        {
+          type: 'button',
+          value: 'show warning',
+          onClick: () => {
+            Modal.warning({
+              title: 'hello warning',
+              content: 'warning warning warning',
+              onOk: () => {
+                log.message('Modal.warning', 'onOk')
+              }
+            })
+          }
+        }
+      ),
+      el(
         Modal,
         {
           visible: this.state.visible,
