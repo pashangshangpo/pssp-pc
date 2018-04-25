@@ -7,6 +7,7 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Modal from '../Modal'
 import Button from '../../Button'
+import Svg from '../../Svg'
 import { el, c } from '../../../common'
 import './index.less'
 
@@ -78,8 +79,10 @@ export default class extends Component {
 
   renderIcon = () => {
     return el(
-      'div',
-      {}
+      Svg,
+      {
+        icon: require('../../../image/icon-confirm.svg')
+      }
     )
   }
 
