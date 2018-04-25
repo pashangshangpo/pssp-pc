@@ -6,6 +6,7 @@
 import React, { Component } from 'react'
 import Modal from '../../component/Modal'
 import { el, Log } from '../../common'
+import './index.less'
 
 const log = new Log('Modal')
 
@@ -40,12 +41,14 @@ export default class extends Component {
   render() {
     return el(
       'div',
-      {},
+      {
+        className: 'modal'
+      },
       el(
         'input',
         {
           type: 'button',
-          value: 'show modal',
+          value: 'modal',
           onClick: () => {
             this.changeState({
               visible: true
@@ -57,7 +60,7 @@ export default class extends Component {
         'input',
         {
           type: 'button',
-          value: 'show confirm',
+          value: 'confirm',
           onClick: () => {
             Modal.confirm({
               title: 'hello confirm',
@@ -81,7 +84,7 @@ export default class extends Component {
         'input',
         {
           type: 'button',
-          value: 'show info',
+          value: 'info',
           onClick: () => {
             Modal.info({
               title: 'hello info',
@@ -97,7 +100,7 @@ export default class extends Component {
         'input',
         {
           type: 'button',
-          value: 'show success',
+          value: 'success',
           onClick: () => {
             Modal.success({
               title: 'hello success',
@@ -113,7 +116,7 @@ export default class extends Component {
         'input',
         {
           type: 'button',
-          value: 'show error',
+          value: 'error',
           onClick: () => {
             Modal.error({
               title: 'hello error',
@@ -129,7 +132,7 @@ export default class extends Component {
         'input',
         {
           type: 'button',
-          value: 'show warning',
+          value: 'warning',
           onClick: () => {
             Modal.warning({
               title: 'hello warning',
