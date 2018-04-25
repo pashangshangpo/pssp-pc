@@ -14,7 +14,7 @@ export default () => {
         {
           name: 'Modal',
           comp: require('./Modal').default,
-          // newPageOpen: true
+          newPageOpen: true
         },
         {
           name: 'Layout',
