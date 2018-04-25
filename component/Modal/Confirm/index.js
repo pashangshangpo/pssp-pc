@@ -4,6 +4,7 @@
  */
 
 import React, { Component } from 'react'
+import ReactDOM from 'react-dom'
 import Modal from '../Modal'
 import Button from '../../Button'
 import { el, c } from '../../../common'
@@ -25,12 +26,54 @@ export default class extends Component {
     onCancel: () => {}
   }
 
-  handleCancel = () => {
+  state = {
+    loading: false
+  }
 
+  handleCancel = () => {
+    this.destroy()
   }
 
   handleOk = () => {
+    const promise = this.props.onOk()
 
+    if (promise && promise.then) {
+      this.changeState({
+        loading: true
+      })
+
+      promise.then(() => {
+        this.changeState({
+          loading: false
+        })
+
+        this.destroy()
+      })
+
+      return
+    }
+
+    this.destroy()
+  }
+
+  changeState = state => {
+    for (let key of Object.keys(state)) {
+      this.state[key] = state[key]
+    }
+
+    this.setState(this.state)
+  }
+
+  destroy = () => {
+    // 防止点击ok是异步的然后又点击了cancel
+    if (!this.__destroy) {
+      const container = ReactDOM.findDOMNode(this).parentNode
+
+      this.__destroy = true
+
+      container.parentNode.removeChild(container)
+      ReactDOM.unmountComponentAtNode(container)
+    }
   }
 
   renderIcon = () => {
@@ -82,6 +125,7 @@ export default class extends Component {
         Button,
         {
           type: 'primary',
+          loading: this.state.loading,
           onClick: this.handleOk
         },
         this.props.okText
