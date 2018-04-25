@@ -13,7 +13,7 @@ import './index.less'
 
 export default class extends Component {
   /**
-   * @def-start: : props => 
+   * @def-start: Confirm: props => Confirm
    *  props: Object
    *    className: String
    *    title: [ReactElement, String] 标题
