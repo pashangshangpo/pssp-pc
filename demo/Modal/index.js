@@ -51,6 +51,7 @@ export default class extends Component {
         onOk: this.handleOk,
         onClose: () => {
           log.message('close')
+          this.props.getDemoRef().closeComp()
         },
         onCancel: () => {
           log.message('cancel')
