@@ -117,7 +117,7 @@ export default class extends Component {
     if (!this.props.showCancel) {
       return null
     }
-    
+
     return el(
       Button,
       {
@@ -144,6 +144,10 @@ export default class extends Component {
   }
 
   renderBtns = () => {
+    if (!this.props.showOk && !this.props.showCancel) {
+      return null
+    }
+    
     return el(
       'div',
       {
