@@ -8,6 +8,7 @@ import ReactDOM from 'react-dom'
 import Modal from './Modal'
 import Confirm from './Confirm'
 import Info from './Info'
+import Success from './Success'
 import { el, c, render } from '../../common'
 
 export default class extends Component {
@@ -21,6 +22,13 @@ export default class extends Component {
   static info = config => render({
     component: el(
       Info,
+      config
+    )
+  })
+
+  static success = config => render({
+    component: el(
+      Success,
       config
     )
   })

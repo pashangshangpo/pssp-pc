@@ -94,6 +94,22 @@ export default class extends Component {
         }
       ),
       el(
+        'input',
+        {
+          type: 'button',
+          value: 'show success',
+          onClick: () => {
+            Modal.success({
+              title: 'hello success',
+              content: 'success success success',
+              onOk: () => {
+                log.message('Modal.success', 'onOk')
+              }
+            })
+          }
+        }
+      ),
+      el(
         Modal,
         {
           visible: this.state.visible,
