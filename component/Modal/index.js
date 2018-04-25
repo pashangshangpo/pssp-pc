@@ -9,7 +9,7 @@ import Modal from './Modal'
 import Confirm from './Confirm'
 import { el, c, render } from '../../common'
 
-export default class Base extends Component {
+export default class extends Component {
   static confirm = config => render({
     component: el(
       Confirm,
@@ -33,5 +33,3 @@ export default class Base extends Component {
     )
   }
 }
-
-window.Modal = Base
