@@ -16,6 +16,14 @@ export default class extends Component {
    * @def-start: : props => 
    *  props: Object
    *    className: String
+   *    title: [ReactElement, String] 标题
+   *    content: [ReactElement, String] 内容
+   *    okText: String 确认按钮文案
+   *    cancelText: String 取消按钮文案
+   *    showOk: Boolean 是否显示确认按钮
+   *    showCancel: Boolean 是否显示取消按钮
+   *    onOk: Function 确认事件
+   *    onCancel: Function 取消事件
    */
   static defaultProps = {
     className: '',
@@ -147,7 +155,7 @@ export default class extends Component {
     if (!this.props.showOk && !this.props.showCancel) {
       return null
     }
-    
+
     return el(
       'div',
       {
