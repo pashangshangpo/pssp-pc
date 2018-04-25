@@ -23,6 +23,8 @@ export default class extends Component {
     content: '',
     okText: 'OK',
     cancelText: 'Cancel',
+    showOk: true,
+    showCancel: true,
     onOk: () => {},
     onCancel: () => {}
   }
@@ -111,28 +113,44 @@ export default class extends Component {
     )
   }
 
+  renderBtnCancel = () => {
+    if (!this.props.showCancel) {
+      return null
+    }
+    
+    return el(
+      Button,
+      {
+        onClick: this.handleCancel
+      },
+      this.props.cancelText
+    )
+  }
+
+  renderBtnOk = () => {
+    if (!this.props.showOk) {
+      return null
+    }
+    
+    return el(
+      Button,
+      {
+        type: 'primary',
+        loading: this.state.loading,
+        onClick: this.handleOk
+      },
+      this.props.okText
+    )
+  }
+
   renderBtns = () => {
     return el(
       'div',
       {
         className: 'btns'
       },
-      el(
-        Button,
-        {
-          onClick: this.handleCancel
-        },
-        this.props.cancelText
-      ),
-      el(
-        Button,
-        {
-          type: 'primary',
-          loading: this.state.loading,
-          onClick: this.handleOk
-        },
-        this.props.okText
-      )
+      this.renderBtnCancel(),
+      this.renderBtnOk()
     )
   }
 
