@@ -110,6 +110,22 @@ export default class extends Component {
         }
       ),
       el(
+        'input',
+        {
+          type: 'button',
+          value: 'show error',
+          onClick: () => {
+            Modal.error({
+              title: 'hello error',
+              content: 'error error error',
+              onOk: () => {
+                log.message('Modal.error', 'onOk')
+              }
+            })
+          }
+        }
+      ),
+      el(
         Modal,
         {
           visible: this.state.visible,
