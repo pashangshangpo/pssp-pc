@@ -63,20 +63,24 @@ export default class extends Component {
     this.forbiddenScroll()
   }
 
-  shouldComponentUpdate(next, pre) {
-    if (next.confirmLoading !== pre.confirmLoading) {
-      setTimeout(() => {
-        this.changeState({
-          confirmLoading: this.props.confirmLoading
-        })
-
-        if (!this.state.confirmLoading) {
-          this.close()
-        }
+  componentWillReceiveProps(next) {
+    if (next.confirmLoading !== this.props.confirmLoading) {
+      this.changeState({
+        confirmLoading: next.confirmLoading
       })
+
+      if (!this.state.confirmLoading) {
+        this.close()
+      }
     }
 
-    return true
+    if (next.visible !== this.props.visible) {
+      this.changeState({
+        visible: next.visible
+      })
+
+      this.forbiddenScroll()
+    }
   }
 
   handleModalClick = e => {
