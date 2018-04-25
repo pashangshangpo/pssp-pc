@@ -60,8 +60,8 @@ export default class extends Component {
           value: 'show confirm',
           onClick: () => {
             Modal.confirm({
-              title: 'hello modal',
-              content: 'modal modal modal',
+              title: 'hello confirm',
+              content: 'confirm confirm confirm',
               onOk: () => {
                 return new Promise(resolve => {
                   setTimeout(() => {
@@ -72,6 +72,22 @@ export default class extends Component {
               },
               onCancel: () => {
                 log.message('Modal.confirm', 'onCancel')
+              }
+            })
+          }
+        }
+      ),
+      el(
+        'input',
+        {
+          type: 'button',
+          value: 'show info',
+          onClick: () => {
+            Modal.info({
+              title: 'hello info',
+              content: 'info info info',
+              onOk: () => {
+                log.message('Modal.info', 'onOk')
               }
             })
           }

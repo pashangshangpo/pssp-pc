@@ -7,12 +7,20 @@ import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
 import Modal from './Modal'
 import Confirm from './Confirm'
+import Info from './Info'
 import { el, c, render } from '../../common'
 
 export default class extends Component {
   static confirm = config => render({
     component: el(
       Confirm,
+      config
+    )
+  })
+
+  static info = config => render({
+    component: el(
+      Info,
       config
     )
   })
