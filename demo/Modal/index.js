@@ -57,7 +57,24 @@ export default class extends Component {
         'input',
         {
           type: 'button',
-          value: 'show confirm'
+          value: 'show confirm',
+          onClick: () => {
+            Modal.confirm({
+              title: 'hello modal',
+              content: 'modal modal modal',
+              onOk: () => {
+                return new Promise(resolve => {
+                  setTimeout(() => {
+                    resolve()
+                    log.message('Modal.confirm', 'onOk')
+                  }, 2000)
+                })
+              },
+              onCancel: () => {
+                log.message('Modal.confirm', 'onCancel')
+              }
+            })
+          }
         }
       ),
       el(
