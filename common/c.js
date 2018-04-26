@@ -64,7 +64,15 @@ export default (...className) => {
       )
     }
     else {
-      className += ' ' + classNameTool([nameObject.prefix])
+      let prefix = nameObject.prefix
+      if (prefix) {
+        prefix = prefix.split(' ')
+      }
+      else {
+        prefix = []
+      }
+
+      className += ' ' + classNameTool(prefix)
     }
 
     return strToRung(className.trim())
