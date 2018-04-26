@@ -16,6 +16,7 @@ export default class extends Component {
    * @def-start: Confirm: props => Confirm
    *  props: Object
    *    className: String
+   *    style: Object
    *    title: [ReactElement, String] 标题
    *    content: [ReactElement, String] 内容
    *    okText: String 确认按钮文案
@@ -27,6 +28,7 @@ export default class extends Component {
    */
   static defaultProps = {
     className: '',
+    style: {},
     title: '',
     content: '',
     okText: 'OK',
@@ -186,6 +188,7 @@ export default class extends Component {
           default: this.props.className,
           prefix: 'confirm'
         }),
+        style: this.props.style,
         header: null,
         footer: null,
         visible: true,
