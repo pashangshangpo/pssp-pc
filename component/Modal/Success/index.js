@@ -5,6 +5,7 @@
 
 import React from 'react'
 import Svg from '../../Svg'
+import Modal from '../Modal'
 import Confirm from '../Confirm'
 import { el, c } from '../../../common'
 import './index.less'
@@ -13,6 +14,7 @@ export default class extends Confirm {
   /**
    * @def-start: Success: props => Success
    *  props: Object
+   *    className: String
    *    title: [ReactElement, String] 标题
    *    content: [ReactElement, String] 内容
    *    okText: String 确认按钮文案
@@ -20,9 +22,7 @@ export default class extends Confirm {
    *    onOk: Function 确认事件
    */
   static defaultProps = {
-    className: c({
-      prefix: 'success'
-    }),
+    className: '',
     title: '',
     content: '',
     okText: 'OK',
@@ -35,6 +35,22 @@ export default class extends Confirm {
       Svg,
       {
         icon: require('../../../image/icon-success.svg')
+      }
+    )
+  }
+
+  render() {
+    return el(
+      Modal,
+      {
+        className: c({
+          default: this.props.className,
+          prefix: 'confirm success'
+        }),
+        header: null,
+        footer: null,
+        visible: true,
+        main: this.renderMain()
       }
     )
   }
