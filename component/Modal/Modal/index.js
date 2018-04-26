@@ -251,13 +251,13 @@ export default class extends Component {
           default: this.props.className,
           prefix: 'modal'
         }),
-        style: this.props.style,
         onClick: this.handleModalClick
       },
       el(
         'div',
         {
-          className: 'box'
+          className: 'box',
+          style: this.props.style
         },
         this.renderModal()
       )
