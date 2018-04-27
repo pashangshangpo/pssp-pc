@@ -139,6 +139,8 @@ export default class extends Component {
           showSelect: false,
           value: this.state.selected
         })
+
+        this.props.onSelect(this.state.value)
       }
       else {
         this.changeState({
