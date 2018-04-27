@@ -27,6 +27,8 @@ export default class extends Component {
   state = {
     showSelect: true,
     selected: null,
+    preContent: '',
+    content: '',
     isHover: false,
     value: ''
   }
@@ -52,6 +54,16 @@ export default class extends Component {
       showSelect: false,
       isHover: false
     })
+
+    let content = this.state.content
+
+    if (this.state.value && content && this.state.preContent !== content) {
+      this.props.onSelect(content)
+
+      this.setState({
+        preContent: content
+      })
+    }
   }
 
   handleInputChange = e => {
@@ -73,17 +85,23 @@ export default class extends Component {
 
   handleSelectMouseLeave = e => {
     this.changeState({
-      selected: null
+      content: null
     })
   }
 
-  handleSelectClick = e => {
+  handleSelectItemClick = e => {
     const target = e.currentTarget
     const index = Array.from(target.parentNode.children).indexOf(target)
 
     this.props.onSelect(this.props.data[index])
     this.changeState({
       showSelect: false
+    })
+  }
+
+  handleSelectItemMouseEnter = content => {
+    this.changeState({
+      content
     })
   }
 
@@ -114,7 +132,8 @@ export default class extends Component {
               hover: this.state.isHover
             }
           }),
-          onClick: this.handleSelectClick
+          onClick: this.handleSelectItemClick,
+          onMouseEnter: this.handleSelectItemMouseEnter.bind(this, content)
         },
         content
       )
