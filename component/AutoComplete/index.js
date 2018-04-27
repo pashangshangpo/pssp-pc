@@ -176,6 +176,21 @@ export default class extends Component {
     }
   }
 
+  setActive = index => {
+    if (index >= this.props.data.length || index < 0) {
+      return false
+    }
+
+    this.changeState({
+      activeIndex: index,
+      isHover: false,
+      showSelect: false,
+      value: this.props.data[index]
+    })
+
+    return true
+  }
+
   renderInput = () => {
     return el(
       Input,
