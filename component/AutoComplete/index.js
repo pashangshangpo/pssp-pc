@@ -118,6 +118,10 @@ export default class extends Component {
   caseKeyCode = {
     // 确定
     13: () => {
+      if (!this.state.value) {
+        return
+      }
+      
       if (!this.state.isHover) {
         this.changeState({
           selected: this.props.data[this.state.activeIndex]
