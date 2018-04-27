@@ -19,17 +19,14 @@ export default class extends Component {
   render() {
     return el(
       'input',
-      Object.assign(
-        {},
-        this.props,
-        {
-          className: c({
-            default: this.props.className,
-            prefix: 'input'
-          }),
-          children: null
-        }
-      )
+      {
+        ...this.props,
+        className: c({
+          default: this.props.className,
+          prefix: 'input'
+        }),
+        children: null
+      }
     )
   }
 }
