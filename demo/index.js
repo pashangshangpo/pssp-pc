@@ -12,9 +12,12 @@ export default () => {
     {
       components: [
         {
+          name: 'AutoComplete',
+          comp: require('./AutoComplete').default
+        },
+        {
           name: 'Modal',
-          comp: require('./Modal').default,
-          // newPageOpen: true
+          comp: require('./Modal').default
         },
         {
           name: 'Layout',
