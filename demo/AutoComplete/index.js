@@ -13,7 +13,10 @@ export default () => {
     AutoComplete,
     {
       className: '',
-      data: ['AAA', 'BBB', 'CCC']
+      data: ['AAA', 'BBB', 'CCC'],
+      onSelect: content => {
+        console.log(content)
+      }
     }
   )
 }

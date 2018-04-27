@@ -47,7 +47,7 @@ export default class extends Component {
     }
   }
 
-  hanldeInputBlur = () => {
+  hanldeInputBlur = e => {
     this.setState({
       showSelect: false,
       isHover: false
@@ -65,9 +65,25 @@ export default class extends Component {
     this.props.onChange(e)
   }
 
-  handleSelectMouseLeave = e => {
+  handleSelectMouseEnter = e => {
     this.changeState({
       isHover: true
+    })
+  }
+
+  handleSelectMouseLeave = e => {
+    this.changeState({
+      selected: null
+    })
+  }
+
+  handleSelectClick = e => {
+    const target = e.currentTarget
+    const index = Array.from(target.parentNode.children).indexOf(target)
+
+    this.props.onSelect(this.props.data[index])
+    this.changeState({
+      showSelect: false
     })
   }
 
@@ -95,10 +111,10 @@ export default class extends Component {
             default: {
               selectItem: true,
               selected,
-              hover: selected && this.state.isHover
+              hover: this.state.isHover
             }
           }),
-          onMouseLeave: this.handleSelectMouseLeave
+          onClick: this.handleSelectClick
         },
         content
       )
@@ -113,7 +129,9 @@ export default class extends Component {
     return el(
       'div',
       {
-        className: 'select'
+        className: 'select',
+        onMouseEnter: this.handleSelectMouseEnter,
+        onMouseLeave: this.handleSelectMouseLeave
       },
       this.renderSelectMain()
     )
