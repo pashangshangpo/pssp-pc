@@ -3,9 +3,10 @@
  * @author pashangshangpo
  */
 
-import Layout, {Sider, Menu, Content} from '../../component/Layout'
-import {el, Log} from '../../common'
+import Layout from '../../component/Layout'
+import { el, Log } from '../../common'
 
+const { Sider, Menu, Content } = Layout
 const log = new Log('Layout')
 
 export default () => {
