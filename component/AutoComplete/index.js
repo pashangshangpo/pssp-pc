@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react'
+import Input from '../Input'
 import { el, c } from '../../common'
 import './index.less'
 
@@ -23,8 +24,40 @@ export default class extends Component {
     onSelect: () => {}
   }
 
+  handleInputFocus = () => {
+
+  }
+
+  hanldeInputBlur = () => {
+
+  }
+
+  renderInput = () => {
+    return el(
+      Input,
+      {
+        type: 'text',
+        placeholder: this.props.placeholder,
+        onFocus: this.handleInputFocus,
+        onBlur: this.hanldeInputBlur
+      }
+    )
+  }
+
+  renderSelect = () => {
+    return el(
+      'div',
+      {
+        className: 'select'
+      }
+    )
+  }
+
   renderMain = () => {
-    
+    return [
+      this.renderInput(),
+      this.renderSelect()
+    ]
   }
 
   render() {
@@ -34,7 +67,8 @@ export default class extends Component {
         className: c({
           default: this.props.className,
           prefix: 'auto-complete'
-        })
+        }),
+        style: this.props.style
       },
       this.renderMain()
     )
