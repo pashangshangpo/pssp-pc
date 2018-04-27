@@ -61,7 +61,8 @@ export default class extends Component {
       this.props.onSelect(content)
 
       this.setState({
-        preContent: content
+        preContent: content,
+        value: content
       })
     }
   }
@@ -110,6 +111,7 @@ export default class extends Component {
       Input,
       {
         type: 'text',
+        value: this.state.value,
         placeholder: this.props.placeholder,
         onFocus: this.handleInputFocus,
         onBlur: this.hanldeInputBlur,
