@@ -27,6 +27,10 @@ export default class extends Component {
       AutoComplete,
       {
         className: '',
+        style: {
+          width: '200px'
+        },
+        placeholder: 'hello',
         data: this.state.data,
         onChange: e => {
           const value = e.currentTarget.value
