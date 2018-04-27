@@ -25,18 +25,36 @@
 
       &:hover {
         background-color: #e6f7ff;
+
+        &.selected {
+          background-color: #fafafa;
+        }
       }
 
       &.selected {
         font-weight: 600;
-        background-color: #e6f7ff;
+        background-color: #fafafa;
+      }
 
-        &.hover {
-          background-color: #fafafa;
+      &:first-child {
+        background-color: #e6f7ff;
+      }
+
+      &.hover {
+        &:first-child {
+          background-color: #fff;
+
+          &:hover {
+            background-color: #e6f7ff;
+          }
         }
 
-        &:hover {
+        &.selected {
           background-color: #fafafa;
+
+          &:hover {
+            background-color: #fafafa;
+          }
         }
       }
     }

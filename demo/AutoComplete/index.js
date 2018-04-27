@@ -32,7 +32,7 @@ export default class extends Component {
           const value = e.currentTarget.value
 
           this.changeState({
-            data: [1, 2, 3].map(item => `${item} ${value}`)
+            data: [1, 2, 3].map(item => new Array(item).fill(value).join(''))
           })
         },
         onSelect: content => {

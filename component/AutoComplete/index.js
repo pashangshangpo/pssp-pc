@@ -121,15 +121,13 @@ export default class extends Component {
 
   renderSelectMain = () => {
     return this.props.data.map((content, index) => {
-      const selected = content === this.state.selected || (!this.state.selected && index === 0)
-
       return el(
         'div',
         {
           className: c({
             default: {
               selectItem: true,
-              selected,
+              selected: content === this.state.value,
               hover: this.state.isHover
             }
           }),
