@@ -27,7 +27,6 @@ export default class extends Component {
   state = {
     showSelect: true,
     selected: null,
-    preSelected: '',
     activeIndex: 0,
     isHover: false,
     value: ''
@@ -57,11 +56,10 @@ export default class extends Component {
 
     let selected = this.state.selected
 
-    if (this.state.value && selected && this.state.preSelected !== selected) {
+    if (this.state.value && selected) {
       this.props.onSelect(selected)
 
       this.setState({
-        preSelected: selected,
         value: selected
       })
     }
@@ -72,7 +70,9 @@ export default class extends Component {
 
     this.changeState({
       value,
-      showSelect: !!value
+      showSelect: !!value,
+      activeIndex: value === '' ? 0 : this.state.activeIndex,
+      selected: value === '' ? null : this.state.selected
     })
 
     this.props.onChange(e)
@@ -94,7 +94,8 @@ export default class extends Component {
 
   handleSelectMouseLeave = e => {
     this.changeState({
-      selected: null
+      selected: null,
+      activeIndex: -1
     })
   }
 
@@ -117,19 +118,25 @@ export default class extends Component {
   caseKeyCode = {
     // 确定
     13: () => {
-      if (!this.state.selected) {
+      if (!this.state.isHover) {
         this.changeState({
-          selected: this.props.data[0]
+          selected: this.props.data[this.state.activeIndex]
         })
       }
 
-      this.changeState({
-        showSelect: false,
-        preSelected: this.state.selected,
-        value: this.state.selected
-      })
+      if (this.state.selected) {
+        this.changeState({
+          showSelect: false,
+          value: this.state.selected
+        })
+      }
+      else {
+        this.changeState({
+          showSelect: false
+        })
+      }
     },
-    // 上移一项
+    // 下移一项
     40: () => {
       let activeIndex = this.state.activeIndex + 1
 
@@ -139,10 +146,10 @@ export default class extends Component {
 
       this.changeState({
         activeIndex,
-        selected: this.props.data[activeIndex]
+        isHover: false
       })
     },
-    // 下移一项
+    // 上移一项
     38: () => {
       let activeIndex = this.state.activeIndex - 1
 
@@ -152,7 +159,7 @@ export default class extends Component {
 
       this.changeState({
         activeIndex,
-        selected: this.props.data[activeIndex]
+        isHover: false
       })
     }
   }

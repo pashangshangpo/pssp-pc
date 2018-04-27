@@ -30,9 +30,14 @@ export default class extends Component {
         data: this.state.data,
         onChange: e => {
           const value = e.currentTarget.value
+          let selects = []
+
+          if (value.indexOf('@') === -1) {
+            selects = ['@gmail.com', '@qq.com', '@163.com'].map(item => `${value}${item}`)
+          }
 
           this.changeState({
-            data: [1, 2, 3].map(item => new Array(item).fill(value).join(''))
+            data: selects
           })
         },
         onSelect: content => {
