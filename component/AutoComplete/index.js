@@ -24,12 +24,42 @@ export default class extends Component {
     onSelect: () => {}
   }
 
-  handleInputFocus = () => {
+  state = {
+    showSelect: false,
+    value: ''
+  }
 
+  changeState = state => {
+    for (let key of Object.keys(state)) {
+      this.state[key] = state[key]
+    }
+
+    this.setState(this.state)
+  }
+
+  handleInputFocus = () => {
+    if (this.state.value) {
+      this.setState({
+        showSelect: true
+      })
+    }
   }
 
   hanldeInputBlur = () => {
+    this.setState({
+      showSelect: false
+    })
+  }
 
+  handleInputChange = e => {
+    const value = e.currentTarget.value
+
+    this.changeState({
+      value,
+      showSelect: !!value
+    })
+
+    this.props.onChange(e)
   }
 
   renderInput = () => {
@@ -39,17 +69,35 @@ export default class extends Component {
         type: 'text',
         placeholder: this.props.placeholder,
         onFocus: this.handleInputFocus,
-        onBlur: this.hanldeInputBlur
+        onBlur: this.hanldeInputBlur,
+        onChange: this.handleInputChange
       }
     )
   }
 
+  renderSelectMain = () => {
+    return this.props.data.map(content => {
+      return el(
+        'div',
+        {
+          className: 'select-item'
+        },
+        content
+      )
+    })
+  }
+
   renderSelect = () => {
+    if (!this.state.showSelect) {
+      return null
+    }
+
     return el(
       'div',
       {
         className: 'select'
-      }
+      },
+      this.renderSelectMain()
     )
   }
 

@@ -13,7 +13,7 @@ export default () => {
     AutoComplete,
     {
       className: '',
-      
+      data: ['AAA', 'BBB', 'CCC']
     }
   )
 }
