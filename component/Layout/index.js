@@ -7,9 +7,9 @@ import React, { Component } from 'react'
 import { el, c } from '../../common'
 import './index.less'
 
-export {default as Sider} from './Sider'
-export {default as Menu} from './Menu'
-export {default as Content} from './Content'
+import Sider from './Sider'
+import Menu from './Menu'
+import Content from './Content'
 
 export default class extends Component {
   /**
@@ -23,6 +23,12 @@ export default class extends Component {
     className: '',
     style: {}
   }
+
+  static Sider = Sider
+
+  static Menu = Menu
+
+  static Content = Content
 
   render() {
     return el(
