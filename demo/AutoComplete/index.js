@@ -36,6 +36,10 @@ export default class extends Component {
             selects = ['@gmail.com', '@qq.com', '@163.com'].map(item => `${value}${item}`)
           }
 
+          if (value.indexOf(':') === 0) {
+            selects = [1, 2, 3].map(item => new Array(item).fill(value).join(''))
+          }
+
           this.changeState({
             data: selects
           })
