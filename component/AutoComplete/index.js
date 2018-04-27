@@ -14,6 +14,12 @@ export default class extends Component {
    * @def-start: AutoComplete: props => AutoComplete
    *  props: Object
    *    className: String
+   *    style: Object
+   *    placeholder: String
+   *    data: Array [Item] 需要展示的列表项
+   *      Item: [String, ReactElement]
+   *    onChange: Function 输入的内容改变时调用
+   *    onSelect: Function 选中列表时调用
    */
   static defaultProps = {
     className: '',
