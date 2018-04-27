@@ -20,14 +20,15 @@ export default class extends Component {
     style: {},
     placeholder: '',
     data: [],
-    onChange: () => {},
-    onSelect: () => {}
+    onChange: () => { },
+    onSelect: () => { }
   }
 
   state = {
     showSelect: true,
     selected: null,
     preSelected: '',
+    activeIndex: 0,
     isHover: false,
     value: ''
   }
@@ -77,6 +78,14 @@ export default class extends Component {
     this.props.onChange(e)
   }
 
+  handleInputKeyDown = e => {
+    const fn = this.caseKeyCode[e.keyCode]
+    if (typeof fn === 'function') {
+      e.preventDefault()
+      fn(e)
+    }
+  }
+
   handleSelectMouseEnter = e => {
     this.changeState({
       isHover: true
@@ -105,6 +114,49 @@ export default class extends Component {
     })
   }
 
+  caseKeyCode = {
+    // 确定
+    13: () => {
+      if (!this.state.selected) {
+        this.changeState({
+          selected: this.props.data[0]
+        })
+      }
+
+      this.changeState({
+        showSelect: false,
+        preSelected: this.state.selected,
+        value: this.state.selected
+      })
+    },
+    // 上移一项
+    40: () => {
+      let activeIndex = this.state.activeIndex + 1
+
+      if (activeIndex >= this.props.data.length) {
+        activeIndex = 0
+      }
+
+      this.changeState({
+        activeIndex,
+        selected: this.props.data[activeIndex]
+      })
+    },
+    // 下移一项
+    38: () => {
+      let activeIndex = this.state.activeIndex - 1
+
+      if (activeIndex < 0) {
+        activeIndex = this.props.data.length - 1
+      }
+
+      this.changeState({
+        activeIndex,
+        selected: this.props.data[activeIndex]
+      })
+    }
+  }
+
   renderInput = () => {
     return el(
       Input,
@@ -114,7 +166,8 @@ export default class extends Component {
         placeholder: this.props.placeholder,
         onFocus: this.handleInputFocus,
         onBlur: this.hanldeInputBlur,
-        onChange: this.handleInputChange
+        onChange: this.handleInputChange,
+        onKeyDown: this.handleInputKeyDown
       }
     )
   }
@@ -128,6 +181,7 @@ export default class extends Component {
             default: {
               selectItem: true,
               selected: content === this.state.value,
+              active: this.state.activeIndex === index,
               hover: this.state.isHover
             }
           }),
