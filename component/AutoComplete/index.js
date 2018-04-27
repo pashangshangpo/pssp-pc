@@ -121,7 +121,7 @@ export default class extends Component {
       if (!this.state.value) {
         return
       }
-      
+
       if (!this.state.isHover) {
         this.changeState({
           selected: this.props.data[this.state.activeIndex]
