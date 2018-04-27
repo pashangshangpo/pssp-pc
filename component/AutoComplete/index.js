@@ -25,7 +25,8 @@ export default class extends Component {
   }
 
   state = {
-    showSelect: false,
+    showSelect: true,
+    selected: null,
     value: ''
   }
 
@@ -76,11 +77,16 @@ export default class extends Component {
   }
 
   renderSelectMain = () => {
-    return this.props.data.map(content => {
+    return this.props.data.map((content, index) => {
       return el(
         'div',
         {
-          className: 'select-item'
+          className: c({
+            default: {
+              selectItem: true,
+              selected: content === this.state.selected || (!this.state.selected && index === 0)
+            }
+          })
         },
         content
       )
