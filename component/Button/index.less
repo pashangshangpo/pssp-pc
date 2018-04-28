@@ -1,4 +1,6 @@
-.pssp-button {
+@import '../../style/variable.less';
+
+.@{prefix}-button {
   display: inline-block;
   height: 28px;
   padding: 0 15px;
@@ -87,7 +89,7 @@
     animation: loadingCircle 1s infinite linear;
   }
 
-  & + .pssp-button {
+  & + .@{prefix}-button {
     margin-left: 8px;
   }
 }

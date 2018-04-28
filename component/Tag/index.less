@@ -1,4 +1,6 @@
-.pssp-tag {
+@import '../../style/variable.less';
+
+.@{prefix}-tag {
   display: inline-block;
   height: 22px;
   padding: 0 7px;
@@ -17,11 +19,11 @@
   }
 }
 
-.pssp-tag + * {
+.@{prefix}-tag + * {
   margin-left: 8px;
 }
 
-.pssp-tag .icon-remove {
+.@{prefix}-tag .icon-remove {
   margin-left: 5px;
   color: rgba(0,0,0,.45);
 
@@ -30,18 +32,18 @@
   }
 }
 
-.pssp-tag.color {
+.@{prefix}-tag.color {
   border: transparent;
   color: #fff;
 }
 
-.pssp-tag-add {
+.@{prefix}-tag-add {
   .pssp-tag;
 
   border-style: dashed;
   background: #fff;
 }
 
-.pssp-tag-input {
+.@{prefix}-tag-input {
   width: 60px;
 }
