@@ -37,11 +37,11 @@ export default class extends Component {
         data: [
           {
             title: '名称',
-            data: ['时间管理', 'Button测试用例']
+            data: [{content: '时间管理'}, {content: 'Button测试用例'}]
           },
           {
             title: '花费时间',
-            data: ['1小时35分钟', '49分钟']
+            data: [{content: '1小时35分钟'}, {content: '49分钟'}]
           },
           {
             title: '提醒时间',
@@ -53,19 +53,21 @@ export default class extends Component {
                 }
               }
 
-              return el(
-                RadioTag,
-                {
-                  ref: ref => this[`radiotag-${index}`] = ref,
-                  data: [10, 25, 35, 45, 60],
-                  checked: -1,
-                  onChange: tag => {
-                    this.changeState({
-                      checked: tag
-                    })
+              return {
+                content: el(
+                  RadioTag,
+                  {
+                    ref: ref => this[`radiotag-${index}`] = ref,
+                    data: [10, 25, 35, 45, 60],
+                    checked: -1,
+                    onChange: tag => {
+                      this.changeState({
+                        checked: tag
+                      })
+                    }
                   }
-                }
-              )
+                )
+              }
             })
           }
         ],

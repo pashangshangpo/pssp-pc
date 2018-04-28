@@ -17,7 +17,8 @@ export default class extends Component {
    *      Item: Object
    *        title: String 标题
    *        data: Array [Item] 数据列表
-   *          Item: * 会被当做内容显示
+   *          Item: Object
+   *            content [String, ReactElement] 会被当做内容显示
    *    activeIndex: Number 默认选中项
    *    hoverTitle: Boolean 是否hover上去显示完整标题
    *    showLineNumber: Boolean 是否显示行号
@@ -37,8 +38,8 @@ export default class extends Component {
     activeIndex: -1,
     hoverTitle: false,
     showLineNumber: false,
-    onHover: () => {},
-    onClick: () => {}
+    onHover: () => { },
+    onClick: () => { }
   }
 
   state = {
@@ -60,12 +61,14 @@ export default class extends Component {
       data = [
         {
           title: '#',
-          data: data[0].data.map((item, index) => index + 1)
+          data: data[0].data.map((item, index) => {
+            return { content: index + 1 }
+          })
         }
       ].concat(data)
     }
 
-    this.changeState({data})
+    this.changeState({ data })
   }
 
   handleClick = e => {
@@ -118,10 +121,10 @@ export default class extends Component {
   }
 
   renderLi = data => {
-    return data.map((content, index) => {
+    return data.map((item, index) => {
       let title = ''
-      if (this.props.hoverTitle && typeof content === 'string') {
-        title = content
+      if (this.props.hoverTitle && typeof item.content === 'string') {
+        title = item.content
       }
 
       return el(
@@ -138,7 +141,7 @@ export default class extends Component {
           onMouseEnter: this.handleMouseEnter,
           onClick: this.handleClick,
         },
-        content
+        item.content
       )
     })
   }
