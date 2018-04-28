@@ -30,7 +30,7 @@ export default class extends Component {
    *      data: Array 传递的data数据
    *      e: Object event对象
    */
-  defaultProps = {
+  static defaultProps = {
     className: '',
     title: '',
     data: [],
