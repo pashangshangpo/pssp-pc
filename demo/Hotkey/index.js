@@ -10,35 +10,52 @@ import { el, Log } from '../../common'
 const log = new Log('Hotkey')
 
 export default () => {
-  return el(
-    Hotkey,
-    {
-      event: {
-        'meta+up ctrl+return i': (key, e) => {
-          log.message('上')
-        },
-        'meta+a k down': () => {
-          log.message('下')
+  let hotkeyRef = null
+
+  return [
+    el(
+      Hotkey,
+      {
+        ref: ref => hotkeyRef = ref,
+        event: {
+          'g': key => {
+            log.message('global', key)
+
+            hotkeyRef.un()
+          }
         }
       }
-    },
-    el(
-      'div',
-      {
-        style: {
-          height: 30
-        }
-      },
-      'hotkey 1'
     ),
     el(
-      'div',
+      Hotkey,
       {
-        style: {
-          height: 30
+        event: {
+          'meta+up ctrl+return i': (key, e) => {
+            log.message('上')
+          },
+          'meta+a k down': () => {
+            log.message('下')
+          }
         }
       },
-      'hotkey 2'
+      el(
+        'div',
+        {
+          style: {
+            height: 30
+          }
+        },
+        'hotkey 1'
+      ),
+      el(
+        'div',
+        {
+          style: {
+            height: 30
+          }
+        },
+        'hotkey 2'
+      )
     )
-  )
+  ]
 }
