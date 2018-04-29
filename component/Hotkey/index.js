@@ -75,12 +75,16 @@ export default class Hotkey extends Component {
     }
   ]
 
+  un = () => {
+    document.removeEventListener('keydown', this.handleKeyDown)
+  }
+
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown)
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keydown', this.handleKeyDown)
+    this.un()
   }
 
   handleKeyDown = e => {
