@@ -40,7 +40,7 @@ export default class Hotkey extends Component {
     }
   ]
 
-  static keys = [
+  static commonKeys = [
     {
       name: 'delete',
       keyCode: 8
@@ -92,7 +92,7 @@ export default class Hotkey extends Component {
 
   combination = e => {
     const current = Hotkey.combinationkeys.find(item => e[item.key] && e.keyCode !== item.keyCode)
-    const currentKey = Hotkey.keys.find(item => e.keyCode === item.keyCode)
+    const currentKey = Hotkey.commonKeys.find(item => e.keyCode === item.keyCode)
     
     if (current) {
       let key = `${current.name}+${e.keyCode} ${current.name}+${e.key}`
