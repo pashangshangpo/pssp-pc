@@ -17,7 +17,7 @@ export default class Hotkey extends Component {
     event: {}
   }
 
-  static keys = [
+  static combinationkeys = [
     {
       name: 'meta',
       key: 'metaKey',
@@ -91,7 +91,7 @@ export default class Hotkey extends Component {
   }
 
   combination = e => {
-    const current = Hotkey.keys.find(item => e[item.key] && e.keyCode !== item.keyCode)
+    const current = Hotkey.combinationkeys.find(item => e[item.key] && e.keyCode !== item.keyCode)
     if (current) {
       return `${current.name}+${e.keyCode}`
     }
