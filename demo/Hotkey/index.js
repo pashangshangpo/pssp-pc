@@ -14,8 +14,8 @@ export default () => {
     Hotkey,
     {
       event: {
-        'a b': e => {
-          console.log(e.keyCode)
+        'meta+38 down': (key, e) => {
+          console.log(key, e.keyCode)
         }
       }
     },
