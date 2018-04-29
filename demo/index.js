@@ -12,6 +12,10 @@ export default () => {
     {
       components: [
         {
+          name: 'Hotkey',
+          comp: require('./Hotkey').default
+        },
+        {
           name: 'AutoComplete',
           comp: require('./AutoComplete').default
         },
