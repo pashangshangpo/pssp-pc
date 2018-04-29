@@ -12,6 +12,17 @@ export default class Hotkey extends Component {
   /**
    * @def-start: Hotkey: props => Hotkey
    *  props: Object
+   *    event: Object
+   *      *: (key, event) => undefined *是要匹配的键 值是匹配时执行的方法
+   * 
+   * 支持的组合键: meta ctrl alt shift
+   * 使用方法: meta+a
+   * 
+   * 常用键: delete return esc space left right up down
+   * 
+   * 如需要同时使用多个,用空格隔开,如: meta+up meta+i
+   * 
+   * 如果要使用此处未支持的键则使用keyCode作为键
    */
   static defaultProps = {
     event: {}
