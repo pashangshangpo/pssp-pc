@@ -86,7 +86,7 @@ export default class Hotkey extends Component {
   handleKeyDown = e => {
     // 如果没有children则当做全局事件来处理
     if (e.target === this.dom || this.props.children.length === 0) {
-      this.processEvent(this.combination(e))
+      this.processEvent(this.combination(e), e)
     }
   }
 
@@ -104,8 +104,19 @@ export default class Hotkey extends Component {
     return '' + e.keyCode
   }
 
-  processEvent = key => {
-    console.log(key)
+  processEvent = (key, e) => {
+    const keys = key.split(' ')
+    
+    for (let name of keys) {
+      const eventKeys = Object.keys(this.props.event)
+
+      for (let eventKey of eventKeys) {
+        if (eventKey.split(' ').some(item => item === name)) {
+          this.props.event[eventKey](key, e)
+          return
+        }
+      }
+    }
   }
 
   render() {
