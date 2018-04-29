@@ -26,9 +26,9 @@ export default class extends Component {
   }
 
   handleKeyDown = e => {
-    console.log(e.target === this.dom)
-    if (this.props.children.length === 0) {
-      console.log('not children')
+    // 如果没有children则当做全局事件来处理
+    if (e.target === this.dom || this.props.children.length === 0) {
+      
     }
   }
 
