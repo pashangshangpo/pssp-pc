@@ -5,7 +5,7 @@
  */
 
 import React, { Component } from 'react'
-import { el } from '../../common'
+import { el, c } from '../../common'
 
 export default class extends Component {
   /**
@@ -25,7 +25,7 @@ export default class extends Component {
   }
 
   handleKeyDown = e => {
-    console.log(e.keyCode)
+    console.log(e.target === this.dom)
   }
 
   render() {
@@ -33,6 +33,16 @@ export default class extends Component {
       return null
     }
 
-    return this.props.children
+    return el(
+      'div',
+      {
+        tabindex: -1,
+        ref: ref => this.dom = ref,
+        className: c({
+          default: 'hotkey'
+        })
+      },
+      this.props.children
+    )
   }
 }
