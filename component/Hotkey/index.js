@@ -6,6 +6,7 @@
 
 import React, { Component } from 'react'
 import { el, c } from '../../common'
+import './index.less'
 
 export default class extends Component {
   /**
@@ -39,7 +40,7 @@ export default class extends Component {
         tabindex: -1,
         ref: ref => this.dom = ref,
         className: c({
-          default: 'hotkey'
+          prefix: 'hotkey'
         })
       },
       this.props.children
