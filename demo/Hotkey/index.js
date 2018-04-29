@@ -45,16 +45,7 @@ export default () => {
             height: 30
           }
         },
-        'hotkey 1'
-      ),
-      el(
-        'div',
-        {
-          style: {
-            height: 30
-          }
-        },
-        'hotkey 2'
+        'meta+up ctrl+return i, meta+a k down'
       )
     )
   ]
