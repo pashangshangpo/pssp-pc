@@ -54,7 +54,7 @@ export default class Hotkey extends Component {
       keyCode: 27
     },
     {
-      name: 'enter',
+      name: 'space',
       keyCode: 32
     },
     {
