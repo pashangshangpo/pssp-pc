@@ -19,23 +19,23 @@ export default () => {
         }
       }
     },
-    el(
-      'div',
-      {
-        style: {
-          height: 30
-        }
-      },
-      'hotkey 1'
-    ),
-    el(
-      'div',
-      {
-        style: {
-          height: 30
-        }
-      },
-      'hotkey 2'
-    )
+    // el(
+    //   'div',
+    //   {
+    //     style: {
+    //       height: 30
+    //     }
+    //   },
+    //   'hotkey 1'
+    // ),
+    // el(
+    //   'div',
+    //   {
+    //     style: {
+    //       height: 30
+    //     }
+    //   },
+    //   'hotkey 2'
+    // )
   )
 }

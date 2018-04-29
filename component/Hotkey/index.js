@@ -27,10 +27,13 @@ export default class extends Component {
 
   handleKeyDown = e => {
     console.log(e.target === this.dom)
+    if (this.props.children.length === 0) {
+      console.log('not children')
+    }
   }
 
   render() {
-    if (!this.props.children) {
+    if (this.props.children.length === 0) {
       return null
     }
 
