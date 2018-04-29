@@ -13,9 +13,26 @@ export default class extends Component {
    *  props: Object
    */
   static defaultProps = {
+    event: {}
+  }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown)
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('keydown', this.handleKeyDown)
+  }
+
+  handleKeyDown = e => {
+    console.log(e.keyCode)
   }
 
   render() {
-    return null
+    if (!this.props.children) {
+      return null
+    }
+
+    return this.props.children
   }
 }
