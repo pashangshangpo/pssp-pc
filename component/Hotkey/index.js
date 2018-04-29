@@ -92,11 +92,18 @@ export default class Hotkey extends Component {
 
   combination = e => {
     const current = Hotkey.combinationkeys.find(item => e[item.key] && e.keyCode !== item.keyCode)
+    const currentKey = Hotkey.keys.find(item => e.keyCode === item.keyCode)
+    
     if (current) {
-      return `${current.name}+${e.keyCode} ${current.name}+${e.key}`
+      let key = `${current.name}+${e.keyCode} ${current.name}+${e.key}`
+
+      if (currentKey) {
+        return `${key} ${current.name}+${currentKey.name}`
+      }
+
+      return key
     }
 
-    const currentKey = Hotkey.keys.find(item => e.keyCode === item.keyCode)
     if (currentKey) {
       return `${currentKey.name} ${e.keyCode} ${e.key}`
     }

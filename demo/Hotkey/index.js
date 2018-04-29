@@ -14,7 +14,7 @@ export default () => {
     Hotkey,
     {
       event: {
-        'meta+c down': (key, e) => {
+        'meta+up ctrl+return': (key, e) => {
           console.log(key, e.keyCode)
         }
       }
