@@ -14,8 +14,11 @@ export default () => {
     Hotkey,
     {
       event: {
-        'meta+up ctrl+return': (key, e) => {
-          console.log(key, e.keyCode)
+        'meta+up ctrl+return i': (key, e) => {
+          log.message('上')
+        },
+        'meta+a k down': () => {
+          log.message('下')
         }
       }
     },
