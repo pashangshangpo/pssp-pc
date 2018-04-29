@@ -14,6 +14,7 @@ export default class Hotkey extends Component {
    *  props: Object
    *    event: Object
    *      *: (key, event) => undefined *是要匹配的键 值是匹配时执行的方法
+   *  children: Array => ReactElement
    * 
    * 支持的组合键: meta ctrl alt shift
    * 使用方法: meta+a
