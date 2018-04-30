@@ -25,7 +25,7 @@ export default class extends Component {
 
   types = {
     line: {
-      render: () => {
+      renderProgress: () => {
         let lineTopStyle = {
           width: `${this.props.percent}%`
         }
@@ -35,28 +35,34 @@ export default class extends Component {
             height: `${this.props.percent}%`
           }
         }
-  
-        return [
+        
+        return el(
+          'div',
+          {
+            className: 'line-box'
+          },
           el(
             'div',
             {
-              className: 'line-box'
-            },
-            el(
-              'div',
-              {
-                className: 'line-top',
-                style: lineTopStyle
-              }
-            )
-          ),
-          el(
-            'div',
-            {
-              className: 'line-text'
-            },
-            this.props.text(this.props.percent)
+              className: 'line-top',
+              style: lineTopStyle
+            }
           )
+        )
+      },
+      renderText: () => {
+        return el(
+          'div',
+          {
+            className: 'line-text'
+          },
+          this.props.text(this.props.percent)
+        )
+      },
+      render: () => {
+        return [
+          this.types.line.renderProgress(),
+          this.types.line.renderText()
         ]
       }
     }
