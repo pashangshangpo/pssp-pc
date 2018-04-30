@@ -16,10 +16,41 @@ export default class extends Component {
    */
   static defaultProps = {
     className: '',
+    type: 'line',
+    percent: 0,
+    text: percent => `${percent}%`
+  }
+
+  types = {
+    line: () => {
+      return el(
+        'div',
+        {},
+        el(
+          'div',
+          {},
+          el(
+            'div',
+            {}
+          )
+        ),
+        el(
+          'div',
+          {},
+          this.props.text(this.props.percent)
+        )
+      )
+    }
   }
 
   renderMain = () => {
+    const type = this.types[this.props.type]
 
+    if (!type) {
+      return null
+    }
+
+    return type()
   }
 
   render() {
