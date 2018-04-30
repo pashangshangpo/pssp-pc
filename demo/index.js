@@ -12,6 +12,10 @@ export default () => {
     {
       components: [
         {
+          name: 'Progress',
+          comp: require('./Progress').default
+        },
+        {
           name: 'Hotkey',
           comp: require('./Hotkey').default
         },
