@@ -19,11 +19,22 @@ export default class extends Component {
     style: {},
     type: 'line',
     percent: 0,
+    direction: 'x',
     text: percent => `${percent}%`
   }
 
   types = {
     line: () => {
+      let lineTopStyle = {
+        width: `${this.props.percent}%`
+      }
+
+      if (this.props.direction === 'y') {
+        lineTopStyle = {
+          height: `${this.props.percent}%`
+        }
+      }
+
       return [
         el(
           'div',
@@ -34,9 +45,7 @@ export default class extends Component {
             'div',
             {
               className: 'line-top',
-              style: {
-                width: `${this.props.percent}%`
-              }
+              style: lineTopStyle
             }
           )
         ),
@@ -67,7 +76,10 @@ export default class extends Component {
       {
         className: c({
           default: this.props.className,
-          prefix: 'progress'
+          prefix: {
+            progressX: this.props.direction === 'x',
+            progressY: this.props.direction === 'y'
+          }
         }),
         style: this.props.style
       },

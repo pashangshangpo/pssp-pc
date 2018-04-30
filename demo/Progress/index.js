@@ -10,10 +10,23 @@ import { el, Log } from '../../common'
 const log = new Log('Progress')
 
 export default () => {
-  return el(
-    Progress,
-    {
-      percent: 10
-    }
-  )
+  return [
+    el(
+      Progress,
+      {
+        percent: 10,
+        direction: 'x'
+      }
+    ),
+    el(
+      Progress,
+      {
+        percent: 10,
+        direction: 'y',
+        style: {
+          height: 80
+        }
+      }
+    )
+  ]
 }
