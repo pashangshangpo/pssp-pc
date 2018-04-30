@@ -24,39 +24,41 @@ export default class extends Component {
   }
 
   types = {
-    line: () => {
-      let lineTopStyle = {
-        width: `${this.props.percent}%`
-      }
-
-      if (this.props.direction === 'y') {
-        lineTopStyle = {
-          height: `${this.props.percent}%`
+    line: {
+      render: () => {
+        let lineTopStyle = {
+          width: `${this.props.percent}%`
         }
-      }
-
-      return [
-        el(
-          'div',
-          {
-            className: 'line-box'
-          },
+  
+        if (this.props.direction === 'y') {
+          lineTopStyle = {
+            height: `${this.props.percent}%`
+          }
+        }
+  
+        return [
           el(
             'div',
             {
-              className: 'line-top',
-              style: lineTopStyle
-            }
+              className: 'line-box'
+            },
+            el(
+              'div',
+              {
+                className: 'line-top',
+                style: lineTopStyle
+              }
+            )
+          ),
+          el(
+            'div',
+            {
+              className: 'line-text'
+            },
+            this.props.text(this.props.percent)
           )
-        ),
-        el(
-          'div',
-          {
-            className: 'line-text'
-          },
-          this.props.text(this.props.percent)
-        )
-      ]
+        ]
+      }
     }
   }
 
@@ -67,7 +69,7 @@ export default class extends Component {
       return null
     }
 
-    return type()
+    return type.render()
   }
 
   render() {
