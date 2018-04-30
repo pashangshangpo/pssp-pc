@@ -13,6 +13,11 @@ export default class extends Component {
    * @def-start: Progress: props => Progress
    *  props: Object
    *    className: String
+   *    style: Object
+   *    type: String [line] 类型
+   *    percent: Number 进度 一共100份
+   *    direction: String [x, y] 方向
+   *    text: percent => [ReactElement, String] 显示的文字
    */
   static defaultProps = {
     className: '',
