@@ -12,21 +12,36 @@ const log = new Log('Progress')
 export default () => {
   return [
     el(
-      Progress,
-      {
-        percent: 10,
-        direction: 'x'
-      }
+      'div',
+      {},
+      'type: line direction: x',
+      el(
+        Progress,
+        {
+          percent: 10,
+          direction: 'x',
+          style: {
+            padding: '5px 0'
+          }
+        }
+      )
     ),
     el(
-      Progress,
-      {
-        percent: 10,
-        direction: 'y',
-        style: {
-          height: 80
+      'div',
+      {},
+      'type: line direction: y',
+      el(
+        Progress,
+        {
+          percent: 30,
+          direction: 'y',
+          style: {
+            height: 100,
+            padding: '5px 0',
+            margin: '0 auto'
+          }
         }
-      }
+      )
     )
   ]
 }
