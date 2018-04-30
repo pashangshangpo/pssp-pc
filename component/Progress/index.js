@@ -26,15 +26,21 @@ export default class extends Component {
       return [
         el(
           'div',
-          {},
+          {
+            className: 'line-box'
+          },
           el(
             'div',
-            {}
+            {
+              className: 'line-top'
+            }
           )
         ),
         el(
           'div',
-          {},
+          {
+            className: 'line-text'
+          },
           this.props.text(this.props.percent)
         )
       ]
