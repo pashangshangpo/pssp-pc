@@ -16,6 +16,7 @@ export default class extends Component {
    */
   static defaultProps = {
     className: '',
+    style: {},
     type: 'line',
     percent: 0,
     text: percent => `${percent}%`
@@ -64,7 +65,8 @@ export default class extends Component {
         className: c({
           default: this.props.className,
           prefix: 'progress'
-        })
+        }),
+        style: this.props.style
       },
       this.renderMain()
     )
