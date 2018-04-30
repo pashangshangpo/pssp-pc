@@ -11,12 +11,9 @@
     position: relative;
     display: flex;
     height: 100%;
-    margin-right: -0.2px;
 
     flex-direction: column;
-    overflow: hidden;
     transition: all .2s;
-    z-index: @z-background-top;
   }
 
   .vertical {
@@ -37,9 +34,11 @@
     .menu-item {
       position: relative;
       height: 40px;
+      margin-right: -0.5px;
       padding: 0 24px;
 
       line-height: 40px;
+      z-index: @z-background-top;
 
       &:hover {
         color: #1890ff;
