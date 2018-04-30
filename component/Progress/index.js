@@ -23,9 +23,7 @@ export default class extends Component {
 
   types = {
     line: () => {
-      return el(
-        'div',
-        {},
+      return [
         el(
           'div',
           {},
@@ -39,7 +37,7 @@ export default class extends Component {
           {},
           this.props.text(this.props.percent)
         )
-      )
+      ]
     }
   }
 
