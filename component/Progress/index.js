@@ -33,7 +33,10 @@ export default class extends Component {
           el(
             'div',
             {
-              className: 'line-top'
+              className: 'line-top',
+              style: {
+                width: `${this.props.percent}%`
+              }
             }
           )
         ),
