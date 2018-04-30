@@ -35,7 +35,7 @@ export default class extends Component {
             height: `${this.props.percent}%`
           }
         }
-        
+
         return el(
           'div',
           {
@@ -51,12 +51,18 @@ export default class extends Component {
         )
       },
       renderText: () => {
+        const text = this.props.text(this.props.percent)
+
+        if (!text) {
+          return null
+        }
+
         return el(
           'div',
           {
             className: 'line-text'
           },
-          this.props.text(this.props.percent)
+          text
         )
       },
       render: () => {
