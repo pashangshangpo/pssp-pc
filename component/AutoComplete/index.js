@@ -40,14 +40,6 @@ export default class extends Component {
     value: this.props.value
   }
 
-  changeState = state => {
-    for (let key of Object.keys(state)) {
-      this.state[key] = state[key]
-    }
-
-    this.setState(this.state)
-  }
-
   handleInputFocus = () => {
     if (this.state.value) {
       this.setState({
@@ -76,7 +68,7 @@ export default class extends Component {
   handleInputChange = e => {
     const value = e.currentTarget.value
 
-    this.changeState({
+    this.setState({
       value,
       showSelect: !!value,
       activeIndex: value === '' ? 0 : this.state.activeIndex,
@@ -95,13 +87,13 @@ export default class extends Component {
   }
 
   handleSelectMouseEnter = e => {
-    this.changeState({
+    this.setState({
       isHover: true
     })
   }
 
   handleSelectMouseLeave = e => {
-    this.changeState({
+    this.setState({
       selected: null,
       activeIndex: -1
     })
@@ -112,13 +104,13 @@ export default class extends Component {
     const index = Array.from(target.parentNode.children).indexOf(target)
 
     this.props.onSelect(this.props.data[index])
-    this.changeState({
+    this.setState({
       showSelect: false
     })
   }
 
   handleSelectItemMouseEnter = content => {
-    this.changeState({
+    this.setState({
       selected: content
     })
   }
@@ -131,13 +123,13 @@ export default class extends Component {
       }
 
       if (!this.state.isHover) {
-        this.changeState({
+        this.setState({
           selected: this.props.data[this.state.activeIndex]
         })
       }
 
       if (this.state.selected) {
-        this.changeState({
+        this.setState({
           showSelect: false,
           value: this.state.selected
         })
@@ -145,7 +137,7 @@ export default class extends Component {
         this.props.onSelect(this.state.value)
       }
       else {
-        this.changeState({
+        this.setState({
           showSelect: false
         })
       }
@@ -158,7 +150,7 @@ export default class extends Component {
         activeIndex = 0
       }
 
-      this.changeState({
+      this.setState({
         activeIndex,
         isHover: false
       })
@@ -171,7 +163,7 @@ export default class extends Component {
         activeIndex = this.props.data.length - 1
       }
 
-      this.changeState({
+      this.setState({
         activeIndex,
         isHover: false
       })
@@ -183,7 +175,7 @@ export default class extends Component {
       return false
     }
 
-    this.changeState({
+    this.setState({
       activeIndex: index,
       isHover: false,
       showSelect: false,
