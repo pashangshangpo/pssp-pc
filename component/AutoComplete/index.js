@@ -16,6 +16,7 @@ export default class extends Component {
    *    className: String
    *    style: Object
    *    placeholder: String
+   *    value: String 初始value值
    *    data: Array [Item] 需要展示的列表项
    *      Item: [String, ReactElement]
    *    onChange: Function 输入的内容改变时调用
@@ -25,6 +26,7 @@ export default class extends Component {
     className: '',
     style: {},
     placeholder: '',
+    value: '',
     data: [],
     onChange: () => { },
     onSelect: () => { }
@@ -35,7 +37,7 @@ export default class extends Component {
     selected: null,
     activeIndex: 0,
     isHover: false,
-    value: ''
+    value: this.props.value
   }
 
   changeState = state => {
