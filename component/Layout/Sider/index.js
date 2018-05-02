@@ -33,7 +33,7 @@ export default class extends Component {
       el(
         'div',
         {
-          className: 'sider-children'
+          className: 'layout-sider-children'
         },
         this.props.children
       )
