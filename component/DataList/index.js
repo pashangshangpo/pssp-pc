@@ -103,7 +103,7 @@ export default class extends Component {
       'h3',
       {
         key: 'title',
-        className: 'title'
+        className: 'dataListTitle'
       },
       title
     )
@@ -114,7 +114,7 @@ export default class extends Component {
       'div',
       {
         key: title,
-        className: 'header'
+        className: 'dataListHeader'
       },
       title
     )
@@ -134,7 +134,7 @@ export default class extends Component {
           key: index,
           className: c({
             default: {
-              hover: index === this.state.hoverIndex || index === this.props.activeIndex
+              dataListHover: index === this.state.hoverIndex || index === this.props.activeIndex
             }
           }),
           'data-index': index,
@@ -151,7 +151,7 @@ export default class extends Component {
       'ul',
       {
         key: index,
-        className: 'list',
+        className: 'dataListList',
         onMouseLeave: this.handleMouseLeave
       },
       this.renderLi(data)
@@ -166,8 +166,8 @@ export default class extends Component {
           key: index,
           className: c({
             default: {
-              section: true,
-              lineNumber: this.props.showLineNumber && index === 0
+              dataListSection: true,
+              dataListLineNumber: this.props.showLineNumber && index === 0
             }
           })
         },
@@ -182,7 +182,7 @@ export default class extends Component {
       'div',
       {
         key: 'main',
-        className: 'main'
+        className: 'data-list-main'
       },
       this.renderData()
     )
