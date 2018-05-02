@@ -6,7 +6,6 @@
 import './style/reset.less'
 import './style/common.less'
 
-export {default as Demo} from './demo' 
 export {default as Tag} from './component/Tag'
 export {default as MultipleTag} from './component/MultipleTag'
 export {default as RadioTag} from './component/RadioTag'
