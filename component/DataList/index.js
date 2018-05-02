@@ -103,7 +103,7 @@ export default class extends Component {
       'h3',
       {
         key: 'title',
-        className: 'dataListTitle'
+        className: 'data-list-title'
       },
       title
     )
@@ -114,7 +114,7 @@ export default class extends Component {
       'div',
       {
         key: title,
-        className: 'dataListHeader'
+        className: 'data-list-header'
       },
       title
     )
@@ -151,7 +151,7 @@ export default class extends Component {
       'ul',
       {
         key: index,
-        className: 'dataListList',
+        className: 'data-list-list',
         onMouseLeave: this.handleMouseLeave
       },
       this.renderLi(data)
