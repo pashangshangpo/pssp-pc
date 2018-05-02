@@ -5,7 +5,7 @@
 
   font-size: 13px;
 
-  .select {
+  .auto-complete-select {
     position: absolute;
     width: 100%;
     max-height: 300px;
@@ -20,7 +20,7 @@
     text-align: justify;
     z-index: @z-default;
 
-    .select-item {
+    .auto-complete-select-item {
       padding: 5px 12px;
 
       font-weight: 400;
@@ -30,22 +30,22 @@
       &:hover {
         background-color: #e6f7ff;
 
-        &.selected {
+        &.auto-complete-selected {
           background-color: #fafafa;
         }
       }
 
-      &.selected {
+      &.auto-complete-selected {
         font-weight: 600;
         background-color: #fafafa;
       }
 
-      &.active {
+      &.auto-complete-active {
         background-color: #e6f7ff;
       }
 
       &.hover {
-        &.active {
+        &.auto-complete-active {
           background-color: #fff;
 
           &:hover {
@@ -53,7 +53,7 @@
           }
         }
 
-        &.selected {
+        &.auto-complete-selected {
           background-color: #fafafa;
 
           &:hover {

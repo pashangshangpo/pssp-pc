@@ -213,10 +213,10 @@ export default class extends Component {
         {
           className: c({
             default: {
-              selectItem: true,
-              selected: content === this.state.value,
-              active: this.state.activeIndex === index,
-              hover: this.state.isHover
+              autoCompleteSelectItem: true,
+              autoCompleteSelected: content === this.state.value,
+              autoCompleteActive: this.state.activeIndex === index,
+              autoCompleteHover: this.state.isHover
             }
           }),
           onClick: this.handleSelectItemClick,
@@ -235,7 +235,7 @@ export default class extends Component {
     return el(
       'div',
       {
-        className: 'select',
+        className: 'auto-complete-select',
         onMouseEnter: this.handleSelectMouseEnter,
         onMouseLeave: this.handleSelectMouseLeave
       },
