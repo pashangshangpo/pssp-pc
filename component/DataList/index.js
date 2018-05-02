@@ -177,6 +177,17 @@ export default class extends Component {
     })
   }
 
+  renderMain = () => {
+    return el(
+      'div',
+      {
+        key: 'main',
+        className: 'main'
+      },
+      this.renderData()
+    )
+  }
+
   render() {
     return el(
       'div',
@@ -187,14 +198,7 @@ export default class extends Component {
         })
       },
       this.renderTitle(),
-      el(
-        'div',
-        {
-          key: 'main',
-          className: 'main'
-        },
-        this.renderData()
-      )
+      this.renderMain()
     )
   }
 }
