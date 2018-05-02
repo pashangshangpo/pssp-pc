@@ -15,8 +15,9 @@ export default class extends Component {
    *  props: Object
    *    className: String
    *    style: Object
-   *    placeholder: String
    *    value: String 初始value值
+   *    placeholder: String
+   *    autoFocus: Boolean 是否自动聚焦
    *    data: Array [Item] 需要展示的列表项
    *      Item: [String, ReactElement]
    *    onChange: Function 输入的内容改变时调用
@@ -25,8 +26,9 @@ export default class extends Component {
   static defaultProps = {
     className: '',
     style: {},
-    placeholder: '',
     value: '',
+    placeholder: '',
+    autoFocus: false,
     data: [],
     onChange: () => { },
     onSelect: () => { }
@@ -191,6 +193,7 @@ export default class extends Component {
       {
         type: 'text',
         value: this.state.value,
+        autoFocus: this.props.autoFocus,
         placeholder: this.props.placeholder,
         onFocus: this.handleInputFocus,
         onBlur: this.hanldeInputBlur,
