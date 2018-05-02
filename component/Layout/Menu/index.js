@@ -97,8 +97,8 @@ export default class extends Component {
       {
         className: c({
           default: {
-            arrow: true,
-            upArrow: unfoldChildNode
+            layoutMenuArrow: true,
+            layoutMenuUpArrow: unfoldChildNode
           }
         }),
         icon: require('../../../image/icon-down-arrow.svg')
@@ -116,9 +116,9 @@ export default class extends Component {
         key: name,
         className: c({
           default: {
-            menuName: true,
-            haveChildNode,
-            checked: this.state.checked === name
+            layoutMenuMenuName: true,
+            layoutMenuHaveChildNode,
+            layoutMenuChecked: this.state.checked === name
           }
         }),
         onClick: this.handleMenuNameClick
@@ -150,8 +150,8 @@ export default class extends Component {
             key: index,
             className: c({
               default: {
-                menuItem: true,
-                checked: this.state.checked === item
+                layoutMenuMenuItem: true,
+                layoutMenuChecked: this.state.checked === item
               }
             }),
             onClick: this.handleMenuItemClick.bind(this, item, section)
@@ -180,7 +180,7 @@ export default class extends Component {
       'ul',
       {
         key: 'layout-menu-main',
-        className: this.props.mode
+        className: `layout-menu-${this.props.mode}`
       },
       this.renderMenu()
     )

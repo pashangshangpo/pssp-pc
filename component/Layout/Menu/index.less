@@ -1,5 +1,7 @@
 @import '../../../style/variable.less';
 
+@comPrefix: layout-menu;
+
 .@{prefix}-layout-menu {
   position: relative;
   height: 100%;
@@ -16,7 +18,7 @@
     transition: all .2s;
   }
 
-  .vertical {
+  .@{comPrefix}-vertical {
     &::after {
       content: '';
       position: absolute;
@@ -30,8 +32,8 @@
       z-index: @z-background;
     }
     
-    .menu-name,
-    .menu-item {
+    .@{comPrefix}-menu-name,
+    .@{comPrefix}-menu-item {
       position: relative;
       height: 40px;
       margin-right: -0.5px;
@@ -45,16 +47,16 @@
       }
     }
 
-    .menu-name:not(.have-child-node),
-    .menu-item {
-      &.checked {
+    .@{comPrefix}-menu-name:not(.@{comPrefix}-have-child-node),
+    .@{comPrefix}-menu-item {
+      &.@{comPrefix}-checked {
         color: #1890ff;
         box-shadow: inset -3px 0 currentColor;
         background-color: #e6f7ff;
       }
     }
 
-    .arrow {
+    .@{comPrefix}-arrow {
       position: absolute;
       right: 6px;
       top: 0;
@@ -63,11 +65,11 @@
     }
   }
 
-  .horizontal {
+  .@{comPrefix}-horizontal {
     flex-direction: row;
 
-    .menu-name,
-    .menu-item {
+    .@{comPrefix}-menu-name,
+    .@{comPrefix}-menu-item {
       height: 40px;
       padding: 0 12px;
 
@@ -79,36 +81,36 @@
       }
     }
 
-    .menu-name:not(.have-child-node),
-    .menu-item {
-      &.checked {
+    .@{comPrefix}-menu-name:not(.@{comPrefix}-have-child-node),
+    .@{comPrefix}-menu-item {
+      &.@{comPrefix}-checked {
         color: #fff;
         background-color: #1890ff;
       }
     }
 
-    .arrow {
+    .@{comPrefix}-arrow {
       margin-left: 8px;
     }
 
     ul {
-      .menu-item {
+      .@{comPrefix}-menu-item {
         margin-right: 12px;
       }
     }
   }
 
-  .menu-name,
-  .menu-item {
+  .@{comPrefix}-menu-name,
+  .@{comPrefix}-menu-item {
     cursor: pointer;
   }
 
-  .arrow {
+  .@{comPrefix}-arrow {
     font-size: 16px;
     transition: all 0.1s;
   }
 
-  .up-arrow {
+  .@{comPrefix}-up-arrow {
     transform: rotate(180deg);
   }
 }
