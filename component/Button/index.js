@@ -42,7 +42,7 @@ export default class extends Component {
     return el(
       Svg,
       {
-        className: 'icon'
+        className: 'button-icon'
       }
     )
   }
@@ -56,7 +56,7 @@ export default class extends Component {
       Svg,
       {
         key: 'loading',
-        className: 'loading',
+        className: 'button-loading',
         icon: require('../../image/icon-loading.svg')
       }
     )
@@ -68,10 +68,10 @@ export default class extends Component {
       {
         className: c({
           default: {
-            [this.props.className]: true,
-            [this.props.type]: true,
-            disabled: this.props.disabled,
-            loading: this.props.loading
+            [`button-${this.props.className}`]: true,
+            [`button-${this.props.type}`]: true,
+            buttonDisabled: this.props.disabled,
+            buttonLoading: this.props.loading
           },
           prefix: 'button'
         }),
