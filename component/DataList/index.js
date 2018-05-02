@@ -43,20 +43,33 @@ export default class extends Component {
   }
 
   state = {
-    hoverIndex: -1,
-    data: []
+    hoverIndex: -1
   }
 
-  changeState = state => {
-    for (let key of Object.keys(state)) {
-      this.state[key] = state[key]
-    }
-
-    this.setState(this.state)
+  handleClick = e => {
+    const index = Number(e.currentTarget.dataset.index)
+    this.props.onClick(index, this.props.data, e)
   }
 
-  componentWillMount() {
+  handleMouseEnter = e => {
+    const index = Number(e.currentTarget.dataset.index)
+
+    this.setState({
+      hoverIndex: index
+    })
+
+    this.props.onHover(index, this.props.data, e)
+  }
+
+  handleMouseLeave = e => {
+    this.setState({
+      hoverIndex: -1
+    })
+  }
+
+  getData = () => {
     let data = this.props.data
+
     if (this.props.showLineNumber) {
       data = [
         {
@@ -68,28 +81,7 @@ export default class extends Component {
       ].concat(data)
     }
 
-    this.changeState({ data })
-  }
-
-  handleClick = e => {
-    const index = Number(e.currentTarget.dataset.index)
-    this.props.onClick(index, this.props.data, e)
-  }
-
-  handleMouseEnter = e => {
-    const index = Number(e.currentTarget.dataset.index)
-
-    this.changeState({
-      hoverIndex: index
-    })
-
-    this.props.onHover(index, this.props.data, e)
-  }
-
-  handleMouseLeave = e => {
-    this.changeState({
-      hoverIndex: -1
-    })
+    return data
   }
 
   renderTitle = () => {
@@ -159,7 +151,7 @@ export default class extends Component {
   }
 
   renderData = () => {
-    return this.state.data.map((item, index) => {
+    return this.getData().map((item, index) => {
       return el(
         'div',
         {
