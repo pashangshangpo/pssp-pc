@@ -20,7 +20,7 @@ export default class extends Component {
     className: '',
     target: window,
     offsetTop: 0,
-    onChange: isFixed => {}
+    onChange: isFixed => { }
   }
 
   state = {
@@ -31,32 +31,39 @@ export default class extends Component {
   componentDidMount() {
     let preFixed = false
     const affixTop = this.affixDom.offsetTop
-    const {target, offsetTop} = this.props
 
     this.state.height = this.getHeight(this.affixDom) + 'px'
     this.setState(this.state)
 
-    target.addEventListener('scroll', e => {
-      if (target.scrollY >= (affixTop - offsetTop)) {
-        if (!preFixed) {
-          this.handleChange(true)
-        }
-        preFixed = true
-        this.state.fixed = true
-        this.affixDom.style.top = offsetTop + 'px'
-      }
-      else {
-        if (preFixed) {
-          this.handleChange(false)
-        }
+    this.props.target.addEventListener('scroll', this.handleScrol)
+  }
 
-        preFixed = false
-        this.state.fixed = false
-        this.affixDom.style.top = 0 + 'px'
+  componentWillUnmount() {
+    this.props.target.removeEventListener('scroll', this.handleScrol)
+  }
+
+  handleScrol = e => {
+    const { target, offsetTop } = this.props
+
+    if (target.scrollY >= (affixTop - offsetTop)) {
+      if (!preFixed) {
+        this.handleChange(true)
+      }
+      preFixed = true
+      this.state.fixed = true
+      this.affixDom.style.top = offsetTop + 'px'
+    }
+    else {
+      if (preFixed) {
+        this.handleChange(false)
       }
 
-      this.setState(this.state)
-    })
+      preFixed = false
+      this.state.fixed = false
+      this.affixDom.style.top = 0 + 'px'
+    }
+
+    this.setState(this.state)
   }
 
   handleChange = isFixed => {
