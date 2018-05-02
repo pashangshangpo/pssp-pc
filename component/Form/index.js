@@ -201,7 +201,7 @@ export default class extends Component {
       return el(
         'div',
         {
-          className: `message-${direction}`
+          className: `form-message-${direction}`
         },
         item.rule.requireMessage
       )
@@ -210,7 +210,7 @@ export default class extends Component {
       return el(
         'div',
         {
-          className: `message-${direction}`
+          className: `form-message-${direction}`
         },
         item.rule.errorMessage
       )
@@ -225,12 +225,12 @@ export default class extends Component {
       return el(
         'div',
         {
-          className: 'item'
+          className: 'form-item'
         },
         el(
           'div',
           {
-            className: 'main'
+            className: 'form-main'
           },
           el(
             'label',
@@ -242,8 +242,8 @@ export default class extends Component {
             {
               className: c({
                 default: {
-                  value: true,
-                  error: item.validateState === 0 || item.validateState === 1
+                  formValue: true,
+                  formError: item.validateState === 0 || item.validateState === 1
                 }
               })
             },

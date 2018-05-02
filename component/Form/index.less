@@ -1,11 +1,13 @@
 @import '../../style/variable.less';
 
-.@{prefix}-form {
-  .item {
+@comPrefix: form;
+
+.@{prefix}-.@{comPrefix} {
+  .@{comPrefix}-item {
     position: relative;
     margin-bottom: 25px;
 
-    .main {
+    .@{comPrefix}-main {
       display: flex;
       align-items: center;
   
@@ -20,14 +22,14 @@
         flex: 1;
       }
 
-      .message-right {
+      .@{comPrefix}-message-right {
         margin-left: 12px;
 
         font-size: 12px;
         color: #f5222d;
       }
 
-      .message-bottom {
+      .@{comPrefix}-message-bottom {
         position: absolute;
         bottom: -18px;
 
@@ -35,7 +37,7 @@
         color: #f5222d;
       }
 
-      .error {
+      .@{comPrefix}-error {
         input,
         textarea
         {
