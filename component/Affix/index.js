@@ -83,7 +83,7 @@ export default class extends Component {
         className: c({
           default: {
             [this.props.className]: true,
-            fixed: this.state.fixed
+            affixFixed: this.state.fixed
           },
           prefix: 'affix'
         })
