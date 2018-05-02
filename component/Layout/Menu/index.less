@@ -4,6 +4,8 @@
 
 .@{prefix}-layout-menu {
   position: relative;
+  width: inherit;
+  min-width: inherit;
   height: 100%;
 
   font-size: 14px;
@@ -19,6 +21,10 @@
   }
 
   .@{comPrefix}-vertical {
+    position: fixed;
+    width: inherit;
+    min-width: inherit;
+
     &::after {
       content: '';
       position: absolute;
