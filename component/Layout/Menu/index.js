@@ -117,7 +117,7 @@ export default class extends Component {
         className: c({
           default: {
             layoutMenuMenuName: true,
-            layoutMenuHaveChildNode,
+            layoutMenuHaveChildNode: haveChildNode,
             layoutMenuChecked: this.state.checked === name
           }
         }),
