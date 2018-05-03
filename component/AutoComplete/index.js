@@ -18,8 +18,9 @@ export default class extends Component {
    *    value: String 初始value值
    *    placeholder: String
    *    autoFocus: Boolean 是否自动聚焦
-   *    data: Array [Item] 需要展示的列表项
-   *      Item: [String, ReactElement]
+   *    data: Array => Item 需要展示的列表项
+   *      Item: Object
+   *        content: [String, ReactElement]
    *    onChange: Function 输入的内容改变时调用
    *    onSelect: Function 选中列表时调用
    */
@@ -112,6 +113,7 @@ export default class extends Component {
   }
 
   handleSelectItemMouseEnter = content => {
+    console.log(111,content)
     this.setState({
       selected: content
     })
@@ -204,22 +206,22 @@ export default class extends Component {
   }
 
   renderSelectMain = () => {
-    return this.props.data.map((content, index) => {
+    return this.props.data.map((item, index) => {
       return el(
         'div',
         {
           className: c({
             default: {
               autoCompleteSelectItem: true,
-              autoCompleteSelected: content === this.state.value,
+              autoCompleteSelected: item.content === this.state.value,
               autoCompleteActive: this.state.activeIndex === index,
               autoCompleteHover: this.state.isHover
             }
           }),
           onClick: this.handleSelectItemClick,
-          onMouseEnter: this.handleSelectItemMouseEnter.bind(this, content)
+          onMouseEnter: this.handleSelectItemMouseEnter.bind(this, item.content)
         },
-        content
+        item.content
       )
     })
   }
