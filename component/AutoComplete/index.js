@@ -60,7 +60,7 @@ export default class extends Component {
     let selected = this.state.selected
 
     if (this.state.value && selected) {
-      this.props.onSelect(selected)
+      this.props.onSelect(this.props.data[this.state.activeIndex])
 
       this.setState({
         value: selected
@@ -112,10 +112,10 @@ export default class extends Component {
     })
   }
 
-  handleSelectItemMouseEnter = content => {
-    console.log(111,content)
+  handleSelectItemMouseEnter = (content, index) => {
     this.setState({
-      selected: content
+      selected: content,
+      activeIndex: index
     })
   }
 
@@ -219,7 +219,7 @@ export default class extends Component {
             }
           }),
           onClick: this.handleSelectItemClick,
-          onMouseEnter: this.handleSelectItemMouseEnter.bind(this, item.content)
+          onMouseEnter: this.handleSelectItemMouseEnter.bind(this, item.content, index)
         },
         item.content
       )
