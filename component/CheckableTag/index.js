@@ -19,8 +19,11 @@ export default class extends Component {
    */
   static defaultProps = {
     className: '',
+    addName: '',
+    addPlaceholder: '',
     data: [],
-    onChange: tag => { }
+    onAdd: tag => {},
+    onChange: tag => {}
   }
 
   state = {
@@ -44,7 +47,41 @@ export default class extends Component {
     }
   }
 
+  handleTagAdd = tag => {
+    if (tag) {
+      if (this.props.onChange(this.state.data.filter(item => item.checked).concat([{
+        checked: true,
+        content: tag
+      }]), tag) !== false) {
+        this.props.onAdd(tag)
+        this.setState({
+          data: [
+            ...this.state.data,
+            {
+              checked: true,
+              content: tag
+            }
+          ]
+        })
+      }
+    }
+  }
+
   renderMain = () => {
+    let arr = []
+
+    if (this.props.addName) {
+      arr.push(el(
+        Tag,
+        {
+          placeholder: this.props.addPlaceholder,
+          isAdd: true,
+          onAdd: this.handleTagAdd
+        },
+        this.props.addName
+      ))
+    }
+
     return this.state.data.map(tag => {
       return el(
         Tag,
@@ -59,7 +96,7 @@ export default class extends Component {
         },
         tag.content
       )
-    })
+    }).concat(arr)
   }
 
   render() {
