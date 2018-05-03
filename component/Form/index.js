@@ -11,9 +11,16 @@ export default class extends Component {
   /**
    * @def-start: 
    *  props: Object
+   *    messageDirection: String [bottom, right] 信息提示位置
    *    data: Array => Item
    *      Item: Object
+   *        name: String 名称
+            type: String 类型
+            rule: Object 规则
+              require: Boolean 是否必填
+              requireMessage: String 没有填写内容时的提示信息
    *        state: 0,1,2 0:未填写 1:填写错误 2: 正确
+   *  children: Array => ReactElement 作为Item的内容
    */
   static defaultProps = {
     className: '',
@@ -218,9 +225,11 @@ export default class extends Component {
   }
 
   renderMain = () => {
-    return this.state.validateList.map(item => {
+    const children = this.props.children
+
+    return this.state.validateList.map((item, index) => {
       const type = this.types[item.type]
-      type && type.handle(item, item.content.props)
+      type && type.handle(item, children[index].props)
 
       return el(
         'div',
@@ -247,7 +256,7 @@ export default class extends Component {
                 }
               })
             },
-            item.content,
+            children[index],
             this.renderMessage('bottom', item)
           ),
           this.renderMessage('right', item)
@@ -265,8 +274,7 @@ export default class extends Component {
           prefix: 'form'
         })
       },
-      this.renderMain(),
-      this.props.children
+      this.renderMain()
     )
   }
 }
