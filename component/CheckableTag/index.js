@@ -27,6 +27,12 @@ export default class extends Component {
     data: this.props.data
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      data: nextProps.data
+    })
+  }
+
   handleChange = tag => {
     tag.checked = !tag.checked
     
