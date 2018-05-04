@@ -114,13 +114,15 @@ export default class extends Component {
         const rule = item.rule
         if (rule) {
           const onChange = props.onChange || (() => {})
+          const current = this.state.validateList.find(validateItem => validateItem === item)
 
           props.max = rule.max
           props.min = rule.min
+
+          current.value = props.value
   
           props.onChange = e => {
             const value = parseFloat(e.currentTarget.value)
-            const current = this.state.validateList.find(validateItem => validateItem === item)
   
             current.value = value
             this.types.inputNumber.vaildate(item, value)
