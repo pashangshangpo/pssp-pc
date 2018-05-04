@@ -78,10 +78,12 @@ export default class extends Component {
         const rule = item.rule
         if (rule) {
           const onChange = props.onChange || (() => {})
+          const current = this.state.validateList.find(validateItem => validateItem === item)
+          
+          current.value = props.value
     
           props.onChange = e => {
             const value = e.currentTarget.value
-            const current = this.state.validateList.find(validateItem => validateItem === item)
   
             current.value = value
             this.types.inputText.vaildate(item, value)
