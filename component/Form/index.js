@@ -186,10 +186,11 @@ export default class extends Component {
         const rule = item.rule
         if (rule) {
           const onChange = props.onChange || (() => {})
+          const current = this.state.validateList.find(validateItem => validateItem === item)
+          
+          current.value = props.data.filter(item => item.checked)
   
           props.onChange = (...arg) => {
-            const current = this.state.validateList.find(validateItem => validateItem === item)
-  
             current.value = arg[0]
             this.types.checkableTag.vaildate(item, arg[0])
   
