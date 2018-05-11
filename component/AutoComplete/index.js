@@ -43,6 +43,16 @@ export default class extends Component {
     value: this.props.value
   }
 
+  setProp = prop => {
+    for (let key of Object.keys(prop)) {
+      if (prop.hasOwnProperty(key)) {
+        this.state[key] = prop[key]
+      }
+    }
+
+    this.setState(this.state)
+  }
+
   handleInputFocus = () => {
     if (this.state.value) {
       this.setState({
@@ -127,21 +137,21 @@ export default class extends Component {
       }
 
       if (!this.state.isHover) {
-        this.setState({
+        this.setProp({
           selected: this.props.data[this.state.activeIndex]
         })
       }
 
       if (this.state.selected) {
-        this.setState({
+        this.setProp({
           showSelect: false,
-          value: this.state.selected
+          value: this.state.selected.content
         })
 
         this.props.onSelect(this.state.value)
       }
       else {
-        this.setState({
+        this.setProp({
           showSelect: false
         })
       }
