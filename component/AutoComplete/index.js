@@ -148,7 +148,7 @@ export default class extends Component {
           value: this.state.selected.content
         })
 
-        this.props.onSelect(this.state.value)
+        this.props.onSelect(this.state.selected)
       }
       else {
         this.setProp({
