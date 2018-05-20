@@ -13,7 +13,7 @@ exports default class extends Component {
       <Button
         type={'primary'},
         onClick={e => {
-          log.message('primary', e)
+          console.log('primary', e)
         }}
       >primary</Button>
     )
