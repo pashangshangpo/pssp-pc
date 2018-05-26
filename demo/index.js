@@ -20,6 +20,10 @@ export default () => {
           comp: require('./Hotkey').default
         },
         {
+          name: 'Affix',
+          comp: require('./Affix').default
+        },
+        {
           name: 'AutoComplete',
           comp: require('./AutoComplete').default
         },
@@ -47,10 +51,6 @@ export default () => {
         {
           name: 'Textarea',
           comp: require('./Textarea').default
-        },
-        {
-          name: 'Affix',
-          comp: require('./Affix').default
         },
         {
           name: 'Button',
