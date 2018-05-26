@@ -37,7 +37,11 @@ export default class extends Component {
           let selects = []
 
           if (value.indexOf('@') === -1) {
-            selects = ['@gmail.com', '@qq.com', '@163.com'].map(item => `${value}${item}`)
+            selects = ['@gmail.com', '@qq.com', '@163.com'].map(item => {
+              return {
+                content: `${value}${item}`
+              }
+            })
           }
 
           if (value.indexOf(':') === 0) {
