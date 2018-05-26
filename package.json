@@ -73,6 +73,9 @@
     "webpack-merge": "4.1.1"
   },
   "dependencies": {
-    "log": "https://github.com/pashangshangpo/log.git"
+    "log": "https://github.com/pashangshangpo/log.git",
+    "md5": "^2.2.1",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
   }
 }
