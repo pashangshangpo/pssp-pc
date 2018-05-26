@@ -1,25 +1,24 @@
-const merge = require('webpack-merge')
-const { userKConfigPath } = require('./paths')
+/**
+ * @file k.config.js
+ * @author pashangshangpo
+ * @createTime 2018年5月26日 下午12:25
+ */
 
-// 合并默认配置
-module.exports = merge(
-  {
-    env: {
-      dev: {
-        publicPath: '/',
-        outputPath: 'dist/dev',
-        inject: {
-        }
-      },
-      dest: {
-        publicPath: '/',
-        outputPath: 'dist/dest'
+module.exports = {
+  env: {
+    dev: {
+      publicPath: '/',
+      outputPath: 'dist/dev',
+      inject: {
       }
     },
-    inject: {
-      js: [
-      ]
-    },
+    dest: {
+      publicPath: '/',
+      outputPath: 'dist/dest'
+    }
   },
-  require(userKConfigPath)
-);
+  inject: {
+    js: [
+    ]
+  }
+}

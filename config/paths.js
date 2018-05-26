@@ -36,7 +36,6 @@ const tempPath = resolveApp('temp');
 
 const rootKConfigPath = 'k.config.js';
 const kConfigPath = join(configPath, rootKConfigPath);
-const userKConfigPath = resolveApp(rootKConfigPath);
 
 const storePath = join(tempPath, 'store.db');
 
@@ -51,7 +50,6 @@ module.exports = {
   commonJsName,
   tempPath,
   kConfigPath,
-  userKConfigPath,
   rootKConfigPath,
   devClientPath,
   cssPath,
