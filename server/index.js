@@ -22,9 +22,6 @@ let {
 
 const kConfig = require(kConfigPath);
 
-const packageName = 'package.json';
-const packagePath = resolveApp('src', packageName);
-
 // 配置
 const config = {
   envDefault: {

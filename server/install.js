@@ -1,6 +1,9 @@
 /**
- * 自动安装依赖
+ * @file 安装依赖
+ * @author pashangshangpo
+ * @createTime 2018年5月26日 下午12:22
  */
+
 const {execSync} = require('child_process');
 const fs = require('fs');
 const {resolveApp} = require('../config/paths');
@@ -40,7 +43,7 @@ const isInstall = (rootPath = './') => {
 
 // 安装依赖
 const install = () => {
-  ['./', 'src'].forEach(path => {
+  ['./'].forEach(path => {
     if (!isInstall(path)) {
       console.log(`正在为您安装${path !== './' ? path : 'root'}目录下的依赖`);
   
