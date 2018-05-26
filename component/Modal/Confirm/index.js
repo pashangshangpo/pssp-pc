@@ -48,25 +48,27 @@ export default class extends Component {
   }
 
   handleOk = () => {
-    const promise = this.props.onOk()
+    if (!this.state.loading) {
+      const promise = this.props.onOk()
 
-    if (promise && promise.then) {
-      this.changeState({
-        loading: true
-      })
-
-      promise.then(() => {
+      if (promise && promise.then) {
         this.changeState({
-          loading: false
+          loading: true
         })
-
-        this.destroy()
-      })
-
-      return
+  
+        promise.then(() => {
+          this.changeState({
+            loading: false
+          })
+  
+          this.destroy()
+        })
+  
+        return
+      }
+  
+      this.destroy()
     }
-
-    this.destroy()
   }
 
   changeState = state => {
