@@ -73,7 +73,7 @@ export default class extends Component {
       this.props.onSelect(this.props.data[this.state.activeIndex])
 
       this.setState({
-        value: selected
+        value: selected.content || selected
       })
     }
   }
