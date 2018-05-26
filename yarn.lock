@@ -4498,6 +4498,10 @@ lodash@^4.0.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.15.0, lodash@^4.17.4, l
   version "4.17.5"
   resolved "http://registry.npm.taobao.org/lodash/download/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
+"log@https://github.com/pashangshangpo/log.git":
+  version "0.0.0"
+  resolved "https://github.com/pashangshangpo/log.git#45f118eed0133c99553d1989c8edb49101076693"
+
 lolex@^2.2.0, lolex@^2.3.2:
   version "2.3.2"
   resolved "http://registry.npm.taobao.org/lolex/download/lolex-2.3.2.tgz#85f9450425103bf9e7a60668ea25dc43274ca807"
