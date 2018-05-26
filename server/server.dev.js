@@ -1,3 +1,9 @@
+/**
+ * @file server
+ * @author pashangshangpo
+ * @createTime 2018年5月26日 下午12:08
+ */
+
 const http = require('http');
 const fs = require('fs-extra');
 const {join} = require('path');
@@ -12,31 +18,16 @@ const mockServer = require('./common/mockServer');
 const {appendCss, appendJs, getIp, joinStr} = require('./util/util');
 let {
   resolveApp,
-	dllPath,
-	dllName,
 	cssPath,
 	commonJsName,
-	webpackDllCommonPath,
-  manifestName,
   templatePath
 } = require('../config/paths');
-const dllEntry = require(webpackDllCommonPath).entry;
 
 module.exports = config => {
 	const {port, webpackConfig, inject = {}} = config;
 	const entry = webpackConfig.entry;
 	const outputPath = webpackConfig.output.path;
 	const publicPath = webpackConfig.output.publicPath;
-
-	// 引用dll包
-	for (let key in dllEntry) {
-		webpackConfig.plugins.push(
-			new webpack.DllReferencePlugin({
-        context: resolveApp('src/node_modules'),
-				manifest: require(join(outputPath, dllPath, joinStr(key, '.', manifestName)))
-			})
-		);
-	}
 
 	// 编译webpack
 	let compiler = webpack(webpackConfig);
@@ -72,7 +63,6 @@ module.exports = config => {
     injectTemp.css.push(cssPath);
 
     injectTemp.js = inject.js.concat(
-      join(dllPath, joinStr(dllEntry[name] ? name : 'common', '.', dllName)),
       joinStr(commonJsName, '.js'),
       joinStr(name, '.js')
     );
@@ -110,8 +100,6 @@ module.exports = config => {
 	mockServer(app, server, outputPath);
 
 	server.listen(port, () => {
-		// 开发环境
-    process.env.NODE_ENV = 'dev';
     console.log(`http://localhost:${port}/index.html`)
 	});
 };
