@@ -1,8 +1,8 @@
 {
-  "name": "pssp-common",
+  "name": "pssp-pc",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://gitee.com/pashangshangpo/pssp-common.git",
+  "repository": "https://github.com/pashangshangpo/pssp-pc.git",
   "author": "爬上上坡 <pashangshangpo@gmail.com>",
   "license": "MIT",
   "scripts": {
