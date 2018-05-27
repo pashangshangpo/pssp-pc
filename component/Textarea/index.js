@@ -44,9 +44,14 @@ export default class extends Component {
 
   componentDidMount() {
     // 初始化时需要重设一下, 否则有内容的话高度会有问题
+    // 一开始有可能没有值, 动态添加的
     
-    if (this.props.value) {
-      this.resizeHeight(this.textarea)
+    if (this.props.maxLine === Infinity) {
+      setTimeout(() => {
+        if (this.textarea.value) {
+          this.resizeHeight(this.textarea)
+        }
+      }, 30)
     }
 
     this.textarea.style.minHeight = this.props.minLine * this.props.lineHeight + 'px'
