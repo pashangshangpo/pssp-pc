@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react'
-import Modal from '../../component/Modal'
+import Modal from '../../components/Modal'
 import { el, Log } from '../../common'
 import './index.less'
 

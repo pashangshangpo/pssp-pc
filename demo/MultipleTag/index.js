@@ -3,8 +3,8 @@
  * @author pashangshangpo
  */
 
-import MultipleTag from '../../component/MultipleTag'
-import {el, Log} from '../../common'
+import MultipleTag from '../../components/MultipleTag'
+import { el, Log } from '../../common'
 
 const log = new Log('MultipleTag')
 

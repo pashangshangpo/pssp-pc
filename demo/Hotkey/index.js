@@ -4,7 +4,7 @@
  * @createTime 2018年4月29日 下午4:20
  */
 
-import Hotkey from '../../component/Hotkey'
+import Hotkey from '../../components/Hotkey'
 import { el, Log } from '../../common'
 
 const log = new Log('Hotkey')

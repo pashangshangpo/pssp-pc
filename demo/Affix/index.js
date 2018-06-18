@@ -3,7 +3,7 @@
  * @author pashangshangpo
  */
 
-import Affix from '../../component/Affix'
+import Affix from '../../components/Affix'
 import {el, Log} from '../../common'
 
 const log = new Log('Affix')

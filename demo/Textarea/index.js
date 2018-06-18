@@ -3,7 +3,7 @@
  * @author pashangshangpo
  */
 
-import Textarea from '../../component/Textarea'
+import Textarea from '../../components/Textarea'
 import {el, Log} from '../../common'
 
 const log = new Log('Tag')

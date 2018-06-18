@@ -3,7 +3,7 @@
  * @author pashangshangpo
  */
 
-import Input from '../../component/Input'
+import Input from '../../components/Input'
 import {el, Log} from '../../common'
 
 const log = new Log('Input')

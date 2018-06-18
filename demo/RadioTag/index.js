@@ -3,7 +3,7 @@
  * @author pashangshangpo
  */
 
-import RadioTag from '../../component/RadioTag'
+import RadioTag from '../../components/RadioTag'
 import {el, Log} from '../../common'
 
 const log = new Log('RadioButton')

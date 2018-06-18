@@ -4,7 +4,7 @@
  */
 
 import React from 'react'
-import DataList from '../component/DataList'
+import DataList from '../components/DataList'
 import { shallow } from 'enzyme'
 import sinon from 'sinon'
 import el from '../common/el'

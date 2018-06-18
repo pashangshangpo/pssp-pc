@@ -4,8 +4,8 @@
  */
 
 import {el, Log} from '../../common'
-import ButtonGroup from '../../component/ButtonGroup'
-import Button from '../../component/Button'
+import ButtonGroup from '../../components/ButtonGroup'
+import Button from '../../components/Button'
 
 const log = new Log('ButtonGroup')
 

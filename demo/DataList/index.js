@@ -4,8 +4,8 @@
  */
 
 import React, {Component} from 'react'
-import DataList from '../../component/DataList'
-import RadioTag from '../../component/RadioTag'
+import DataList from '../../components/DataList'
+import RadioTag from '../../components/RadioTag'
 import { el, Log } from '../../common'
 import './index.less'
 

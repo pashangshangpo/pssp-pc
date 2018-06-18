@@ -3,7 +3,7 @@
  * @author pashangshangpo
  */
 
-import Button from '../../component/Button'
+import Button from '../../components/Button'
 import {el, Log} from '../../common'
 
 const log = new Log('Button')

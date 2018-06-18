@@ -4,7 +4,7 @@
  */
 
 import React from 'react'
-import Button from '../component/Button'
+import Button from '../components/Button'
 import { shallow } from 'enzyme'
 import sinon from 'sinon'
 import el from '../common/el'

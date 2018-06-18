@@ -3,11 +3,11 @@
  * @author pashangshangpo
  */
 
-import Form from '../../component/Form'
-import Input from '../../component/Input'
-import CheckableTag from '../../component/CheckableTag'
-import RadioTag from '../../component/RadioTag'
-import Textarea from '../../component/Textarea'
+import Form from '../../components/Form'
+import Input from '../../components/Input'
+import CheckableTag from '../../components/CheckableTag'
+import RadioTag from '../../components/RadioTag'
+import Textarea from '../../components/Textarea'
 import {el, Log} from '../../common'
 
 const log = new Log('Form')

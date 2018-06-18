@@ -4,7 +4,7 @@
  */
 
 import React, { Component } from 'react'
-import AutoComplete from '../../component/AutoComplete'
+import AutoComplete from '../../components/AutoComplete'
 import { el, Log } from '../../common'
 
 const log = new Log('AutoComplete')

@@ -3,7 +3,7 @@
  * @author pashangshangpo
  */
 
-import CheckableTag from '../../component/CheckableTag'
+import CheckableTag from '../../components/CheckableTag'
 import {el, Log} from '../../common'
 
 const log = new Log('CheckableTag')

@@ -1,10 +1,10 @@
 /**
  * @file Progress
  * @author pashangshangpo
- * @createTime 2018年4月30日 下午5:15
+ * @date 2018年4月30日 下午5:15
  */
 
-import Progress from '../../component/Progress'
+import Progress from '../../components/Progress'
 import { el, Log } from '../../common'
 
 const log = new Log('Progress')

@@ -3,7 +3,7 @@
  * @author pashangshangpo
  */
 
-import Tag from '../../component/Tag'
+import Tag from '../../components/Tag'
 import {el, Log} from '../../common'
 
 const log = new Log('Tag')

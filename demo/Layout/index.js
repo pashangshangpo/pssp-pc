@@ -3,7 +3,7 @@
  * @author pashangshangpo
  */
 
-import Layout from '../../component/Layout'
+import Layout from '../../components/Layout'
 import { el, Log } from '../../common'
 
 const { Sider, Menu, Content } = Layout
